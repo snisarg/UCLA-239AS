@@ -27,7 +27,7 @@ network_file = numpy.genfromtxt('../../Datasets/network_backup_dataset.csv',
 network_X_old = network_file[:, (0, 1, 2, 3, 4, 6)]
 network_Y = network_file[:, 5]
 
-for poly_degree in range(2, 8):
+for poly_degree in range(1, 8):
     poly = PolynomialFeatures(degree=poly_degree)
     network_X = poly.fit_transform(network_X_old)
 
