@@ -14,24 +14,6 @@ def number_from_end_string(str):
     return [float(s) for s in str.split('_') if s.isdigit()][-1]
 
 
-def gen_test_set(data_x, data_y, size):
-    data_x_test = []
-    data_x_train = []
-    data_y_test = []
-    data_y_train = []
-    for i in range(0, int(data_x.shape[0]/size)):
-        rand_pos = numpy.random.random_integers(0, size-1)
-        data_x_train.extend(data_x[i:i+rand_pos])
-        data_x_test.append(data_x[i+rand_pos])
-        data_x_train.extend(data_x[i+rand_pos+1:i+size])
-        data_y_train.extend(data_y[i:i+rand_pos])
-        data_y_test.append(data_y[i+rand_pos])
-        data_y_train.extend(data_y[i+rand_pos+1:i+size])
-    data_x_train.extend(data_x[-int(data_x.shape[0] % size):])
-    data_y_train.extend(data_y[-int(data_x.shape[0] % size):])
-    return data_x_train, data_x_test, data_y_train, data_y_test
-
-
 def get_selected(all_elem, selected):
     result = []
     for i in selected:
