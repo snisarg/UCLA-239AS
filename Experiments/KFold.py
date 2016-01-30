@@ -10,6 +10,7 @@ for i in range(18580):
 
 for train, test in kf:
     print (train, test)
+    print (train.shape, test.shape)
     for i in test:
         values[i] = True
 
