@@ -9,6 +9,7 @@ for i in range(18580):
     values.insert(i, False)
 
 for train, test in kf:
+    print (train, test)
     for i in test:
         values[i] = True
 
