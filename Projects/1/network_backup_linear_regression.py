@@ -2,9 +2,7 @@
 
 import numpy
 from sklearn import linear_model, cross_validation
-
 import matplotlib.pyplot as plt
-
 
 
 def day_to_number(str):
@@ -34,10 +32,10 @@ def gen_test_set(data_x, data_y, size):
     return data_x_train, data_x_test, data_y_train, data_y_test
 
 
-def get_selected(all, selected):
+def get_selected(all_elem, selected):
     result = []
     for i in selected:
-        result.append(all[i])
+        result.append(all_elem[i])
     return result
 
 network_file = numpy.genfromtxt('../../Datasets/network_backup_dataset.csv',
@@ -51,6 +49,9 @@ kf = cross_validation.KFold(len(network_X), 10, True)
 coefficient_matrix = []
 rmse = []
 score = []
+predicted = []
+for i in range(len(network_X)):
+    predicted.append(0)
 
 for train_index, test_index in kf:
     network_X_train = get_selected(network_X, train_index)
@@ -58,24 +59,34 @@ for train_index, test_index in kf:
     network_Y_train = get_selected(network_Y, train_index)
     network_Y_test = get_selected(network_Y, test_index)
 
-    #network_X_train, network_X_test, network_Y_train, network_Y_test = gen_test_set(network_X, network_Y, 10)
-
     regr = linear_model.LinearRegression()
     regr.fit(network_X_train, network_Y_train)
 
     coefficient_matrix.append(regr.coef_)
-    rmse.append(numpy.mean((regr.predict(network_X_test) - network_Y_test) ** 2))
+    predicted_values = regr.predict(network_X_test)
+    i = 0
+    for index in test_index:
+        predicted[index] = predicted_values[i]
+        i += 1
+
+    rmse.append(numpy.mean(predicted_values - network_Y_test) ** 2)
     score.append(regr.score(network_X_test, network_Y_test))
 
 print 'Coefficients: \n', coefficient_matrix
 print 'RMSE: \n', rmse
 print 'Score: \n', score
 
-# # Plot outputs
-# #plt.scatter(network_Y_test, network_Y_test,  color='black')
-# plt.scatter(network_Y_test, regr.predict(network_X_test), color='blue')
-#
+#Residual
+residual = []
+for i in range(len(network_X)):
+    residual.append(network_Y[i] - predicted[i])
+
+# Plot outputs
+plt.scatter(range(len(network_X)), network_Y,  color='black')
+plt.scatter(range(len(network_X)), predicted, color='blue')
+plt.plot(range(len(network_X)), residual, color='red', linewidth=1)
+
 # plt.xticks(())
 # plt.yticks(())
-#
-# plt.show()
+
+plt.show()
