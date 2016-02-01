@@ -43,16 +43,22 @@ for workflow_id in range(5):
     rmse = []
     score = []
     predicted = []
+    
+    rmseFinal = []
+    scoreFinal = []
+    predictedFinal = []
+    
     for i in range(len(network_X)):
         predicted.append(0)
-
+    
+    regr = linear_model.LinearRegression()
+    
     for train_index, test_index in kf:
         network_X_train = get_selected(network_X, train_index)
         network_X_test = get_selected(network_X, test_index)
         network_Y_train = get_selected(network_Y, train_index)
         network_Y_test = get_selected(network_Y, test_index)
 
-        regr = linear_model.LinearRegression()
         regr.fit(network_X_train, network_Y_train)
 
         coefficient_matrix.append(regr.coef_)
@@ -62,13 +68,15 @@ for workflow_id in range(5):
             predicted[index] = predicted_values[i]
             i += 1
 
-        rmse.append(numpy.mean(predicted_values - network_Y_test) ** 2)
+        rmse.append(numpy.sqrt((predicted_values - network_Y_test) ** 2).mean())
         score.append(regr.score(network_X_test, network_Y_test))
-
+    
+    predictedFinal = regr.predict(network_X)
+    rmseFinal.append(numpy.sqrt((predictedFinal - network_Y) ** 2).mean())
     print '--------------\nWorkflow id: ', workflow_id
     #print 'Coefficients: \n', coefficient_matrix
-    print 'RMSE: \n', rmse
-    print 'Score: \n', score
+    print 'RMSE: \n', rmseFinal
+    #print 'Score: \n', score
 
     #Residual
     residual = []
