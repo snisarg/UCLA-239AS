@@ -16,7 +16,9 @@ housing_file = numpy.genfromtxt('../../Datasets/housing_data.csv', delimiter=','
 housing_X_old = housing_file[:, (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)]
 housing_Y = housing_file[:, 13]
 
-for poly_degree in range(1, 8):
+rmseFinal = []
+
+for poly_degree in range(1, 5):
     poly = PolynomialFeatures(degree=poly_degree)
     housing_X = poly.fit_transform(housing_X_old)
 
@@ -26,8 +28,7 @@ for poly_degree in range(1, 8):
     rmse = []
     score = []
     predicted = []
-    
-    rmseFinal = []
+
     scoreFinal = []
     predictedFinal = []
     for i in range(len(housing_X)):
@@ -69,11 +70,13 @@ for poly_degree in range(1, 8):
         residual.append(housing_Y[i] - predicted[i])
 
     # Plot outputs
-    # plt.scatter(range(len(housing_X)), housing_Y,  color='black')
-    # plt.scatter(range(len(housing_X)), predicted, color='blue')
-    # plt.plot(range(len(housing_X)), residual, color='red', linewidth=1)
-    #
-    # # plt.xticks(())
-    # # plt.yticks(())
-    #
-    # plt.show()
+
+plt.plot(range(1, 5), rmseFinal, color='blue', linewidth=1)
+plt.xlabel('Polynomial')
+plt.ylabel('RMSE')
+plt.title('RMSE for varying polynomials.')
+plt.grid(True)
+# plt.xticks(())
+# plt.yticks(())
+
+plt.show()
