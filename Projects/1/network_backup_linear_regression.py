@@ -34,6 +34,11 @@ coefficient_matrix = []
 rmse = []
 score = []
 predicted = []
+
+rmseFinal = []
+scoreFinal = []
+predictedFinal = []
+
 for i in range(len(network_X)):
     predicted.append(0)
 
@@ -54,12 +59,23 @@ for train_index, test_index in kf:  #Iterate over the KFold indexes
         predicted[index] = predicted_values[i]      # Record predicted value at the right index
         i += 1
 
-    rmse.append(numpy.mean(predicted_values - network_Y_test) ** 2)
+    rmse.append(numpy.sqrt(((predicted_values - network_Y_test) ** 2).mean()))
     score.append(regr.score(network_X_test, network_Y_test))
 
-print 'Coefficients: \n', coefficient_matrix
-print 'RMSE: \n', rmse
-print 'Score: \n', score
+
+regr.fit(network_X, network_Y)
+regr.fit(network_X, network_Y)
+predictedFinal = regr.predict(network_X)
+
+rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
+scoreFinal.append(regr.score(network_X, network_Y))
+
+#print 'Coefficients: \n', coefficient_matrix
+#print 'RMSE: \n', rmse
+#print 'Score: \n', score
+
+print 'RMSE: \n', rmseFinal
+#print 'Score: \n', scoreFinal
 
 #Residual
 residual = []
