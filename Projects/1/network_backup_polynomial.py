@@ -37,6 +37,10 @@ for poly_degree in range(1, 8):
     rmse = []
     score = []
     predicted = []
+    
+    rmseFinal = []
+    scoreFinal = []
+    predictedFinal = []
     for i in range(len(network_X)):
         predicted.append(0)
 
@@ -56,13 +60,17 @@ for poly_degree in range(1, 8):
             predicted[index] = predicted_values[i]
             i += 1
 
-        rmse.append(numpy.mean(predicted_values - network_Y_test) ** 2)
+        rmse.append(numpy.sqrt(((predicted_values - network_Y_test) ** 2).mean()))
         score.append(regr.score(network_X_test, network_Y_test))
-
+    
+    regr.fit(network_X, network_Y)
+    predictedFinal = regr.predict(network_X)
+    rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
+    print 'RMSE: \n', rmseFinal
     #print 'Coefficients: \n', coefficient_matrix
-    print '-------------\nPolynomial Degree: ', poly_degree
-    print 'RMSE: \n', rmse
-    print 'Score: \n', score
+    #print '-------------\nPolynomial Degree: ', poly_degree
+    #print 'RMSE: \n', rmse
+    #print 'Score: \n', score
 
     #Residual
     residual = []
