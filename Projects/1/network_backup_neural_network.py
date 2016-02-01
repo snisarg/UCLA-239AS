@@ -34,12 +34,15 @@ rmse = []
 score = []
 predicted = []
 
+coefficient_matrix_final = []
 rmseFinal = []
 scoreFinal = []
 predictedFinal = []
 
 for i in range(len(network_X)):
     predicted.append(0)
+
+model = neural_network.MLPRegressor(100, 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200, True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
 
 for train_index, test_index in kf:  #Iterate over the KFold indexes
     # KFold gives indexes, get rows of these indexes appropriately.
@@ -48,7 +51,6 @@ for train_index, test_index in kf:  #Iterate over the KFold indexes
     network_Y_train = get_selected(network_Y, train_index)
     network_Y_test = get_selected(network_Y, test_index)
 
-    model = neural_network.MLPRegressor(100, 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200, True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
     model.fit(network_X_train, network_Y_train)     # Train
 
     predicted_values = model.predict(network_X_test)
@@ -61,7 +63,7 @@ for train_index, test_index in kf:  #Iterate over the KFold indexes
     score.append(model.score(network_X_test, network_Y_test))
 
 
-model.fit(network_X, network_Y)
+#model.fit(network_X, network_Y)
 predictedFinal = model.predict(network_X)
 
 rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
@@ -73,6 +75,7 @@ scoreFinal.append(model.score(network_X, network_Y))
 
 print 'RMSE: \n', rmseFinal
 #print 'Score: \n', scoreFinal
+print 'Coefficients: \n', model.get_params(True)
 
 #Residual
 residual = []

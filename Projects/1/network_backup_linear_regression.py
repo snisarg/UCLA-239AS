@@ -38,9 +38,12 @@ predicted = []
 rmseFinal = []
 scoreFinal = []
 predictedFinal = []
+coefficient_matrix_final = []
 
 for i in range(len(network_X)):
     predicted.append(0)
+
+regr = linear_model.LinearRegression()
 
 for train_index, test_index in kf:  #Iterate over the KFold indexes
     # KFold gives indexes, get rows of these indexes appropriately.
@@ -49,7 +52,6 @@ for train_index, test_index in kf:  #Iterate over the KFold indexes
     network_Y_train = get_selected(network_Y, train_index)
     network_Y_test = get_selected(network_Y, test_index)
 
-    regr = linear_model.LinearRegression()
     regr.fit(network_X_train, network_Y_train)      # Train
 
     coefficient_matrix.append(regr.coef_)
@@ -63,13 +65,14 @@ for train_index, test_index in kf:  #Iterate over the KFold indexes
     score.append(regr.score(network_X_test, network_Y_test))
 
 
-regr.fit(network_X, network_Y)
+#regr.fit(network_X, network_Y)
 predictedFinal = regr.predict(network_X)
 
 rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
 scoreFinal.append(regr.score(network_X, network_Y))
+coefficient_matrix_final.append(regr.coef_)
 
-#print 'Coefficients: \n', coefficient_matrix
+print 'Coefficients: \n', coefficient_matrix_final
 #print 'RMSE: \n', rmse
 #print 'Score: \n', score
 
@@ -79,12 +82,12 @@ print 'RMSE: \n', rmseFinal
 #Residual
 residual = []
 for i in range(len(network_X)):
-    residual.append(network_Y[i] - predicted[i])
+    residual.append(network_Y[i] - predictedFinal[i])
 
 # Plot outputs
-plt.scatter(range(len(network_X)), network_Y,  color='black')
-plt.scatter(range(len(network_X)), predicted, color='blue')
-plt.plot(range(len(network_X)), residual, color='red', linewidth=1)
+#plt.scatter(range(len(network_X)), network_Y,  color='black')
+#plt.scatter(range(len(network_X)), predictedFinal, color='blue')
+plt.scatter(residual, predictedFinal, color='red')
 
 # plt.xticks(())
 # plt.yticks(())
