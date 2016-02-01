@@ -1,9 +1,8 @@
 #From http://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html
 
 import numpy
-from sklearn import linear_model, cross_validation
+from sklearn import linear_model, cross_validation, neural_network
 import matplotlib.pyplot as plt
-
 
 def day_to_number(str):
     map = {'Monday': 0.0, 'Tuesday': 1.0, 'Wednesday': 2.0, 'Thursday': 3.0, 'Friday': 4.0, 'Saturday': 5.0, 'Sunday': 6.0}
@@ -49,25 +48,24 @@ for train_index, test_index in kf:  #Iterate over the KFold indexes
     network_Y_train = get_selected(network_Y, train_index)
     network_Y_test = get_selected(network_Y, test_index)
 
-    regr = linear_model.LinearRegression()
-    regr.fit(network_X_train, network_Y_train)      # Train
+    model = neural_network.MLPRegressor(100, 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200, True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
+    model.fit(network_X_train, network_Y_train)     # Train
 
-    coefficient_matrix.append(regr.coef_)
-    predicted_values = regr.predict(network_X_test)     # Guess
+    predicted_values = model.predict(network_X_test)
     i = 0
     for index in test_index:
         predicted[index] = predicted_values[i]      # Record predicted value at the right index
         i += 1
 
     rmse.append(numpy.sqrt(((predicted_values - network_Y_test) ** 2).mean()))
-    score.append(regr.score(network_X_test, network_Y_test))
+    score.append(model.score(network_X_test, network_Y_test))
 
 
-regr.fit(network_X, network_Y)
-predictedFinal = regr.predict(network_X)
+model.fit(network_X, network_Y)
+predictedFinal = model.predict(network_X)
 
 rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
-scoreFinal.append(regr.score(network_X, network_Y))
+scoreFinal.append(model.score(network_X, network_Y))
 
 #print 'Coefficients: \n', coefficient_matrix
 #print 'RMSE: \n', rmse
