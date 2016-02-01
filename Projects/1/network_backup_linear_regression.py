@@ -1,3 +1,5 @@
+#From http://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html
+
 import numpy
 from sklearn import linear_model, cross_validation
 import matplotlib.pyplot as plt
@@ -26,33 +28,69 @@ network_file = numpy.genfromtxt('../../Datasets/network_backup_dataset.csv',
 network_X = network_file[:, (0, 1, 2, 3, 4, 6)]
 network_Y = network_file[:, 5]
 
-rmse = []
-scores = []
-predicted = []
+kf = cross_validation.KFold(len(network_X), 10, True)
+
 coefficient_matrix = []
+rmse = []
+score = []
+predicted = []
+
+rmseFinal = []
+scoreFinal = []
+predictedFinal = []
+coefficient_matrix_final = []
 
 for i in range(len(network_X)):
     predicted.append(0)
 
 regr = linear_model.LinearRegression()
-                    
-predicted = cross_validation.cross_val_predict(regr, network_X, network_Y, 10, 1, 0, None, 0)
-scores = cross_validation.cross_val_score(regr, network_X, network_Y,  cv=10, scoring='mean_squared_error')
 
-print 'RMSE after CV ',  numpy.sqrt(-scores)
+for train_index, test_index in kf:  #Iterate over the KFold indexes
+    # KFold gives indexes, get rows of these indexes appropriately.
+    network_X_train = get_selected(network_X, train_index)
+    network_X_test = get_selected(network_X, test_index)
+    network_Y_train = get_selected(network_Y, train_index)
+    network_Y_test = get_selected(network_Y, test_index)
 
-rmse.append(numpy.sqrt(((predicted - network_Y) ** 2).mean()))
+    regr = linear_model.LinearRegression()
+    regr.fit(network_X_train, network_Y_train)      # Train
 
-print 'RMSE Final ',  rmse
+    coefficient_matrix.append(regr.coef_)
+    predicted_values = regr.predict(network_X_test)     # Guess
+    i = 0
+    for index in test_index:
+        predicted[index] = predicted_values[i]      # Record predicted value at the right index
+        i += 1
+
+    rmse.append(numpy.sqrt(((predicted_values - network_Y_test) ** 2).mean()))
+    score.append(regr.score(network_X_test, network_Y_test))
+
+
+#regr.fit(network_X, network_Y)
+predictedFinal = regr.predict(network_X)
+
+rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
+scoreFinal.append(regr.score(network_X, network_Y))
+coefficient_matrix_final.append(regr.coef_)
+
+print 'Coefficients: \n', coefficient_matrix_final
+#print 'RMSE: \n', rmse
+#print 'Score: \n', score
+
+print 'RMSE: \n', rmseFinal
+#print 'Score: \n', scoreFinal
 
 #Residual
 residual = []
 for i in range(len(network_X)):
-    residual.append(network_Y[i] - predicted[i])
+    residual.append(network_Y[i] - predictedFinal[i])
 
 # Plot outputs
 #plt.scatter(range(len(network_X)), network_Y,  color='black')
-#plt.scatter(range(len(network_X)), predicted, color='blue')
-#plt.scatter(residual, predicted, color='red')
+#plt.scatter(range(len(network_X)), predictedFinal, color='blue')
+plt.scatter(residual, predictedFinal, color='red')
 
-#plt.show()
+# plt.xticks(())
+# plt.yticks(())
+
+plt.show()

@@ -16,7 +16,7 @@ housing_file = numpy.genfromtxt('../../Datasets/housing_data.csv', delimiter=','
 housing_X_old = housing_file[:, (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)]
 housing_Y = housing_file[:, 13]
 
-for poly_degree in range(1, 5):
+for poly_degree in range(1, 8):
     poly = PolynomialFeatures(degree=poly_degree)
     housing_X = poly.fit_transform(housing_X_old)
 
@@ -32,14 +32,15 @@ for poly_degree in range(1, 5):
     predictedFinal = []
     for i in range(len(housing_X)):
         predicted.append(0)
-
+        
+    regr = linear_model.LinearRegression()
+    
     for train_index, test_index in kf:
         housing_X_train = get_selected(housing_X, train_index)
         housing_X_test = get_selected(housing_X, test_index)
         housing_Y_train = get_selected(housing_Y, train_index)
         housing_Y_test = get_selected(housing_Y, test_index)
 
-        regr = linear_model.LinearRegression()
         regr.fit(housing_X_train, housing_Y_train)
 
         coefficient_matrix.append(regr.coef_)
@@ -52,7 +53,7 @@ for poly_degree in range(1, 5):
         rmse.append(numpy.sqrt(((predicted_values - housing_Y_test) ** 2).mean()))
         score.append(regr.score(housing_X_test, housing_Y_test))
     
-    regr.fit(housing_X_train, housing_Y_train)
+    #regr.fit(housing_X_train, housing_Y_train)
     predictedFinal = regr.predict(housing_X)
     rmseFinal.append(numpy.sqrt(((predictedFinal - housing_Y) ** 2).mean()))
     #print 'Coefficients: \n', coefficient_matrix

@@ -43,14 +43,15 @@ for poly_degree in range(1, 8):
     predictedFinal = []
     for i in range(len(network_X)):
         predicted.append(0)
-
+    
+    regr = linear_model.LinearRegression()
+    
     for train_index, test_index in kf:
         network_X_train = get_selected(network_X, train_index)
         network_X_test = get_selected(network_X, test_index)
         network_Y_train = get_selected(network_Y, train_index)
         network_Y_test = get_selected(network_Y, test_index)
 
-        regr = linear_model.LinearRegression()
         regr.fit(network_X_train, network_Y_train)
 
         coefficient_matrix.append(regr.coef_)
@@ -63,7 +64,7 @@ for poly_degree in range(1, 8):
         rmse.append(numpy.sqrt(((predicted_values - network_Y_test) ** 2).mean()))
         score.append(regr.score(network_X_test, network_Y_test))
     
-    regr.fit(network_X, network_Y)
+    #regr.fit(network_X, network_Y)
     predictedFinal = regr.predict(network_X)
     rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
     print 'RMSE: \n', rmseFinal

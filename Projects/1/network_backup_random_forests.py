@@ -31,8 +31,17 @@ coefficient_matrix = []
 rmse = []
 score = []
 predicted = []
+
+rmseFinal = []
+scoreFinal = []
+predictedFinal = []
 for i in range(len(network_X)):
     predicted.append(0)
+
+regr = RandomForestRegressor(n_estimators=50,
+                          max_features=6,
+                          max_depth= 9,
+                          n_jobs=1)
 
 for train_index, test_index in kf:
     network_X_train = get_selected(network_X, train_index)
@@ -42,14 +51,8 @@ for train_index, test_index in kf:
 
     # n_estimators - no of trees in the forest
     # max_depth - depth of each tree
-    regr = RandomForestRegressor(n_estimators=25,
-                          max_features=6,
-                          max_depth= 5,
-                          n_jobs=1)
 
     regr.fit(network_X_train,network_Y_train)
-
-    predicted_results =  regr.predict(network_X_test)
 
     predicted_values = regr.predict(network_X_test)
 
@@ -58,11 +61,22 @@ for train_index, test_index in kf:
         predicted[index] = predicted_values[i]
         i += 1
 
-    rmse.append(numpy.mean(predicted_values - network_Y_test) ** 2)
+    rmse.append(numpy.sqrt(((predicted_values - network_Y_test) ** 2).mean()))
     score.append(regr.score(network_X_test, network_Y_test))
 
-print 'RMSE: \n', rmse
-print 'Score: \n', score
+#regr.fit(network_X, network_Y)
+predictedFinal = regr.predict(network_X)
+
+rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
+scoreFinal.append(regr.score(network_X, network_Y))
+
+print 'RMSE: \n', rmseFinal
+#print 'Score: \n', scoreFinal
+
+#print 'RMSE: \n', rmse
+#print 'Score: \n', score
+
+print 'Coefficients: \n', regr.feature_importances_
 
 #Residual
 residual = []

@@ -29,13 +29,14 @@ predictedFinal = []
 for i in range(len(housing_X)):
     predicted.append(0)
 
+regr = linear_model.LinearRegression()
+
 for train_index, test_index in kf:
     housing_X_train = get_selected(housing_X, train_index)
     housing_X_test = get_selected(housing_X, test_index)
     housing_Y_train = get_selected(housing_Y, train_index)
     housing_Y_test = get_selected(housing_Y, test_index)
 
-    regr = linear_model.LinearRegression()
     regr.fit(housing_X_train, housing_Y_train)
 
     coefficient_matrix.append(regr.coef_)
