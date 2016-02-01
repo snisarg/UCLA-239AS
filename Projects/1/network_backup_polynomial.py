@@ -26,6 +26,8 @@ network_file = numpy.genfromtxt('../../Datasets/network_backup_dataset.csv',
                                 converters={1: day_to_number, 3: number_from_end_string, 4: number_from_end_string})
 network_X_old = network_file[:, (0, 1, 2, 3, 4, 6)]
 network_Y = network_file[:, 5]
+fixed_set_RMSE = []
+average_RMSE = []
 
 for poly_degree in range(1, 8):
     poly = PolynomialFeatures(degree=poly_degree)
@@ -67,6 +69,8 @@ for poly_degree in range(1, 8):
     #regr.fit(network_X, network_Y)
     predictedFinal = regr.predict(network_X)
     rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
+    fixed_set_RMSE.append(rmse[0])
+    average_RMSE.append(rmseFinal[0])
     print 'RMSE: \n', rmseFinal
     #print 'Coefficients: \n', coefficient_matrix
     #print '-------------\nPolynomial Degree: ', poly_degree
@@ -78,12 +82,20 @@ for poly_degree in range(1, 8):
     for i in range(len(network_X)):
         residual.append(network_Y[i] - predicted[i])
 
-    # Plot outputs
-    # plt.scatter(range(len(network_X)), network_Y,  color='black')
-    # plt.scatter(range(len(network_X)), predicted, color='blue')
-    # plt.plot(range(len(network_X)), residual, color='red', linewidth=1)
-    #
-    # # plt.xticks(())
-    # # plt.yticks(())
-    #
-    # plt.show()
+# Plot outputs
+#plt.scatter(range(len(network_X)), network_Y,  color='black')
+#plt.scatter(range(len(network_X)), predicted, color='blue')'
+print 'fixed_set_rmse: ', fixed_set_RMSE
+print 'average: ', average_RMSE
+p1 = plt.plot(range(1, 8), fixed_set_RMSE, color='red', linewidth=1)
+p2 = plt.plot(range(1, 8), average_RMSE, color='blue', linewidth=1)
+plt.xlabel('Polynomial')
+plt.ylabel('RMSE')
+plt.title('RMSE for varying polynomials.')
+plt.grid(True)
+plt.legend((p1[0], p2[0]), ('Fixed Set RMSE', 'Average RMSE'))
+# plt.xticks(())
+# plt.yticks(())
+
+plt.show()
+
