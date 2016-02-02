@@ -24,7 +24,7 @@ for train_index, test_index in kf:
     network_Y_train = get_selected(housing_Y, train_index)
     regr.fit(network_X_train, network_Y_train)
     
-predicted = cross_validation.cross_val_predict(model)
+predicted = cross_validation.cross_val_predict(model, housing_X, housing_Y, 10, 1, 0, None, 0)
 scores = cross_validation.cross_val_score(model, housing_X, housing_Y,  cv=10, scoring='mean_squared_error')
 
 print 'All RMSEs',  numpy.sqrt(-scores)

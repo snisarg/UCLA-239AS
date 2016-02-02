@@ -45,7 +45,7 @@ scores = cross_validation.cross_val_score(model, network_X, network_Y,  cv=10, s
 print 'All RMSEs',  numpy.sqrt(-scores)
 print 'Mean RMSE',  numpy.mean(numpy.sqrt(-scores))
 print 'Best RMSE',  numpy.min(numpy.sqrt(-scores))
-print 'Coefficients', regr.coef_
+print 'Coefficients', regr.feature_importances_
 
 #Residual
 residual = []
