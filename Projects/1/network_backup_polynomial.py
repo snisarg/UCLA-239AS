@@ -3,7 +3,9 @@
 import numpy
 from sklearn import linear_model, cross_validation
 import matplotlib.pyplot as plt
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model.base import LinearRegression
 
 
 def day_to_number(str):
@@ -24,59 +26,26 @@ def get_selected(all_elem, selected):
 network_file = numpy.genfromtxt('../../Datasets/network_backup_dataset.csv',
                                 delimiter=',', skip_header=1,
                                 converters={1: day_to_number, 3: number_from_end_string, 4: number_from_end_string})
-network_X_old = network_file[:, (0, 1, 2, 3, 4, 6)]
+network_X = network_file[:, (0, 1, 2, 3, 4, 6)]
 network_Y = network_file[:, 5]
+
 fixed_set_RMSE = []
 average_RMSE = []
 
 for poly_degree in range(1, 8):
-    poly = PolynomialFeatures(degree=poly_degree)
-    network_X = poly.fit_transform(network_X_old)
+    regr = make_pipeline(PolynomialFeatures(poly_degree), LinearRegression())
 
-    kf = cross_validation.KFold(len(network_X), 10, True)
-
-    coefficient_matrix = []
-    rmse = []
-    score = []
-    predicted = []
+    predicted = cross_validation.cross_val_predict(regr, network_X, network_Y, 10, 1, 0, None, 0)
+    scores = cross_validation.cross_val_score(regr, network_X, network_Y,  cv=10, scoring='mean_squared_error')
     
-    rmseFinal = []
-    scoreFinal = []
-    predictedFinal = []
-    for i in range(len(network_X)):
-        predicted.append(0)
+    print '----poly_degree---', poly_degree
+    print 'All RMSEs',  numpy.sqrt(-scores)
+    print 'Mean RMSE',  numpy.mean(numpy.sqrt(-scores))
+    print 'Best RMSE',  numpy.min(numpy.sqrt(-scores))
     
-    regr = linear_model.LinearRegression()
+    fixed_set_RMSE.append(numpy.mean(numpy.sqrt(-scores[0])))
+    average_RMSE.append(numpy.mean(numpy.sqrt(-scores)))
     
-    for train_index, test_index in kf:
-        network_X_train = get_selected(network_X, train_index)
-        network_X_test = get_selected(network_X, test_index)
-        network_Y_train = get_selected(network_Y, train_index)
-        network_Y_test = get_selected(network_Y, test_index)
-
-        regr.fit(network_X_train, network_Y_train)
-
-        coefficient_matrix.append(regr.coef_)
-        predicted_values = regr.predict(network_X_test)
-        i = 0
-        for index in test_index:
-            predicted[index] = predicted_values[i]
-            i += 1
-
-        rmse.append(numpy.sqrt(((predicted_values - network_Y_test) ** 2).mean()))
-        score.append(regr.score(network_X_test, network_Y_test))
-    
-    #regr.fit(network_X, network_Y)
-    predictedFinal = regr.predict(network_X)
-    rmseFinal.append(numpy.sqrt(((predictedFinal - network_Y) ** 2).mean()))
-    fixed_set_RMSE.append(rmse[0])
-    average_RMSE.append(rmseFinal[0])
-    print 'RMSE: \n', rmseFinal
-    #print 'Coefficients: \n', coefficient_matrix
-    #print '-------------\nPolynomial Degree: ', poly_degree
-    #print 'RMSE: \n', rmse
-    #print 'Score: \n', score
-
     #Residual
     residual = []
     for i in range(len(network_X)):
@@ -94,8 +63,5 @@ plt.ylabel('RMSE')
 plt.title('RMSE for varying polynomials.')
 plt.grid(True)
 plt.legend((p1[0], p2[0]), ('Fixed Set RMSE', 'Average RMSE'))
-# plt.xticks(())
-# plt.yticks(())
 
 plt.show()
-

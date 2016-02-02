@@ -3,7 +3,9 @@
 import numpy
 from sklearn import linear_model, cross_validation
 import matplotlib.pyplot as plt
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model.base import LinearRegression
 
 
 def get_selected(all_elem, selected):
@@ -13,70 +15,42 @@ def get_selected(all_elem, selected):
     return result
 
 housing_file = numpy.genfromtxt('../../Datasets/housing_data.csv', delimiter=',', skip_header=1)
-housing_X_old = housing_file[:, (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)]
+housing_X = housing_file[:, (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)]
 housing_Y = housing_file[:, 13]
 
-rmseFinal = []
+fixed_set_RMSE = []
+average_RMSE = []
 
 for poly_degree in range(1, 5):
-    poly = PolynomialFeatures(degree=poly_degree)
-    housing_X = poly.fit_transform(housing_X_old)
+    regr = make_pipeline(PolynomialFeatures(poly_degree), LinearRegression())
 
-    kf = cross_validation.KFold(len(housing_X), 10, True)
-
-    coefficient_matrix = []
-    rmse = []
-    score = []
-    predicted = []
-
-    scoreFinal = []
-    predictedFinal = []
-    for i in range(len(housing_X)):
-        predicted.append(0)
-        
-    regr = linear_model.LinearRegression()
+    predicted = cross_validation.cross_val_predict(regr, housing_X, housing_Y, 10, 1, 0, None, 0)
+    scores = cross_validation.cross_val_score(regr, housing_X, housing_Y,  cv=10, scoring='mean_squared_error')
     
-    for train_index, test_index in kf:
-        housing_X_train = get_selected(housing_X, train_index)
-        housing_X_test = get_selected(housing_X, test_index)
-        housing_Y_train = get_selected(housing_Y, train_index)
-        housing_Y_test = get_selected(housing_Y, test_index)
-
-        regr.fit(housing_X_train, housing_Y_train)
-
-        coefficient_matrix.append(regr.coef_)
-        predicted_values = regr.predict(housing_X_test)
-        i = 0
-        for index in test_index:
-            predicted[index] = predicted_values[i]
-            i += 1
-
-        rmse.append(numpy.sqrt(((predicted_values - housing_Y_test) ** 2).mean()))
-        score.append(regr.score(housing_X_test, housing_Y_test))
+    print '----poly_degree---', poly_degree
+    print 'All RMSEs',  numpy.sqrt(-scores)
+    print 'Mean RMSE',  numpy.mean(numpy.sqrt(-scores))
+    print 'Best RMSE',  numpy.min(numpy.sqrt(-scores))
     
-    #regr.fit(housing_X_train, housing_Y_train)
-    predictedFinal = regr.predict(housing_X)
-    rmseFinal.append(numpy.sqrt(((predictedFinal - housing_Y) ** 2).mean()))
-    #print 'Coefficients: \n', coefficient_matrix
-    #print '-------------\nPolynomial Degree: ', poly_degree
-    #print 'RMSE: \n', rmse
-    #print 'Score: \n', score
+    fixed_set_RMSE.append(numpy.mean(numpy.sqrt(-scores[0])))
+    average_RMSE.append(numpy.mean(numpy.sqrt(-scores)))
     
-    print 'RMSE: \n', rmseFinal
-
     #Residual
     residual = []
     for i in range(len(housing_X)):
         residual.append(housing_Y[i] - predicted[i])
 
-    # Plot outputs
-
-plt.plot(range(1, 5), rmseFinal, color='blue', linewidth=1)
+# Plot outputs
+#plt.scatter(range(len(network_X)), network_Y,  color='black')
+#plt.scatter(range(len(network_X)), predicted, color='blue')'
+print 'fixed_set_rmse: ', fixed_set_RMSE
+print 'average: ', average_RMSE
+p1 = plt.plot(range(1, 5), fixed_set_RMSE, color='red', linewidth=1)
+p2 = plt.plot(range(1, 5), average_RMSE, color='blue', linewidth=1)
 plt.xlabel('Polynomial')
 plt.ylabel('RMSE')
 plt.title('RMSE for varying polynomials.')
 plt.grid(True)
-# plt.xticks(())
-# plt.yticks(())
+plt.legend((p1[0], p2[0]), ('Fixed Set RMSE', 'Average RMSE'))
 
 plt.show()
