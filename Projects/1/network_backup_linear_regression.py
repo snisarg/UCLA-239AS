@@ -49,8 +49,8 @@ for i in range(len(network_X)):
     residual.append(network_Y[i] - predicted[i])
 
 #Plot outputs
-#plt.scatter(range(len(network_X)), network_Y,  color='black')
-#plt.scatter(range(len(network_X)), predicted, color='blue')
-plt.scatter(residual, predicted, color='red')
+plt.scatter(range(len(network_X)), network_Y,  color='black')
+plt.scatter(range(len(network_X)), predicted, color='blue')
+#plt.scatter(residual, predicted, color='red')
 
 plt.show()

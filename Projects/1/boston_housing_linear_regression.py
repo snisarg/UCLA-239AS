@@ -38,8 +38,9 @@ for i in range(len(housing_X)):
     residual.append(housing_Y[i] - predicted[i])
 
 # Plot outputs
-plt.scatter(range(len(housing_X)), housing_Y,  color='black')
-plt.scatter(range(len(housing_X)), predicted, color='blue')
+sp1 = plt.scatter(range(len(housing_X)), housing_Y,  color='black')
+sp2 = plt.scatter(range(len(housing_X)), predicted, color='blue')
+#plt.legend((sp1[0], sp2[0]), ('Original values', 'Predicted values'))
 #plt.scatter(residual, predicted, color='red')
 
 plt.show()
