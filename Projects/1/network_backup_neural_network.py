@@ -27,14 +27,21 @@ network_file = numpy.genfromtxt('../../Datasets/network_backup_dataset.csv',
 network_X = network_file[:, (0, 1, 2, 3, 4, 6)]
 network_Y = network_file[:, 5]
 
+regr = neural_network.MLPRegressor(100, 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200, True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
+kf = cross_validation.KFold(len(network_X), 10, True)
+for train_index, test_index in kf:
+    network_X_train = get_selected(network_X, train_index)
+    network_Y_train = get_selected(network_Y, train_index)
+    regr.fit(network_X_train, network_Y_train)
+    
 model = neural_network.MLPRegressor(100, 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200, True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
-
 predicted = cross_validation.cross_val_predict(model, network_X, network_Y, 10, 1, 0, None, 0)
 scores = cross_validation.cross_val_score(model, network_X, network_Y,  cv=10, scoring='mean_squared_error')
 
 print 'All RMSEs',  numpy.sqrt(-scores)
 print 'Mean RMSE',  numpy.mean(numpy.sqrt(-scores))
 print 'Best RMSE',  numpy.min(numpy.sqrt(-scores))
+print 'Coefficients', regr.coef_
 
 #Residual
 residual = []

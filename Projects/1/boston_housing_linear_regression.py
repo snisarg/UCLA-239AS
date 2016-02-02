@@ -15,13 +15,22 @@ housing_file = numpy.genfromtxt('../../Datasets/housing_data.csv', delimiter=','
 housing_X = housing_file[:, (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)]
 housing_Y = housing_file[:, 13]
 
+model = linear_model.LinearRegression()
+
 regr = linear_model.LinearRegression()
-predicted = cross_validation.cross_val_predict(regr, housing_X, housing_Y, 10, 1, 0, None, 0)
-scores = cross_validation.cross_val_score(regr, housing_X, housing_Y,  cv=10, scoring='mean_squared_error')
+kf = cross_validation.KFold(len(housing_X), 10, True)
+for train_index, test_index in kf:
+    network_X_train = get_selected(housing_X, train_index)
+    network_Y_train = get_selected(housing_Y, train_index)
+    regr.fit(network_X_train, network_Y_train)
+    
+predicted = cross_validation.cross_val_predict(model)
+scores = cross_validation.cross_val_score(model, housing_X, housing_Y,  cv=10, scoring='mean_squared_error')
 
 print 'All RMSEs',  numpy.sqrt(-scores)
 print 'Mean RMSE',  numpy.mean(numpy.sqrt(-scores))
 print 'Best RMSE',  numpy.min(numpy.sqrt(-scores))
+print 'Coefficients', regr.coef_
 
 #Residual
 residual = []
