@@ -45,8 +45,8 @@ for poly_degree in range(1, 5):
 #plt.scatter(range(len(network_X)), predicted, color='blue')'
 print 'fixed_set_rmse: ', fixed_set_RMSE
 print 'average: ', average_RMSE
-p1 = plt.plot(range(1, 5), fixed_set_RMSE, color='red', linewidth=1)
-p2 = plt.plot(range(1, 5), average_RMSE, color='blue', linewidth=1)
+p1 = plt.plot(range(2, 5), fixed_set_RMSE[1:], color='red', linewidth=1)
+p2 = plt.plot(range(2, 5), average_RMSE[1:], color='blue', linewidth=1)
 plt.xlabel('Polynomial')
 plt.ylabel('RMSE')
 plt.title('RMSE for varying polynomials.')
