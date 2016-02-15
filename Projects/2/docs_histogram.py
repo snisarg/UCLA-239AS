@@ -10,10 +10,10 @@ def category_docs_frequency_count(category):
     docs_count = sum(frequency.values()) #sum up frequencies of docs of a category
     return docs_count
 
-twenty_train = fetch_20newsgroups(subset='train',shuffle=True,random_state=42)
+docs_train = fetch_20newsgroups(subset='train',shuffle=True,random_state=42)
 
 # Plot histogram of all categories
-pyplot.hist(twenty_train.target)
+pyplot.hist(docs_train.target)
 pyplot.axis([0,20,0,1500])
 pyplot.title('Distribution of Documents')
 pyplot.xlabel('Classes')
