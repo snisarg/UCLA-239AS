@@ -12,16 +12,8 @@ def category_docs_frequency_count(category):
 
 docs_train = fetch_20newsgroups(subset='train',shuffle=True,random_state=42)
 
-# Plot histogram of all categories
-pyplot.hist(docs_train.target)
-pyplot.axis([0,20,0,1500])
-pyplot.title('Distribution of Documents')
-pyplot.xlabel('Classes')
-pyplot.ylabel('Frequency Count')
-pyplot.show()
-
 # get frequency of docs in Comp Tech category
-comp_tech_categories = ['comp.graphics','comp.os.ms-windows.misc','comp.sys.ibm.pc.hardware', 'comp.sys.mac.hardware','comp.windows.x']
+comp_tech_categories = ['comp.graphics','comp.os.ms-windows.misc','comp.sys.ibm.pc.hardware', 'comp.sys.mac.hardware']
 comp_tech_freq = category_docs_frequency_count(comp_tech_categories)
 print comp_tech_freq
 
@@ -29,3 +21,11 @@ print comp_tech_freq
 rec_categories = ['rec.autos', 'rec.motorcycles', 'rec.sport.baseball', 'rec.sport.hockey']
 rec_freq = category_docs_frequency_count(rec_categories)
 print rec_freq
+
+# Plot histogram of all categories
+pyplot.hist(docs_train.target)
+pyplot.axis([0,20,0,1500])
+pyplot.title('Distribution of Documents')
+pyplot.xlabel('Classes')
+pyplot.ylabel('Frequency Count')
+pyplot.show()
