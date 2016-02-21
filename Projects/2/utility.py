@@ -76,6 +76,13 @@ def custom_2class_classifier():
     new_test = Dummy(data_test.data, new_test_target)
 
     return new_train, new_test
+    
+    #--- for testing purposes use a small dataset ---
+    #categories = ['comp.graphics', 'rec.sport.hockey']
+    #data_train = fetch_20newsgroups(subset='train', categories=categories, shuffle=True, random_state=42)
+    #data_test = fetch_20newsgroups(subset='test', categories=categories, shuffle=True, random_state=42)
+      
+    #return data_train, data_test
 
 
 def draw_roc_curve(y_true, y_score):
