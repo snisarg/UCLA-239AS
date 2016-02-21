@@ -27,7 +27,8 @@ counter = [0 for i in range(20)]
 for i in docs_train.target:
     counter[i] += 1
 print counter
-pyplot.plot(counter)
+# pyplot.plot(counter)
+pyplot.hist(docs_train.target, bins=20)
 #pyplot.axis([0,20,0,1500])
 pyplot.title('Distribution of Documents')
 pyplot.xlabel('Classes')
