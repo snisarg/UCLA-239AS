@@ -23,8 +23,12 @@ rec_freq = category_docs_frequency_count(rec_categories)
 print rec_freq
 
 # Plot histogram of all categories
-pyplot.hist(docs_train.target)
-pyplot.axis([0,20,0,1500])
+counter = [0 for i in range(20)]
+for i in docs_train.target:
+    counter[i] += 1
+print counter
+pyplot.plot(counter)
+#pyplot.axis([0,20,0,1500])
 pyplot.title('Distribution of Documents')
 pyplot.xlabel('Classes')
 pyplot.ylabel('Frequency Count')
