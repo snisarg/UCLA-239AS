@@ -12,6 +12,6 @@ print(model)
 expected = data_test.target
 predicted = model.predict(data_test.data)
 
-utility.print_stats(expected, predicted)
+utility.print_stats(expected, predicted, 'Naive Bayes Basic')
 
 utility.draw_roc_curve(expected, model.predict_proba(data_test.data)[:, 1])

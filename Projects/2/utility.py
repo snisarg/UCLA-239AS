@@ -95,7 +95,12 @@ def draw_roc_curve(y_true, y_score):
     plt.show()
 
 
-def print_stats(expected, predicted):
+def print_stats(expected, predicted, learning_algo):
     # summarize the fit of the model
+    print('Classification report for: %s\n'%learning_algo)
     print(metrics.classification_report(expected, predicted))
+    print('Confusion matrix for: %s\n'%learning_algo)
     print(metrics.confusion_matrix(expected, predicted))
+    print('Accuracy for: %s\n'%learning_algo)
+    print(metrics.accuracy_score(expected, predicted))
+    print '\n'

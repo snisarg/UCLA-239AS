@@ -14,5 +14,5 @@ model.fit(data_train.data, data_train.target)
 expected = data_test.target
 predicted = model.predict(data_test.data)
 
-utility.print_stats(expected, predicted)
+utility.print_stats(expected, predicted, 'Naive Bayes Multiclass')
 
