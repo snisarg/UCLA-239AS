@@ -15,4 +15,3 @@ expected = docs_test.target
 predicted = model.predict(docs_test.data)
 
 utility.print_stats(expected, predicted, 'Naive Bayes Multiclass')
-
