@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
 from sklearn.pipeline import Pipeline
 
-stemmer = nltk.stem.LancasterStemmer()
+__stemmer = nltk.stem.LancasterStemmer()
 
 
 def punctuation_cleaner(s):
@@ -21,7 +21,7 @@ def stop_word_cleaner(s):
 
 
 def stem_cleaner(s):
-    return stemmer.stem(s)
+    return __stemmer.stem(s)
 
 
 def clean_word(s):
