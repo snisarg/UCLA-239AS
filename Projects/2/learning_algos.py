@@ -19,8 +19,7 @@ pipeline_svm = utility.pipeline_setup(svm) #pipeline_svm obj to be used in all s
 
 pipeline_svm_fitted = pipeline_svm.fit(docs_train.data, docs_train.target)
 svm_predict = pipeline_svm_fitted.predict(docs_test.data)
-utility.print_stats(docs_test.target, svm_predict)
-#utility.draw_roc_curve(expected, model.predict_proba(data_test.data)[:, 1])
+utility.print_stats(docs_test.target, svm_predict, 'SVM')
 utility.draw_roc_curve(docs_test.target, pipeline_svm_fitted.predict_proba(docs_test.data)[:, 1])
 
 # print("Confusion matrix for SVM:\n%s" %metrics.confusion_matrix(docs_test.target, svm_predict))
@@ -35,5 +34,5 @@ logistic_regr = LogisticRegression(penalty='l2', max_iter=5, random_state=40)
 pipeline_regr = utility.pipeline_setup(logistic_regr)
 pipeline_regr_fitted = pipeline_regr.fit(docs_train.data, docs_train.target)
 regr_predict = pipeline_regr_fitted.predict(docs_test.data)
-utility.print_stats(docs_test.target, regr_predict)
+utility.print_stats(docs_test.target, regr_predict, 'Logistic Regression')
 utility.draw_roc_curve(docs_test.target, pipeline_regr_fitted.predict_proba(docs_test.data)[:, 1])
