@@ -9,8 +9,10 @@ from sklearn.metrics import roc_curve
 from sklearn.metrics import auc
 import matplotlib.pyplot as plt
 from sklearn import metrics
+import re
 
 __stemmer = nltk.stem.LancasterStemmer()
+__words_only = re.compile("^[A-Za-z]*$")
 
 
 def punctuation_cleaner(s):
@@ -33,9 +35,17 @@ def clean_word(s):
     result = ""
     if s is not None:
         for w in nltk.tokenize.word_tokenize(s.lower()):
-            if w is not None and stop_word_cleaner(w) and punctuation_cleaner(w):
+            #print w
+            if w is not None and stop_word_cleaner(w) and punctuation_cleaner(w):# and regex_filter(w):
                 result += " " + stem_cleaner(w)
+    #print result
     return result
+
+
+def regex_filter(s):
+    if __words_only.match(s) is not None:
+        return True
+    return False
 
 
 def pipeline_setup(learning_algo):
