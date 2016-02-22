@@ -36,7 +36,14 @@ def get_significant_terms(category):
     category_list = []
     category_list.append(category)
     class_freq_list = []
-    names, class_freq_list = get_class_frequency(category_list) # get keyword list &  normal freq  list per class
+#   names, class_freq_list = get_class_frequency(category_list) # get keyword list &  normal freq  list per class
+    names = get_class_frequency(category_list) # get keyword list &  normal freq  list per class
+
+    f = open('names.pkl','wb')
+    pickle.dump(names , f)
+    f.close()
+
+
 
     #f = open('class_freq_list.pkl','wb')
     #pickle.dump(class_freq_list, f)
@@ -78,14 +85,16 @@ def get_class_frequency(category):
     count_vector = CountVectorizer(preprocessor=utility.clean_word)
     doc_term_matrix = count_vector.fit_transform(category.data)
     names = count_vector.get_feature_names()
-
+    '''
     no_terms = doc_term_matrix.shape[1]
     class_freq_list = []
 
     for i in range(no_terms):
         class_freq_list.append( sum(doc_term_matrix[:,i]) )
     print "get_class_frequency() done "
-    return (names, class_freq_list)
+    '''
+    return names
+#   return (names, class_freq_list)
 
 # returns matrix of frequency count of all classes
 def term_class_count():
