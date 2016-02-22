@@ -36,7 +36,7 @@ def clean_word(s):
     if s is not None:
         for w in nltk.tokenize.word_tokenize(s.lower()):
             #print w
-            if w is not None and stop_word_cleaner(w) and punctuation_cleaner(w):# and regex_filter(w):
+            if w is not None and stop_word_cleaner(w) and punctuation_cleaner(w) and regex_filter(w):
                 result += " " + stem_cleaner(w)
     #print result
     return result
