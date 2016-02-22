@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import utility
 
 # Load the dataset
-docs_train = fetch_20newsgroups(subset='train',shuffle=True,random_state=42)
+docs_train = fetch_20newsgroups(subset='train',shuffle=True,random_state=42)#, remove=('headers','footers','quotes'))
 
 tf_idf = TfidfVectorizer(preprocessor=utility.clean_word, use_idf=True)
 
