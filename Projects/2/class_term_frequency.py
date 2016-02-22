@@ -30,7 +30,7 @@ def get_significant_terms(category):
     #f.close()
 
     f = open('class_count_list.pkl','rb')
-    class_count_list = pickle.dump( f)
+    class_count_list = pickle.load(f)
     f.close()
 
     category_list = []
@@ -43,7 +43,7 @@ def get_significant_terms(category):
     #f.close()
 
     f = open('class_freq_list.pkl','rb')
-    class_freq_list = pickle.dump(f)
+    class_freq_list = pickle.load(f)
     f.close()
 
 
