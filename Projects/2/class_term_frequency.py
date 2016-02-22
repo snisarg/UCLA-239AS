@@ -11,7 +11,7 @@ def get_significant_terms(category):
     print "in get_significant terms()"
     all_classes = list(fetch_20newsgroups(subset='train').target_names)
     index = all_classes.index(category)
-    freq_matrix = term_class_count()
+    #freq_matrix = term_class_count()
     #f = open('freq_matrix.pkl','wb')
     #pickle.dump(freq_matrix, f)
     #f.close()
@@ -24,7 +24,7 @@ def get_significant_terms(category):
     print "frequency matrix done"
     class_max_freq = max(freq_matrix[index])
     class_count_list = []
-    class_count_list = get_term_class_count(freq_matrix)
+    #class_count_list = get_term_class_count(freq_matrix)
     #f = open('class_count_list.pkl','wb')
     #pickle.dump(class_count_list , f)
     #f.close()
