@@ -5,6 +5,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
 from sklearn.pipeline import Pipeline
 from sklearn.datasets import fetch_20newsgroups
+from sklearn.metrics import roc_curve
+from sklearn.metrics import auc
+import matplotlib.pyplot as plt
+from sklearn import metrics
 
 __stemmer = nltk.stem.LancasterStemmer()
 
@@ -72,3 +76,38 @@ def custom_2class_classifier():
     new_test = Dummy(data_test.data, new_test_target)
 
     return new_train, new_test
+    
+    #--- for testing purposes use a small dataset ---
+    #categories = ['comp.graphics', 'rec.sport.hockey']
+    #data_train = fetch_20newsgroups(subset='train', categories=categories, shuffle=True, random_state=42)
+    #data_test = fetch_20newsgroups(subset='test', categories=categories, shuffle=True, random_state=42)
+      
+    #return data_train, data_test
+
+
+def draw_roc_curve(y_true, y_score):
+    # Compute fpr, tpr, thresholds and roc auc
+    fpr, tpr, thresholds = roc_curve(y_true, y_score)
+#    roc_auc = auc(y_true, y_score)
+
+    # Plot ROC curve
+    plt.plot(fpr, tpr, label='ROC curve ')#(area = %0.3f)' % roc_auc)
+    plt.plot([0, 1], [0, 1], 'k--')  # random predictions curve
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.0])
+    plt.xlabel('False Positive Rate or (1 - Specifity)')
+    plt.ylabel('True Positive Rate or (Sensitivity)')
+    plt.title('Receiver Operating Characteristic')
+    plt.legend(loc="lower right")
+    plt.show()
+
+
+def print_stats(expected, predicted, learning_algo):
+    # summarize the fit of the model
+    print('Classification report for: %s\n'%learning_algo)
+    print(metrics.classification_report(expected, predicted))
+    print('Confusion matrix for: %s\n'%learning_algo)
+    print(metrics.confusion_matrix(expected, predicted))
+    print('Accuracy for: %s\n'%learning_algo)
+    print(metrics.accuracy_score(expected, predicted))
+    print '\n'
