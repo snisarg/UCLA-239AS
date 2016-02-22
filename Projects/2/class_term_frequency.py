@@ -8,17 +8,18 @@ import numpy
 
 
 # returns top 'n' significant terms for the given category
-def get_significant_terms(category):
+def get_significant_terms(category, freq_matrix):
 
     print "in get_significant terms()"
     all_classes = list(fetch_20newsgroups(subset='train').target_names)
     index = all_classes.index(category)
-    freq_matrix = term_class_count()
 
+
+    '''
     f = open('freq_matrix.pkl','wb')
     pickle.dump(freq_matrix, f)
     f.close()
-    '''
+
     f = open('freq_matrix.pkl','rb')
     freq_matrix = pickle.load(f)
     f.close()
@@ -34,11 +35,11 @@ def get_significant_terms(category):
     class_count_list = []
     class_count_list = get_term_class_count(freq_matrix)
 
+    '''
     f = open('class_count_list.pkl','wb')
     pickle.dump(class_count_list , f)
     f.close()
 
-    '''
     f = open('class_count_list.pkl','rb')
     class_count_list = pickle.load(f)
     f.close()
@@ -50,10 +51,10 @@ def get_significant_terms(category):
     names, class_freq_list = get_class_frequency(category_list) # get keyword list &  normal freq  list per class
 #   names = get_class_frequency(category_list) # get keyword list &  normal freq  list per class
 
+    '''
     f = open('class_freq_list.pkl','wb')
     pickle.dump(class_freq_list, f)
     f.close()
-    '''
     f = open('class_freq_list.pkl','rb')
     class_freq_list = pickle.load(f)
     f.close()
@@ -148,7 +149,8 @@ def get_term_class_count(freq_matrix):
 
 
 categories = ['comp.sys.ibm.pc.hardware', 'comp.sys.mac.hardware', 'misc.forsale', 'soc.religion.christian']
-n = 10
+freq_matrix = term_class_count()
+
 for category in categories:
 
     '''
@@ -167,7 +169,7 @@ for category in categories:
     category_list.remove(category)
     '''
     terms = []
-    terms = get_significant_terms(category)
+    terms = get_significant_terms(category, freq_matrix)
     print category
     print terms
 
