@@ -16,7 +16,7 @@ svm_predict = pipeline_svm_fitted.predict(docs_test.data)
 utility.print_stats(docs_test.target, svm_predict, 'SVM OneVSOne')
 
 
-svm_weighted = SVC(kernel='linear', probability=True,random_state=40)
+svm_weighted = SVC(kernel='linear', class_weight='balanced', probability=True,random_state=40) #balanced param to make sure both docs have same no. of samples in onevsone
 svm_oneone = OneVsOneClassifier(svm_weighted)
 pipeline_svm_oneone  = utility.pipeline_setup(svm_oneone)
 pipeline_svm_fitted = pipeline_svm_oneone.fit(docs_train.data, docs_train.target)

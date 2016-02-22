@@ -1,0 +1,137 @@
+1) Classification report for: SVM Normal
+
+             precision    recall  f1-score   support
+
+          0       0.97      0.96      0.97      1560
+          1       0.96      0.98      0.97      1590
+
+avg / total       0.97      0.97      0.97      3150
+
+Confusion matrix for: SVM Normal
+
+[[1502   58]
+ [  39 1551]]
+Accuracy for: SVM Normal
+
+0.969206349206
+
+2) Classification report for: Soft Margin SVM
+
+             precision    recall  f1-score   support
+
+          0       0.97      0.96      0.97      1560
+          1       0.96      0.98      0.97      1590
+
+avg / total       0.97      0.97      0.97      3150
+
+Confusion matrix for: Soft Margin SVM
+
+[[1502   58]
+ [  39 1551]]
+Accuracy for: Soft Margin SVM
+
+0.969206349206
+
+
+	learning_algo__gamma: 0.001
+
+3) Classification report for: Logistic Regression
+
+             precision    recall  f1-score   support
+
+          0       0.97      0.96      0.97      1560
+          1       0.96      0.97      0.97      1590
+
+avg / total       0.97      0.97      0.97      3150
+
+Confusion matrix for: Logistic Regression
+
+[[1498   62]
+ [  41 1549]]
+Accuracy for: Logistic Regression
+
+0.967301587302
+
+
+4) Classification report for: Naive Bayes Basic
+
+             precision    recall  f1-score   support
+
+          0       0.76      0.94      0.84      1560
+          1       0.92      0.71      0.80      1590
+
+avg / total       0.84      0.82      0.82      3150
+
+Confusion matrix for: Naive Bayes Basic
+
+[[1460  100]
+ [ 455 1135]]
+Accuracy for: Naive Bayes Basic
+
+0.82380952381
+
+5) Classification report for: Naive Bayes Multiclass
+
+             precision    recall  f1-score   support
+
+          0       0.62      0.59      0.60       392
+          1       0.67      0.35      0.45       385
+          2       0.47      0.79      0.59       390
+          3       1.00      0.85      0.92       398
+
+avg / total       0.69      0.65      0.64      1565
+
+Confusion matrix for: Naive Bayes Multiclass
+
+[[230  30 132   0]
+ [ 94 133 158   0]
+ [ 43  37 310   0]
+ [  6   0  55 337]]
+Accuracy for: Naive Bayes Multiclass
+
+0.645367412141
+
+
+6) Classification report for: SVM OneVSOne
+
+             precision    recall  f1-score   support
+
+          0       0.83      0.74      0.78       392
+          1       0.81      0.82      0.81       385
+          2       0.83      0.91      0.87       390
+          3       0.98      0.98      0.98       398
+
+avg / total       0.86      0.86      0.86      1565
+
+Confusion matrix for: SVM OneVSOne
+
+[[290  60  38   4]
+ [ 40 315  29   1]
+ [ 18  13 355   4]
+ [  2   2   4 390]]
+Accuracy for: SVM OneVSOne
+
+0.862619808307
+
+
+7) Classification report for: SVM OneVSRest
+
+             precision    recall  f1-score   support
+
+          0       0.77      0.82      0.79       392
+          1       0.84      0.79      0.81       385
+          2       0.85      0.89      0.87       390
+          3       1.00      0.95      0.97       398
+
+avg / total       0.86      0.86      0.86      1565
+
+Confusion matrix for: SVM OneVSRest
+
+[[320  45  27   0]
+ [ 56 303  26   0]
+ [ 31  12 346   1]
+ [  8   2   9 379]]
+Accuracy for: SVM OneVSRest
+
+0.861341853035
+
