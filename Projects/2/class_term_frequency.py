@@ -93,9 +93,11 @@ def get_class_frequency(category):
     no_terms = doc_term_matrix.shape[1]
     class_freq_list = []
 
-    for i in range(no_terms):
+    for i in range(20):
+    #for i in range(no_terms):
         col = doc_term_matrix.getcol(i)
-        class_freq_list.append( sum(col))
+        print col.data
+        class_freq_list.append( sum(col.data))
     print "get_class_frequency() done "
 
    # return names
