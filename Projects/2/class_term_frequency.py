@@ -12,7 +12,7 @@ def get_significant_terms(category):
     all_classes = list(fetch_20newsgroups(subset='train').target_names)
     index = all_classes.index(category)
     freq_matrix = term_class_count()
-    f = open('freq_matrix.pk1','wb')
+    f = open('freq_matrix.pkl','wb')
     pickle.dump(freq_matrix, f)
     f.close()
 
@@ -20,7 +20,7 @@ def get_significant_terms(category):
     class_max_freq = max(freq_matrix[index])
     class_count_list = []
     class_count_list = get_term_class_count(freq_matrix)
-    f = open('class_count_list.pk1','wb')
+    f = open('class_count_list.pkl','wb')
     pickle.dump(class_count_list , f)
     f.close()
 
@@ -29,7 +29,7 @@ def get_significant_terms(category):
     class_freq_list = []
     names, class_freq_list = get_class_frequency(category_list) # get keyword list &  normal freq  list per class
 
-    f = open('class_freq_list.pk1','wb')
+    f = open('class_freq_list.pkl','wb')
     pickle.dump(class_freq_list, f)
     f.close()
 
