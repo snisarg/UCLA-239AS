@@ -23,8 +23,10 @@ def get_significant_terms(category):
     tf_icf_list = []
     # log base 2 in calculation
     for i in range(len(class_freq_list)):
-        print class_freq_list[i]
-        tf_icf_list.append(((0.5 + (0.5 * ( class_freq_list[i]) / class_max_freq))) * (math.log((20/class_count_list[i] ), 2)))
+        #print class_freq_list[i]
+        value = ((0.5 + (0.5 * ( class_freq_list[i]) / class_max_freq))) * (math.log((20/class_count_list[i] ), 2))
+        print "value" + value
+        tf_icf_list.append(value)
 
     top_ten_indexes = []
     top_ten_indexes = sorted(range(len(tf_icf_list)), key=lambda i: tf_icf_list[i])[-10:]
