@@ -17,11 +17,13 @@ def get_significant_terms(category):
     category_list = []
     category_list.append(category)
     names, class_freq_list = get_class_frequency(category_list) # get keyword list &  normal freq  list per class
-
+    print "class max freq"
+    print class_max_freq
     print "computing formula"
     tf_icf_list = []
     # log base 2 in calculation
     for i in range(len(class_freq_list)):
+        print class_freq_list[i]
         tf_icf_list.append(((0.5 + (0.5 * ( class_freq_list[i]) / class_max_freq))) * (math.log((20/class_count_list[i] ), 2)))
 
     top_ten_indexes = []
