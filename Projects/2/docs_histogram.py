@@ -30,6 +30,7 @@ print counter
 # pyplot.plot(counter)
 pyplot.hist(docs_train.target, bins=20)
 #pyplot.axis([0,20,0,1500])
+pyplot.xticks(range(20), docs_train.target_names, rotation=90)
 pyplot.title('Distribution of Documents')
 pyplot.xlabel('Classes')
 pyplot.ylabel('Frequency Count')
