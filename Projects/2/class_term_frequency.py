@@ -23,7 +23,7 @@ def get_significant_terms(category):
     print "frequency matrix done"
     row = freq_matrix.getrow(index)
 
-    print row
+#   print row
     class_max_freq = max(row.data)
     print "classmaxfreq"
     print class_max_freq
@@ -42,36 +42,36 @@ def get_significant_terms(category):
     class_freq_list = []
     names, class_freq_list = get_class_frequency(category_list) # get keyword list &  normal freq  list per class
 #   names = get_class_frequency(category_list) # get keyword list &  normal freq  list per class
-
+    '''
     f = open('names.pkl','wb')
     pickle.dump(names , f)
     f.close()
-
+    '''
 
 
     #f = open('class_freq_list.pkl','wb')
     #pickle.dump(class_freq_list, f)
     #f.close()
-
+    '''
     f = open('class_freq_list.pkl','rb')
     class_freq_list = pickle.load(f)
     f.close()
-
+    '''
 
 
     print "class max freq"
     print class_max_freq
     print "class_freq_list"
     print class_freq_list
-    print "class_count_list"
-    print class_count_list
+    #print "class_count_list"
+    #print class_count_list
     print "computing formula"
     tf_icf_list = []
     # log base 2 in calculation
     for i in range(len(class_freq_list)):
         #print class_freq_list[i]
         value = ((0.5 + (0.5 * ( class_freq_list[i]) / class_max_freq))) * (math.log((20/class_count_list[i] ), 2))
-        print "value" + value
+        print value
         tf_icf_list.append(value)
 
     top_ten_indexes = []
@@ -93,11 +93,13 @@ def get_class_frequency(category):
     no_terms = doc_term_matrix.shape[1]
     class_freq_list = []
 
-    for i in range(20):
-    #for i in range(no_terms):
+    #for i in range(20):
+    for i in range(no_terms):
         col = doc_term_matrix.getcol(i)
-        print col.data
-        class_freq_list.append( sum(col.data))
+        total = col.sum()
+        #print total
+        #print col.data
+        class_freq_list.append(total)
     print "get_class_frequency() done "
 
    # return names
