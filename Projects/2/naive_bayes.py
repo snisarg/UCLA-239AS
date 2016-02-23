@@ -12,4 +12,4 @@ model_fitted = model.fit(docs_train.data, docs_train.target)
 expected = docs_test.target
 predicted = model_fitted.predict(docs_test.data)
 utility.print_stats(expected, predicted, 'Naive Bayes Basic')
-utility.draw_roc_curve(expected, model_fitted.predict_proba(docs_test.data)[:, 1])
+utility.draw_roc_curve(expected, model_fitted.predict_proba(docs_test.data)[:, 1], 'Naive Bayes')
