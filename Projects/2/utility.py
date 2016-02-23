@@ -98,10 +98,10 @@ def custom_2class_classifier():
 def draw_roc_curve(y_true, y_score):
     # Compute fpr, tpr, thresholds and roc auc
     fpr, tpr, thresholds = roc_curve(y_true, y_score)
-#    roc_auc = auc(y_true, y_score)
+    roc_auc = auc(fpr, tpr)
 
     # Plot ROC curve
-    plt.plot(fpr, tpr, label='ROC curve ')#(area = %0.3f)' % roc_auc)
+    plt.plot(fpr, tpr, label='ROC curve (area = %0.3f)' % roc_auc)
     plt.plot([0, 1], [0, 1], 'k--')  # random predictions curve
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.0])
