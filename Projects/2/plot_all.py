@@ -1,5 +1,5 @@
-import naive_bayes
 import learning_algos
+import naive_bayes
 import matplotlib.pyplot as plt
 
 
