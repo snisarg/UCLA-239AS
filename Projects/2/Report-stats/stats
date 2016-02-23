@@ -33,7 +33,7 @@ Accuracy for: Soft Margin SVM
 0.969206349206
 
 
-	learning_algo__gamma: 0.001
+	learning_algo__gamma: 0
 
 3) Classification report for: Logistic Regression
 
@@ -57,18 +57,18 @@ Accuracy for: Logistic Regression
 
              precision    recall  f1-score   support
 
-          0       0.76      0.94      0.84      1560
-          1       0.92      0.71      0.80      1590
+          0       0.96      0.87      0.91      1560
+          1       0.88      0.97      0.92      1590
 
-avg / total       0.84      0.82      0.82      3150
+avg / total       0.92      0.92      0.92      3150
 
 Confusion matrix for: Naive Bayes Basic
 
-[[1460  100]
- [ 455 1135]]
+[[1354  206]
+ [  50 1540]]
 Accuracy for: Naive Bayes Basic
 
-0.82380952381
+0.91873015873
 
 5) Classification report for: Naive Bayes Multiclass
 
@@ -134,4 +134,17 @@ Confusion matrix for: SVM OneVSRest
 Accuracy for: SVM OneVSRest
 
 0.871565495208
+
+
+
+
+
+
+---
+
+
+Personal notes:
+
+Precision without header, footer and quotes removed and regex filter off for Naive Base multiclass: 0.643450479233
+With header, footer and quote: 0.645367412141
 
