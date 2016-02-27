@@ -3,11 +3,6 @@ from numpy import dot
 import scipy.linalg
 
 
-'''
-    Shape is (943, 1682)
-'''
-
-
 def get_R():
     my_data = numpy.genfromtxt('../../Datasets/ml-100k/u.data', delimiter='\t')
     max_users = numpy.max(my_data[:, 0])
@@ -18,6 +13,24 @@ def get_R():
         r[row[0]-1, row[1]-1] = row[2]
         w[row[0]-1, row[1]-1] = 1
     return r, w
+
+
+def r_skiplist(skip_index):
+    my_data = numpy.genfromtxt('../../Datasets/ml-100k/u.data', delimiter='\t')
+    max_users = numpy.max(my_data[:, 0])
+    max_movies = numpy.max(my_data[:, 1])
+    r = numpy.zeros((max_users, max_movies))
+    w = numpy.zeros((max_users, max_movies))
+    test_rows = []
+    i = 0
+    for row in my_data:
+        r[row[0]-1, row[1]-1] = row[2]
+        if i not in skip_index:
+            w[row[0]-1, row[1]-1] = 1
+        else:
+            test_rows.append(row)
+        i += 1
+    return r, w, test_rows
 
 
 def nmf(X, latent_features, mask, max_iter=100, error_limit=1e-6, fit_error_limit=1e-6):
