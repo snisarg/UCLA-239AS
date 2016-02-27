@@ -2,9 +2,12 @@ import numpy
 from numpy import dot
 import scipy.linalg
 
+
 '''
     Shape is (943, 1682)
 '''
+
+
 def get_R():
     my_data = numpy.genfromtxt('../../Datasets/ml-100k/u.data', delimiter='\t')
     max_users = numpy.max(my_data[:, 0])
@@ -57,7 +60,6 @@ def nmf(X, latent_features, max_iter=100, error_limit=1e-6, fit_error_limit=1e-6
         Y *= top / bottom
         Y = numpy.maximum(Y, eps)
         # print 'Y', numpy.round(Y, 2)
-
 
         # ==== evaluation ====
         if i == max_iter:

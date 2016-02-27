@@ -10,7 +10,7 @@ for k in [10, 50, 100]:
 
     for i in range(len(r)):
         for j in range(len(r[i])):
-            if w[i,j] == 1:
+            if w[i, j] == 1:
                 lse += (r[i, j] - uv[i, j])**2
 
     print 'For %d latent terms, LSE: %f' % (k, lse)
