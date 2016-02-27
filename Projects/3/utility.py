@@ -20,7 +20,7 @@ def get_R():
     return r, w
 
 
-def nmf(X, latent_features, max_iter=100, error_limit=1e-6, fit_error_limit=1e-6):
+def nmf(X, latent_features, mask, max_iter=100, error_limit=1e-6, fit_error_limit=1e-6):
     """
     Decompose X to A*Y
     """
@@ -28,10 +28,10 @@ def nmf(X, latent_features, max_iter=100, error_limit=1e-6, fit_error_limit=1e-6
     print('Starting NMF decomposition with {} latent features and {} iterations.'.format(latent_features, max_iter))
     # X = X.toarray()  # I am passing in a scipy.linalg sparse matrix
 
-    # mask
-    mask = numpy.sign(X)
+    # mask COMMENTED OUT AS WE INTEND TO PASS THIS ON OUR OWN
+    #mask = numpy.sign(X)
 
-    # initial matrices. A is random [0,1] and Y is A\X.
+    # initial matrices. A is `random [0,1] and Y is A\X.
     rows, columns = X.shape
     A = numpy.random.rand(rows, latent_features)
     A = numpy.maximum(A, eps)

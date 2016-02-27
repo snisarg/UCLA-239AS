@@ -4,7 +4,7 @@ import numpy
 r, w = utility.get_R()
 
 for k in [10, 50, 100]:
-    U, V = utility.nmf(r, k)
+    U, V = utility.nmf(r, k, w)
     uv = numpy.dot(U, V)
     lse = 0
 
