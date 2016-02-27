@@ -1,0 +1,3 @@
+Shape of Matrix R is (943, 1682)
+
+Data points are 100000
