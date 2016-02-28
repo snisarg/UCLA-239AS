@@ -51,8 +51,8 @@ def nmf(X, latent_features, mask, max_iter=100, error_limit=1e-6, fit_error_limi
 
     Y = scipy.linalg.lstsq(A, X)[0]
     bool_mask = mask.astype(bool)
-    for i in range(columns):
-        Y[:,i] = scipy.linalg.lstsq(A[bool_mask[:,i],:], X[bool_mask[:,i],i])[0]
+    # for i in range(columns):
+    #     Y[:,i] = scipy.linalg.lstsq(A[bool_mask[:,i],:], X[bool_mask[:,i],i])[0]
     Y = numpy.maximum(Y, eps)
 
     masked_X = mask * X
