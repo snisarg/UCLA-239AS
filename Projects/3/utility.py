@@ -1,7 +1,8 @@
 import numpy
 from numpy import dot
 import scipy.linalg
-
+import matplotlib.pyplot as plot
+from nltk.metrics.scores import precision
 
 def get_R():
     my_data = numpy.genfromtxt('../../Datasets/ml-100k/u.data', delimiter='\t')
@@ -89,3 +90,13 @@ def nmf(X, latent_features, mask, max_iter=100, error_limit=1e-6, fit_error_limi
                 break
 
     return A, Y
+
+def plotROCForPR(precisionArray,recallArray):
+    plot.figure()
+    plot.plot(precisionArray, recallArray, label='ROC curve', linewidth=10)
+    plot.plot([0, 1], [0, 1], 'k--')
+    plot.ylim([0.0, 1.0])
+    plot.xlim([0.0, 1.0])
+    plot.ylabel('Recall')
+    plot.xlabel('Precision')
+    plot.show()
