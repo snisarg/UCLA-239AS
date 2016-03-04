@@ -39,7 +39,7 @@ for train, test in kf:
     for row in test_rows:
         ui = row[0]-1
         mi = row[1]-1
-        local_error += math.sqrt((r[ui, mi] - uv[ui, mi])**2)
+        local_error += numpy.abs(r[ui, mi] - uv[ui, mi])
 
     test_error.append(local_error)
 
