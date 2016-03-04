@@ -1,44 +1,54 @@
+from sklearn.cross_validation import KFold
 import utility
 import numpy
-from nltk.metrics.scores import precision
+import math
 
-r, w = utility.get_R()
-predictedLiked = 0;
-predictedLikedRight = 0;
-actuallyLiked = 0;
-actuallyLikedPredicted = 0
-threshold = 2;
+K_VALUE = 100
+
+test_error = []
+test_index = -1
+truePos = 0;
+falsePos = 0;
+falseNeg = 0;
 precisionArray = []
 recallArray = []
 
-for k in [10]:
+kf = KFold(100000, 10, True)
+for train, test in kf:
     for threshold in [2, 2.5, 3, 3.5, 4, 4.5]:
-        U, V = utility.nmf(r, k, w)
-        uv = numpy.dot(U, V)
-        for i in range(len(r)):
-            for j in range(len(r[i])):
-                if w[i, j] == 1:
-                    if(uv[i, j] > threshold):
-                        predictedLiked += 1
-                        if(r[i, j] > threshold):
-                            predictedLikedRight += 1
-                    
-                    if(r[i, j] > threshold):
-                        actuallyLiked += 1
-                        if(uv[i, j] > threshold):
-                            actuallyLikedPredicted += 1
+        test_index += 1
+        local_error = 0
     
-#         print 'predictedLiked %f' %predictedLiked
-#         print 'predictedLikedWrong %f' %predictedLikedWrong
-#         
+        r, w, test_rows = utility.r_skiplist(test)
+    
+        u, v = utility.nmf(r, K_VALUE, w)
+        uv = numpy.dot(u, v)
+    
+        # UV here is the 90% trained set. Comparison next
+        for row in test_rows:
+            ui = row[0]-1
+            mi = row[1]-1
+            
+            if(uv[ui, mi] >= threshold):
+                if(r[ui, mi] >= threshold):
+                    truePos += 1
+                else: falsePos += 1
+                    
+            else:
+                if(r[ui, mi] >= threshold):
+                    if(uv[ui, mi] < threshold):
+                        falseNeg += 1
+    
+        test_error.append(local_error)
         print 'Precision for threshold: %f' %threshold
-        pre = float (predictedLikedRight) / (predictedLiked) 
+        pre = float (truePos) / (truePos + falsePos) 
         print pre
         precisionArray.append(pre)
         
         print 'Recall for threshold: %f' %threshold
-        rec = float (actuallyLikedPredicted) / (actuallyLiked)
+        rec = float (truePos) / (truePos + falseNeg)
         print rec
         recallArray.append(pre)
-        
     utility.plotROCForPR(precisionArray, recallArray)
+
+print test_error
