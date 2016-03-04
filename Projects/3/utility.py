@@ -115,11 +115,11 @@ def weightedRegALS(Q, lambda_, n_factors, W, n_iterations):
     return weighted_Q_hat
 
 def get_error(R_hat, R, W):
-    return np.sum((W * (R_hat - R))**2)
+    return numpy.sum((W * (R_hat - R))**2)
 
 def get_abs_error(R_hat, R, W):
-    tmp = W *np.abs(R_hat - R)
-    return np.mean(tmp[W > 0.0])
+    tmp = W *numpy.abs(R_hat - R)
+    return numpy.mean(tmp[W > 0.0])
 
 
 def plotROCForPR(precisionArray,recallArray):
