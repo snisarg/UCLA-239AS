@@ -91,6 +91,31 @@ def nmf(X, latent_features, mask, max_iter=100, error_limit=1e-6, fit_error_limi
 
     return A, Y
 
+# Weighted Regularized Alternating Least Squares (ALS)
+
+def weightedRegALS(Q, lambda_, n_factors, W, n_iterations):
+    m, n = Q.shape
+
+    X = 5 * numpy.random.rand(m, n_factors)
+    Y = numpy.linalg.lstsq(X, Q)[0]
+
+    weighted_errors = []
+    totalError =0
+    for ii in range(n_iterations):
+        for u, Wu in enumerate(W):
+            X[u] = numpy.linalg.solve(numpy.dot(Y, numpy.dot(numpy.diag(Wu), Y.T)) + lambda_ * numpy.eye(n_factors),
+                                   numpy.dot(Y, numpy.dot(numpy.diag(Wu), Q[u].T))).T
+        for i, Wi in enumerate(W.T):
+            Y[:,i] = numpy.linalg.solve(numpy.dot(X.T, numpy.dot(numpy.diag(Wi), X)) + lambda_ * numpy.eye(n_factors),
+                                     numpy.dot(X.T, numpy.dot(numpy.diag(Wi), Q[:, i])))
+        # weighted_errors.append(get_error(Q, X, Y, W))
+        # totalError += get_error(Q, X, Y, W)
+        if(ii == n_iterations - 1):
+            print('Total Error {}'.format(totalError))
+    weighted_Q_hat = numpy.dot(X, Y)
+    return weighted_Q_hat
+
+
 def plotROCForPR(precisionArray,recallArray):
     plot.figure()
     plot.plot(precisionArray, recallArray, label='ROC curve', linewidth=10)
