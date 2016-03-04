@@ -49,6 +49,7 @@ for train, test in kf:
         rec = float (truePos) / (truePos + falseNeg)
         print rec
         recallArray.append(pre)
-    utility.plotROCForPR(precisionArray, recallArray)
+    
 
 print test_error
+utility.plotROCForPR(precisionArray, recallArray)
