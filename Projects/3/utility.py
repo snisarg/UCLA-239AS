@@ -108,12 +108,18 @@ def weightedRegALS(Q, lambda_, n_factors, W, n_iterations):
         for i, Wi in enumerate(W.T):
             Y[:,i] = numpy.linalg.solve(numpy.dot(X.T, numpy.dot(numpy.diag(Wi), X)) + lambda_ * numpy.eye(n_factors),
                                      numpy.dot(X.T, numpy.dot(numpy.diag(Wi), Q[:, i])))
-        # weighted_errors.append(get_error(Q, X, Y, W))
-        # totalError += get_error(Q, X, Y, W)
         if(ii == n_iterations - 1):
-            print('Total Error {}'.format(totalError))
-    weighted_Q_hat = numpy.dot(X, Y)
+            print('Total Error {}'.format(get_error(numpy.dot(X, Y), Q, W)))
+            print('Absolute Error {}'.format(get_abs_error(numpy.dot(X, Y), Q, W)))
+    weighted_Q_hat = numpy.dot(X,Y)
     return weighted_Q_hat
+
+def get_error(R_hat, R, W):
+    return np.sum((W * (R_hat - R))**2)
+
+def get_abs_error(R_hat, R, W):
+    tmp = W *np.abs(R_hat - R)
+    return np.mean(tmp[W > 0.0])
 
 
 def plotROCForPR(precisionArray,recallArray):

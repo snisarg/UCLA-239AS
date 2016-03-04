@@ -3,7 +3,7 @@ import numpy as np
 
 
 # Que 4 part A
-
+'''
 
 r, w = utility.get_R()
 
@@ -16,7 +16,7 @@ for k in [10, 50, 100]:
     #lse = sum(sum(np.multiply(w,lse)))
 
     print 'For %d latent terms, LSE: %f' % (k, lse)
-
+'''
 '''
 correct output Que 4 part A
 
@@ -46,3 +46,4 @@ for lambda_val in lambda_values:
     utility.weightedRegALS(r, lambda_val, k, w, 20)
 
 
+# Que 4 part C - ROC curve
