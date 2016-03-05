@@ -37,7 +37,7 @@ For 100 latent terms, LSE: 144.922050
 
 # Que 4 part B
 
-lambda_values = [0.01]
+lambda_values = [0.1]
 r, w = utility.get_R()
 k = 10
 truePos = 0;
@@ -46,7 +46,7 @@ falseNeg = 0;
 precisionArray = []
 recallArray = []
 rows,cols = r.shape
-threshold_ranges = [x/10.0 for x in range(0, 50, 10)]
+threshold_ranges = [x/10.0 for x in range(0, 50, 5)]
 
 # Run Regularized ALS for different values of lambda
 for lambda_val in lambda_values:
@@ -78,6 +78,5 @@ print precisionArray
 print 'Recall: '
 print recallArray
 utility.plotRocAlsPR(precisionArray, recallArray, len(threshold_ranges))
-
 
 # Que 4 part C - ROC curve
