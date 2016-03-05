@@ -9,7 +9,7 @@ import matplotlib.pyplot as pyplot
 # Run either nmf or Regularized ALS
 
 # L - no of movies to be considered
-def get_mean_precision(top_l_predict_matrix, top_l_orig_matrix):
+def get_mean_precision(top_l_orig_matrix, top_l_predict_matrix):
 
     rows, cols = top_l_predict_matrix.shape
     precision = 0
@@ -54,12 +54,13 @@ for train, test in kf:
 #    local_error = 0
 
     r, w, test_rows = utility.r_skiplist(test)
+    test_matrix = numpy.matrix(test_rows)
     # use Reg ALS matrix
     u, v = utility.nmf(w, K_VALUE, r)   # Swap R & W
     uv = numpy.dot(u, v)
 
     # Calculate mean precision across all folds with respect to Test matrix
-    top_l_test_matrix = gettopN(test_rows, L, w)
+    top_l_test_matrix = gettopN(test_matrix, L, w)
     top_l_predict_matrix = gettopN(uv, L, w)
     fold_precision = fold_precision + get_mean_precision(top_l_test_matrix,top_l_predict_matrix)
 
@@ -83,9 +84,9 @@ u, v = utility.nmf(w, K_VALUE, r)   # Swap R & W
 uv = numpy.dot(u, v)
 
 for i in range(1, L+1):
-    top_l_predict_matrix = gettopN(uv, L)
     top_l_orig_matrix = gettopN(r, L)
-    hit_rate, false_alarm = get_mean_precision(top_l_predict_matrix, top_l_orig_matrix)
+    top_l_predict_matrix = gettopN(uv, L)
+    hit_rate, false_alarm = get_mean_precision(top_l_orig_matrix, top_l_predict_matrix)
     hit_rate_list.append(hit_rate)
     false_alarm_list.append(false_alarm)
 
