@@ -40,11 +40,14 @@ For 100 latent terms, LSE: 144.922050
 
 lambda_values = [0.01, 0.1, 1]
 r, w = utility.get_R()
-k = 10
+k_values = []
+k_values = [10,50,100]
 
 # Run Regularized ALS for different values of lambda
-for lambda_val in lambda_values:
-    utility.weightedRegALS(r, lambda_val, k, w, 20)
+for k in k_values:
+    for lambda_val in lambda_values:
+        print('for K ',k,' lambda ',lambda_val)
+        utility.weightedRegALS(r, lambda_val, k, w, 20)
 
 
 # Que 4 part C - ROC curve
