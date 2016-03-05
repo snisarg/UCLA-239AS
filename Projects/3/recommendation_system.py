@@ -91,7 +91,7 @@ recall_list = []
 # replace this with RegALS( )
 #u, v = utility.nmf(w, K_VALUE, r)   # Swap R & W
 #uv = numpy.dot(u, v)
-uv = utility.weightedRegALS(r, lambda_val, k, w, n_iter)
+uv = utility.weightedRegALS(w, lambda_val, k, r, n_iter)
 
 
 for i in range(1, L+1):
