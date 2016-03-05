@@ -37,7 +37,7 @@ For 100 latent terms, LSE: 144.922050
 
 # Que 4 part B
 
-lambda_values = [0.1]
+lambda_values = [0.01]
 r, w = utility.get_R()
 k = 10
 truePos = 0;
