@@ -77,7 +77,7 @@ print 'Precision: '
 print precisionArray
 print 'Recall: '
 print recallArray
-utility.plotROCForPR(precisionArray, recallArray, len(threshold_ranges))
+utility.plotRocAlsPR(precisionArray, recallArray, len(threshold_ranges))
 
 
 # Que 4 part C - ROC curve
