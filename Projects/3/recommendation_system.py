@@ -66,7 +66,7 @@ for train, test in kf:
 mean_fold_precision = fold_precision / 10
 
 print "Que 5 part A output"
-print "mean fold precision"
+print "Mean Fold Precision"
 print mean_fold_precision
 
 # Que 5 part B
