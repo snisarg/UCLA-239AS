@@ -16,6 +16,15 @@ def get_R():
     return r, w
 
 
+def get_matrix_from_data(rows):
+    # max_users = numpy.max(rows[:, 0])
+    # max_movies = numpy.max(rows[:, 1])
+    r = numpy.zeros((943, 1682))
+    for row in rows:
+        r[row[0]-1, row[1]-1] = row[2]
+    return r
+
+
 def r_skiplist(skip_index):
     my_data = numpy.genfromtxt('../../Datasets/ml-100k/u.data', delimiter='\t')
     max_users = numpy.max(my_data[:, 0])
@@ -134,8 +143,19 @@ def plotROCForPR(precisionArray, recallArray, threshold_size):
         precision_avg.append(numpy.mean([precisionArray[x] for x in range(i, length, threshold_size)]))
     plot.plot(recall_avg, precision_avg, label="ROC curve", linewidth=2)
     plot.plot([0, 1], [0, 1], 'k--')
-    plot.ylim([0.7, 1.0])
-    plot.xlim([0.7, 1.0])
+    plot.ylim([0.4, 1.0])
+    plot.xlim([0.4, 1.0])
+    plot.ylabel('Recall')
+    plot.xlabel('Precision')
+    plot.show()
+
+
+def plotRocAlsPR(precisionArray, recallArray, threshold_size):
+    plot.figure()
+    plot.plot(recallArray, precisionArray, label="ROC curve", linewidth=2)
+    plot.plot([0, 1], [0, 1], 'k--')
+    plot.ylim([0.0, 1.0])
+    plot.xlim([0.0, 1.0])
     plot.ylabel('Recall')
     plot.xlabel('Precision')
     plot.show()
