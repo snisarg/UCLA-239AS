@@ -23,6 +23,7 @@ correct output Que 4 part A
 Starting NMF decomposition with 10 latent features and 100 iterations.
 ('fit residual', 935.46429999999998)
 ('total residual', 17.4328)
+
 For 10 latent terms, LSE: 82.043269
 Starting NMF decomposition with 50 latent features and 100 iterations.
 ('fit residual', 571.5018)
