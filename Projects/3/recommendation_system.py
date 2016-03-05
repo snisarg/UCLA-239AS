@@ -20,8 +20,8 @@ def get_mean_precision(top_l_orig_matrix, top_l_predict_matrix):
         precision += count
         false_alarm += cols - precision
 
-    mean_precision = (precision / (rows * cols))
-    mean_false_alarm = (false_alarm / (rows * cols))
+    mean_precision = (float(precision) / float((rows * cols)))
+    mean_false_alarm = (float(false_alarm) / float(rows * cols))
     return mean_precision, mean_false_alarm
 
 # returns a matrix of top N values from each row of given matrix
@@ -32,8 +32,10 @@ def  gettopN(matrix, N, w):
     top_n_matrix = numpy.zeros((rows, N))
 
     for i in range(rows):
-        weighted_list = numpy.multiply(w[i], matrix[i])
-        top_n_list = numpy.argpartition(weighted_list.flat, -N)[-N:]
+        #weighted_list = numpy.multiply(w[i], matrix[i])
+        weighted_list = [w[i][j]*matrix[i][j] for j in range(len(matrix[i]))]
+        #top_n_list = numpy.argpartition(weighted_list, -N)[-N:]
+        top_n_list = sorted(range(len(weighted_list)), key=lambda abc: weighted_list[abc])[-N:]
         top_n_matrix[i] = copy.copy(top_n_list)
 
     return top_n_matrix
@@ -44,6 +46,7 @@ def  gettopN(matrix, N, w):
 # Uses 10-fold cross validation
 
 #r, w = utility.get_R()
+
 K_VALUE = 10
 L = 5
 r = utility.get_R()
@@ -52,13 +55,14 @@ k = 100
 n_iter = 20
 
 kf = KFold(100000, 10, True)
+fold_precision = 0
 
 for train, test in kf:
 #    test_index += 1
 #    local_error = 0
 
     r, w, test_rows = utility.r_skiplist(test)
-    test_matrix = numpy.matrix(test_rows)
+    test_matrix = utility.get_matrix_from_data(test_rows)
     # use Reg ALS matrix
     #u, v = utility.nmf(w, K_VALUE, r)   # Swap R & W
     #uv = numpy.dot(u, v)
@@ -68,19 +72,21 @@ for train, test in kf:
     # Calculate mean precision across all folds with respect to Test matrix
     top_l_test_matrix = gettopN(test_matrix, L, w)
     top_l_predict_matrix = gettopN(uv, L, w)
-    fold_precision = fold_precision + get_mean_precision(top_l_test_matrix,top_l_predict_matrix)
+    mp, mfr = get_mean_precision(top_l_test_matrix,top_l_predict_matrix)
+    fold_precision = fold_precision + mp
 
-mean_fold_precision = fold_precision / 10
+mean_fold_precision = float(fold_precision) / 10
 
 print "Que 5 part A output"
 print "Mean Fold Precision"
 print mean_fold_precision
 
+'''
 # Que 5 part B
 # hit-rate is assumed to be precision
 # failure rate is total - precision
 
-r = utility.get_R()
+r, w = utility.get_R()
 L = 5
 lambda_val = 0.1
 k = 100
@@ -95,8 +101,8 @@ uv = utility.weightedRegALS(w, lambda_val, k, r, n_iter)
 
 
 for i in range(1, L+1):
-    top_l_orig_matrix = gettopN(r, L)
-    top_l_predict_matrix = gettopN(uv, L)
+    top_l_orig_matrix = gettopN(r, L, w)
+    top_l_predict_matrix = gettopN(uv, L, w)
     hit_rate, false_alarm = get_mean_precision(top_l_orig_matrix, top_l_predict_matrix)
     print "iteration"
     print i
@@ -116,3 +122,4 @@ print false_alarm_list
 
 pyplot.plot(false_alarm_list, hit_rate_list)
 pyplot.show()
+'''
