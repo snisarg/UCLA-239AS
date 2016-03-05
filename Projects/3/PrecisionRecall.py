@@ -12,10 +12,12 @@ falsePos = 0;
 falseNeg = 0;
 precisionArray = []
 recallArray = []
+threshold_ranges = [x/10.0 for x in range(0, 50, 5)]
+#threshold_ranges = [3, 3.5]
 
 kf = KFold(100000, 10, True)
 for train, test in kf:
-    for threshold in [2, 2.5, 3, 3.5, 4, 4.5]:
+    for threshold in threshold_ranges:
         test_index += 1
         local_error = 0
     
@@ -36,7 +38,7 @@ for train, test in kf:
                     
             else:
                 if(r[ui, mi] >= threshold):
-                    if(uv[ui, mi] < threshold):
+                    #if(uv[ui, mi] < threshold):
                         falseNeg += 1
     
         test_error.append(local_error)
@@ -48,8 +50,12 @@ for train, test in kf:
         print 'Recall for threshold: %f' %threshold
         rec = float (truePos) / (truePos + falseNeg)
         print rec
-        recallArray.append(pre)
+        recallArray.append(rec)
     
 
 print test_error
-utility.plotROCForPR(precisionArray, recallArray)
+print 'Precision: '
+print precisionArray
+print 'Recall: '
+print recallArray
+utility.plotROCForPR(precisionArray, recallArray, len(threshold_ranges))
