@@ -156,8 +156,8 @@ def plotRocAlsPR(precisionArray, recallArray, threshold_size):
     plot.plot([0, 1], [0, 1], 'k--')
     plot.ylim([0.0, 1.0])
     plot.xlim([0.0, 1.0])
-    plot.ylabel('Recall')
-    plot.xlabel('Precision')
+    plot.ylabel('Precision')
+    plot.xlabel('Recall')
     plot.show()
 
 
