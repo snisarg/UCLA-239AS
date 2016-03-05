@@ -41,6 +41,8 @@ for train, test in kf:
         mi = row[1]-1
         local_error += numpy.abs(r[ui, mi] - uv[ui, mi])
 
-    test_error.append(local_error)
+    test_error.append(local_error/10000)
 
 print test_error
+print max(test_error)
+print min(test_error)
