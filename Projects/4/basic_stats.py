@@ -41,7 +41,7 @@ for file in file_list:
                     old_ref_time = cur_time
 
                 # count followers of original authors of tweets
-                author = data[i]["original_author"]
+                author = data[i]["original_author"]["url"]
                 if author not in unique_users:
                     unique_users.append(author)
                     followers_count += data[i]["original_author"]["followers"]
@@ -51,9 +51,9 @@ for file in file_list:
                 i += 1
                 #print i
         total_tweets_count = len(data)
-        avg_tweets_per_hour = int((total_tweets_count / hours_count))
-        avg_retweets = int((retweet_count / total_tweets_count))
-        avg_followers_count = int((followers_count / total_tweets_count))
+        avg_tweets_per_hour = float((total_tweets_count / hours_count))
+        avg_retweets = float((retweet_count / total_tweets_count))
+        avg_followers_count = float((followers_count / total_tweets_count))
         print "average tweets per hour for "+ file
         print avg_tweets_per_hour
         print "average retweets for "+ file
