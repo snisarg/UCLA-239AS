@@ -78,6 +78,12 @@ average retweets for ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
 0.0268374504422
 average followers count for ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
 1068.15953797
+average tweets per hour for ../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+424.629508197
+average retweets for ../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+0.0509373648774
+average followers count for ../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+1304.77502857
 
 
 
