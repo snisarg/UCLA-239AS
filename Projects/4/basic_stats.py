@@ -33,22 +33,22 @@ for file in file_list:
 
                 data= json.loads(line)
 
-            # Count avg tweets per hour
-            cur_time = data["firstpost_date"]
+                # Count avg tweets per hour
+                cur_time = data["firstpost_date"]
 
-            if cur_time > (old_ref_time + 3600):
-                hours_count += 1
-                old_ref_time = cur_time
+                if cur_time > (old_ref_time + 3600):
+                    hours_count += 1
+                    old_ref_time = cur_time
 
-            # count followers of original authors of tweets
-            author = data["original_author"]["url"]
-            if author not in unique_users:
-                unique_users.append(author)
-                followers_count += data["original_author"]["followers"]
+                # count followers of original authors of tweets
+                author = data["original_author"]["url"]
+                if author not in unique_users:
+                    unique_users.append(author)
+                    followers_count += data["original_author"]["followers"]
 
-            # count no of retweets
-            retweet_count += data["tweet"]["retweet_count"]
-            count += 1
+                # count no of retweets
+                retweet_count += data["tweet"]["retweet_count"]
+                count += 1
             #print i
         total_tweets_count = count
         avg_tweets_per_hour = float(float(total_tweets_count) / float(hours_count))
