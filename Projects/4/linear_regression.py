@@ -1,6 +1,6 @@
 import os
 import json
-
+import datetime
 # Generate training and test data using train_X, train_Y convention for LR
 # take no of tweets as train_label & rest of the features as train data or independent vars
 
@@ -26,7 +26,6 @@ def generate_training_data(file, hour_window):
 
     for i in range(5):
        hour_window_data[i] = 0
-
 
     '''
     hour_window_data :
@@ -56,7 +55,9 @@ Start reference for time of the day 12 am :
                 for i in range(5):
                     hour_window_data[i] = 0
 
-            else:
+            else: # extract hour from UTC time
+                hour_window_data[4] = datetime.datetime.fromtimestamp(cur_time).hour
+
                 hour_window_data[0] += 1
                 if(data[i]["tweet"]["retweet_count"] != 0)
                     hour_window_data[1] += 1
