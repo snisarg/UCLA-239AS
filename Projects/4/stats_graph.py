@@ -15,8 +15,8 @@ def plot_graph(hashtag, data):
     plt.show()
 
 
-#path = "../../Datasets/tweets/tweet_data/"
-path = "F:/tweets/"
+path = "../../Datasets/tweets/tweet_data/"
+#path = "F:/tweets/"
 
 # Find average number of retweets
 retweet_count = 0
@@ -31,7 +31,7 @@ for file in file_list:
 
     #if file == "subset.txt":
     if file == "tweets_#gohawks.txt" or file == "tweets_#nfl.txt":
-
+        print "in condition"
         data = []
         file = path + file
         hours_count = -1

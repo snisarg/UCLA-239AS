@@ -51,9 +51,9 @@ for file in file_list:
                 i += 1
                 #print i
         total_tweets_count = len(data)
-        avg_tweets_per_hour = float((total_tweets_count / hours_count))
-        avg_retweets = float((retweet_count / total_tweets_count))
-        avg_followers_count = float((followers_count / total_tweets_count))
+        avg_tweets_per_hour = float(float(total_tweets_count) / float(hours_count))
+        avg_retweets = float(float(retweet_count) / float(total_tweets_count))
+        avg_followers_count = float(float(followers_count) / float(total_tweets_count))
         print "average tweets per hour for "+ file
         print avg_tweets_per_hour
         print "average retweets for "+ file
@@ -62,3 +62,23 @@ for file in file_list:
         print avg_followers_count
 
     #break
+
+'''
+Output :
+
+average tweets per hour for ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt
+301.5
+average retweets for ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt
+0.20916252073
+average followers count for ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt
+720.952109113
+average tweets per hour for ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+68.3125
+average retweets for ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+0.0268374504422
+average followers count for ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+1068.15953797
+
+
+
+'''
