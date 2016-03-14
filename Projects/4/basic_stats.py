@@ -18,39 +18,39 @@ for file in file_list:
 
     #if file == "subset.txt":
 
-        data = []
+        #data = []
         file = path + file
         hours_count = -1
         retweet_count = 0
         followers_count = 0
         unique_users = []
         cur_time = 0
-        i = 0
+        count = 0
         old_ref_time = 0
         #with open("F:/tweets/tweet_data/subset.txt",'r') as f:
         with open(file, 'r') as f:
             for line in f:
 
-                data.append(json.loads(line))
+                data= json.loads(line)
 
-                # Count avg tweets per hour
-                cur_time = data[i]["firstpost_date"]
+            # Count avg tweets per hour
+            cur_time = data["firstpost_date"]
 
-                if cur_time > (old_ref_time + 3600):
-                    hours_count += 1
-                    old_ref_time = cur_time
+            if cur_time > (old_ref_time + 3600):
+                hours_count += 1
+                old_ref_time = cur_time
 
-                # count followers of original authors of tweets
-                author = data[i]["original_author"]["url"]
-                if author not in unique_users:
-                    unique_users.append(author)
-                    followers_count += data[i]["original_author"]["followers"]
+            # count followers of original authors of tweets
+            author = data["original_author"]["url"]
+            if author not in unique_users:
+                unique_users.append(author)
+                followers_count += data["original_author"]["followers"]
 
-                # count no of retweets
-                retweet_count += data[i]["tweet"]["retweet_count"]
-                i += 1
-                #print i
-        total_tweets_count = len(data)
+            # count no of retweets
+            retweet_count += data["tweet"]["retweet_count"]
+            count += 1
+            #print i
+        total_tweets_count = count
         avg_tweets_per_hour = float(float(total_tweets_count) / float(hours_count))
         avg_retweets = float(float(retweet_count) / float(total_tweets_count))
         avg_followers_count = float(float(followers_count) / float(total_tweets_count))
