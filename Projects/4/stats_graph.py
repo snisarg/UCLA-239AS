@@ -32,7 +32,7 @@ for file in file_list:
     #if file == "subset.txt":
     if file == "tweets_#gohawks.txt" or file == "tweets_#nfl.txt":
         print "in condition"
-        data = []
+
         file = path + file
         hours_count = -1
         cur_time = 0
@@ -45,10 +45,10 @@ for file in file_list:
         with open(file, 'r') as f:
             for line in f:
 
-                data.append(json.loads(line))
+                data = json.loads(line)
 
                 # Count avg tweets per hour
-                cur_time = data[i]["firstpost_date"]
+                cur_time = data["firstpost_date"]
 
                 if cur_time > (old_ref_time + 3600):
                     hours_count += 1
