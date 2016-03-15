@@ -1,12 +1,14 @@
 import os
 import json
 import datetime
+import numpy
+from sklearn import linear_model
+
 # Generate training and test data using train_X, train_Y convention for LR
 # take no of tweets as train_label & rest of the features as train data or independent vars
 
 path = "../../Datasets/tweets/tweet_data/"
-
-
+#path = "F:/tweets/"
 
 # no of tweets
 # total retweets
@@ -17,22 +19,17 @@ path = "../../Datasets/tweets/tweet_data/"
 # returns a list of lists of values from entire file which are used as training data
 # change the window logic
 
-def generate_training_data(file, hour_window):
-
+def generate_training_data(f, hour_window):
 
     hours_count = 0
     cur_time = 0
     old_ref_time = 0
-    training_data = [[]]
+    training_data = []
     hour_window_data = []
-    tweet_counts= []
-    retweet_counts = []
-    total_followers = []
-    max_followers = []
-    times_of_day = []
-
+    max = 0
+    print  f
     for i in range(5):
-       hour_window_data[i] = 0
+       hour_window_data.append(0)
 
     '''
     hour_window_data :
@@ -45,27 +42,25 @@ def generate_training_data(file, hour_window):
 Start reference for time of the day 12 am
     '''
 
-    with open(file, 'r') as f:
+    with open(f, 'r') as f:
         for line in f:
 
             data = json.loads(line)
 
             cur_time = data["firstpost_date"]
-
+            #print cur_time
             # when hour_window is complete
-            if cur_time > (old_ref_time + (hour_window * (3600))):
+            if (old_ref_time != 0) and (cur_time > (old_ref_time + (hour_window * (3600)))):
                 hours_count += 1
                 old_ref_time = cur_time
                 hour_window_data[3] = max
-                tweet_counts.append( hour_window_data[0])
-                retweet_counts.append( hour_window_data[1])
-                total_followers.append(hour_window_data[2])
-                max_followers.append( hour_window_data[3])
-                times_of_day.append(hour_window_data[4])
-
+                #print ("hour wi data",hour_window_data)
+                training_data.append(list(hour_window_data))
                 max = 0
                 for i in range(5):
                     hour_window_data[i] = 0
+            if old_ref_time == 0:
+                old_ref_time = cur_time
 
             # extract hour from UTC time
             # extract curr hour from time and subtract from it 12 am i.e 0, which will be timeofday
@@ -83,26 +78,50 @@ Start reference for time of the day 12 am
                 max = foll_count
 
             hour_window_data[2] += foll_count
-
+    #print training_data
     return training_data
 
 file_list = []
+
 file_list = os.listdir(path)
+#file_list = ["subset.txt"]
 
-tweet_counts= []
-retweet_counts = []
-total_followers = []
-max_followers = []
-times_of_day = []
+window_size = 5
 
-train_labels = []
-train_features = [[]]
+for f in file_list:
 
-for file in file_list:
-    file = path + file
 
-    tweet_counts, retweet_counts, total_followers, max_followers, times_of_day = generate_training_data(file, 1)
-    # linear_regression(data)
+    print("Linear Regression on file", f)
+    print("window size", window_size)
+
+    f = path + f
+
+    training_data = generate_training_data(f, 1)
+    training_data.pop(0)
+#    print training_data
+    X = numpy.matrix(training_data)
+    rows = X.shape[0]
+#    print("rows", rows)
+    #cols = X.shape[1]
+    #print("No of observations :", rows, "cols :", cols)
+#    print X
+
+    for i in range(rows - 1):
+        window_end = i + window_size - 1
+        if window_end >= rows:
+            break
+        train_label = X[i: window_end, 0]
+        train_features = X[i: window_end, [1, 4]]
+        test_label = X[window_end, 0]
+        test_features = X[ window_end , [1,4]]
+
+        # linear_regression(data)
+        model = linear_model.LinearRegression()
+        model.fit(train_features, train_label)
+
+        print("Co-efficients : ", model.coef_)
+        print("Residual sum of squares: %.2f"% numpy.mean((model.predict(test_features) - test_label) ** 2))
+        #print('Variance score: %.2f'% model.score(test_features, test_label))
 
     # train & fit model
     # compare with test data i.e no of tweets in next hour
