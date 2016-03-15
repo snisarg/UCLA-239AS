@@ -21,8 +21,6 @@ def hashtag_stats(f):
     count = 0
     old_ref_time = 0
     #with open("F:/tweets/tweet_data/subset.txt",'r') as f:
-    #with open(file, 'r') as f:
-     #   for line in f:
     for line in io.open(f, encoding="utf8"):
 
         data= json.loads(line)

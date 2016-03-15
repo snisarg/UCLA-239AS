@@ -2,7 +2,7 @@ import os
 import json
 import datetime
 import numpy
-import statsmodels.api as sm
+from sklearn import linear_model
 
 # Generate training and test data using train_X, train_Y convention for LR
 # take no of tweets as train_label & rest of the features as train data or independent vars
@@ -86,23 +86,25 @@ file_list = []
 file_list = os.listdir(path)
 #file_list = ["subset.txt"]
 
-window_size = 10
+window_size = 5
 
 for f in file_list:
 
 
     print("Linear Regression on file", f)
     print("window size", window_size)
-    temp = f
+
     f = path + f
 
     training_data = generate_training_data(f, 1)
     training_data.pop(0)
-
+#    print training_data
     X = numpy.matrix(training_data)
     rows = X.shape[0]
-
-    # numpy.roll( ) is used for circular shifting of elements
+#    print("rows", rows)
+    #cols = X.shape[1]
+    #print("No of observations :", rows, "cols :", cols)
+#    print X
 
     for i in range(rows - 1):
         window_end = i + window_size - 1
@@ -114,20 +116,12 @@ for f in file_list:
         test_features = X[ window_end , [1,4]]
 
         # linear_regression(data)
-        regr = sm.OLS(train_label, train_features)
-        results = regr.fit()
-        print "summary \n"
-        print results.summary()
-        predict_label = results.predict(test_features)
-        print ("no of tweets ", predict_label, "\n")
-        print("\nResidual sum of squares: %.2f"% numpy.mean((predict_label - test_label) ** 2))
+        model = linear_model.LinearRegression()
+        model.fit(train_features, train_label)
 
-        output = "linear-reg-result-"
-        f = output + temp
-        with open(f, 'a') as fw:
-            fw.write(str(results.summary()))
-            fw.write(" No of tweets: ")
-            fw.write(str(predict_label))
-            fw.write(" Residual sum of squares : ")
-            fw.write(str(numpy.mean((predict_label - test_label) ** 2)))
+        print("Co-efficients : ", model.coef_)
+        print("Residual sum of squares: %.2f"% numpy.mean((model.predict(test_features) - test_label) ** 2))
+        #print('Variance score: %.2f'% model.score(test_features, test_label))
 
+    # train & fit model
+    # compare with test data i.e no of tweets in next hour
