@@ -86,7 +86,7 @@ file_list = []
 file_list = os.listdir(path)
 #file_list = ["subset.txt"]
 
-window_size = 10
+window_size = 30
 
 for f in file_list:
 
