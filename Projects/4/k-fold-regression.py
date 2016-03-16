@@ -10,12 +10,12 @@ from sklearn import linear_model, cross_validation
 # Generate training and test data using train_X, train_Y convention for LR
 # take no of tweets as train_label & rest of the features as train data or independent vars
 
-#path = "../../Datasets/tweets/tweet_data/"
-path = "F:/tweets/"
+path = "../../Datasets/tweets/tweet_data/"
+#path = "F:/tweets/"
 
 file_list = []
-#file_list = os.listdir(path)
-file_list = ["subset.txt"]
+file_list = os.listdir(path)
+#file_list = ["subset.txt"]
 
 window_size = 11
 
