@@ -1,5 +1,6 @@
 
-# scp test_data.tar.gz nisarg@192.168.0.4:~/z/EE239AS/Datasets/tweets
+# Q 1 part B - Plot graph
+
 import io
 import json
 import os
