@@ -62,7 +62,7 @@ for f in file_list:
         #kf = cross_validation.KFold(window_size, 10, True)
 
         predicted_tweet_count = cross_validation.cross_val_predict(model, data_features, data_labels, 10, 1, 0, None, 0)
-        print ("predicted_tweet_counts : ", predicted_tweet_count)
+        #print ("predicted_tweet_counts : ", predicted_tweet_count)
 
         # used mean_absolute_error function
         # returns avg diff between predicted and actual tweets, over 10 folds in a window
