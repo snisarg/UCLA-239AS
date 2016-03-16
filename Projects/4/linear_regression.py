@@ -17,7 +17,6 @@ path = "../../Datasets/tweets/tweet_data/"
 # time of the day - 1 of the 24 values with reference to some start  of day
 
 # returns a list of lists of values from entire file which are used as training data
-# change the window logic
 
 def generate_training_data(f, hour_window):
 

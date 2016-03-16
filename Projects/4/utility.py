@@ -3,7 +3,16 @@ import json
 import datetime
 
 
+path = "../../Datasets/tweets/tweet_data/"
+#path = "F:/tweets/"
 
+# no of tweets
+# total retweets
+# sum of no of followers of users posting hashtag
+# max no of followers of users posting hashtag
+# time of the day - 1 of the 24 values with reference to some start  of day
+
+# returns a list of lists of values from entire file which can be used as training data
 
 def generate_training_data(f, hour_window):
 
