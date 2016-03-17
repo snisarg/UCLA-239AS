@@ -7,12 +7,12 @@ import numpy
 import utility
 from sklearn import linear_model, cross_validation
 
-#path = "../../Datasets/tweets/tweet_data/"
-path = "F:/tweets/"
+path = "../../Datasets/tweets/tweet_data/"
+#path = "F:/tweets/"
 
 file_list = []
-#file_list = os.listdir(path)
-file_list = ["subset.txt"]
+file_list = os.listdir(path)
+#file_list = ["subset.txt"]
 
 
 '''
