@@ -1,5 +1,3 @@
-
-
 # Que 2 - Linear Regression
 
 import os
@@ -63,4 +61,3 @@ for f in file_list:
         fw.write(str(predict_label))
         fw.write("\n Residual sum of squares : ")
         fw.write(str(numpy.mean((predict_label - test_label) ** 2)))
-

@@ -2,6 +2,10 @@ import os
 import json
 import datetime
 import numpy
+import re
+import nltk
+from sklearn import feature_extraction
+import string
 
 path = "../../Datasets/tweets/tweet_data/"
 #path = "F:/tweets/"
@@ -149,3 +153,40 @@ Start reference for time of the day 12 am
 
     #print training_data
     return training_data
+
+
+__stemmer = nltk.stem.LancasterStemmer()
+__words_only = re.compile("^[A-Za-z]*$")
+
+
+def punctuation_cleaner(s):
+    if s not in string.punctuation:
+        return True
+    return False
+
+
+def stop_word_cleaner(s):
+    if s not in feature_extraction.text.ENGLISH_STOP_WORDS:
+        return True
+    return False
+
+
+def stem_cleaner(s):
+    return __stemmer.stem(s)
+
+
+def clean_word(s):
+    result = ""
+    if s is not None:
+        for w in nltk.tokenize.word_tokenize(s.lower()):
+            #print w
+            if w is not None and stop_word_cleaner(w) and punctuation_cleaner(w) and regex_filter(w):
+                result += " " + stem_cleaner(w)
+    #print result
+    return result
+
+
+def regex_filter(s):
+    if __words_only.match(s) is not None:
+        return True
+    return False
