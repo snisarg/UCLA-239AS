@@ -1,7 +1,11 @@
 import os
 import json
 import datetime
-
+import numpy
+import string
+from sklearn import feature_extraction
+import nltk
+import re
 
 path = "../../Datasets/tweets/tweet_data/"
 #path = "F:/tweets/"
@@ -15,6 +19,34 @@ path = "../../Datasets/tweets/tweet_data/"
 # time of the day - 1 of the 24 values with reference to some start  of day
 
 # returns a per hour data as a list of lists of values from entire file which can be used as training data
+
+
+# converts list of lists to a matrix by aggregating the data of 'window_size'
+
+def get_feature_matrix(training_data, window_size):
+
+    aggr_data = []
+    length = len(training_data)
+    print training_data[1]
+    feature_count = len(training_data[0])
+
+    for i in range(feature_count):
+        aggr_data.append(0)
+
+
+    # Generate sliding window wise aggregate data
+    for i in range(length):
+        for j in range(window_size):
+            if (i + j) < length:
+                aggr_data = numpy.add(aggr_data, training_data[i+j])
+
+        if i == 0:
+            X = numpy.matrix(aggr_data)
+        else:
+            X = numpy.vstack([X, aggr_data])
+
+    return X
+
 
 def generate_training_data(f, hour_window, timeframe, start_time, end_time, extra_features):
 
@@ -119,3 +151,40 @@ Start reference for time of the day 12 am
 
     #print training_data
     return training_data
+
+
+__stemmer = nltk.stem.LancasterStemmer()
+__words_only = re.compile("^[A-Za-z]*$")
+
+
+def punctuation_cleaner(s):
+    if s not in string.punctuation:
+        return True
+    return False
+
+
+def stop_word_cleaner(s):
+    if s not in feature_extraction.text.ENGLISH_STOP_WORDS:
+        return True
+    return False
+
+
+def stem_cleaner(s):
+    return __stemmer.stem(s)
+
+
+def clean_word(s):
+    result = ""
+    if s is not None:
+        for w in nltk.tokenize.word_tokenize(s.lower()):
+            #print w
+            if w is not None and stop_word_cleaner(w) and punctuation_cleaner(w) and regex_filter(w):
+                result += " " + stem_cleaner(w)
+    #print result
+    return result
+
+
+def regex_filter(s):
+    if __words_only.match(s) is not None:
+        return True
+    return False
