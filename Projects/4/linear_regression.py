@@ -30,7 +30,7 @@ for f in file_list:
     training_data.pop(0)
     print training_data
     X = utility.get_feature_matrix(training_data, window_size)
-
+    #X = sm.add_constant(X)
     #X = numpy.matrix(training_data)
     rows = X.shape[0]
     print "shape"
@@ -39,11 +39,15 @@ for f in file_list:
     print X
     # numpy.roll( ) is used for circular shifting of elements
 
-    train_label = X[:rows - 2 , 0]
-    train_features = X[: rows - 2, [1, 4]]
+    train_label = X[:rows - 2, 0]
+    train_features = X[: rows - 2, 1:5]
     test_label = X[ rows - 1, 0]
-    test_features = X[rows-1, [1,4]]
+    test_features = X[rows-1, 1:5]
 
+    print "test label"
+    print test_label
+    print "test features"
+    print test_features
     # linear_regression(data)
     regr = sm.OLS(train_label, train_features.astype(float))
     results = regr.fit()

@@ -40,9 +40,9 @@ for f in file_list:
         if window_end >= rows:
             break
         train_label = X[i: window_end, 0]
-        train_features = X[i: window_end, [1, 7]]
+        train_features = X[i: window_end, 1 : 8]
         test_label = X[window_end, 0]
-        test_features = X[ window_end , [1,7]]
+        test_features = X[ window_end , 1:8]
 
         # linear_regression(data)
         regr = sm.OLS(train_label, train_features)

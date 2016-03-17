@@ -52,7 +52,7 @@ for f in file_list:
         # Generate training and test data from current window
 
         data_labels = X[i: window_end, 0]
-        data_features = X[i: window_end, [1, 4]]
+        data_features = X[i: window_end, 1:5]
         '''
         test_label = X[window_end, 0]
         test_features = X[ window_end , [1,4]]
