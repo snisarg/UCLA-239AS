@@ -19,7 +19,7 @@ file_list = []
 file_list = os.listdir(path)
 #file_list = ["subset.txt"]
 
-window_size = 5
+window_size = 1
 
 for f in file_list:
 
@@ -35,7 +35,10 @@ for f in file_list:
 
     #X = numpy.matrix(training_data)
     rows = X.shape[0]
-
+    print "shape"
+    print X.shape
+    print "matrix"
+    print X
     # numpy.roll( ) is used for circular shifting of elements
 
     train_label = X[:rows - 2 , 0]
@@ -43,7 +46,7 @@ for f in file_list:
     test_label = X[ rows - 1, 0]
     test_features = X[rows-1, [1,4]]
 
-        # linear_regression(data)
+    # linear_regression(data)
     regr = sm.OLS(train_label, train_features)
     results = regr.fit()
     print "summary \n"
@@ -56,8 +59,8 @@ for f in file_list:
     f = output + temp
     with open(f, 'a') as fw:
         fw.write(str(results.summary()))
-        fw.write(" No of tweets: ")
+        fw.write("\n No of tweets: ")
         fw.write(str(predict_label))
-        fw.write(" Residual sum of squares : ")
+        fw.write("\n Residual sum of squares : ")
         fw.write(str(numpy.mean((predict_label - test_label) ** 2)))
 
