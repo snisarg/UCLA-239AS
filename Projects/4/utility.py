@@ -23,6 +23,7 @@ def get_feature_matrix(training_data, window_size):
 
     aggr_data = []
     length = len(training_data)
+    print training_data[1]
     feature_count = len(training_data[0])
 
     for i in range(feature_count):

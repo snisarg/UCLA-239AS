@@ -30,14 +30,13 @@ for f in file_list:
 
     training_data = utility.generate_training_data(f, 1, False, 0, 0, False)
     training_data.pop(0)
-
+    print training_data
     X = utility.get_feature_matrix(training_data, window_size)
 
     #X = numpy.matrix(training_data)
     rows = X.shape[0]
 
     # numpy.roll( ) is used for circular shifting of elements
-
 
     train_label = X[:rows - 2 , 0]
     train_features = X[: rows - 2, [1, 4]]
