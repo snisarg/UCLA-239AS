@@ -22,6 +22,7 @@ file_list = []
 file_list = os.listdir(path)
 #file_list = ["subset.txt"]
 
+
 window_size = 11
 
 for f in file_list:
@@ -108,7 +109,7 @@ for f in file_list:
         elif i == 1:
             print "Regression on data between Feb 8 am to 8 pm"
             training_data = utility.generate_training_data(f, 1, True, epoch_8am, epoch_8pm, False)
-        else :
+        else:
             print "Regression on data after Feb 8 pm"
             training_data = utility.generate_training_data(f, 1, True, epoch_8pm, 0, False)
 
@@ -117,19 +118,13 @@ for f in file_list:
         X = numpy.matrix(training_data)
         rows = X.shape[0]
         avg_error = 0.0
-        window_avg_error = 0.0
         hashtag_rmse = 0.0
         #generate data for window & perform 10-fold cross-validation and regression
-        window_mean_rmse = 0.0
 
-        if window_end >= rows:
-            break
-
-        window_count += 1
         # Generate training and test data from current window
 
-        data_labels = X[i: window_end, 0]
-        data_features = X[i: window_end, [1, 4]]
+        data_labels = X[0:, 0]
+        data_features = X[0:, [1, 4]]
 
         model = linear_model.LinearRegression()
 
@@ -141,13 +136,6 @@ for f in file_list:
         # doesnt randomize the input
         scores = cross_validation.cross_val_score(model, data_features, data_labels,  cv=10, scoring='mean_absolute_error')
         avg_scores = numpy.average(numpy.abs(scores))
-        print("Avg error : ", avg_scores)
-
-        hashtag_rmse += avg_scores
-
-        # Avg error over all windows of a file
-        avg_error = float(hashtag_rmse) / float(window_count)
-        print(" Avg absolute error for Hashtag file : "+ f +" ", avg_error)
-
+        print("Avg absolute error for Hashtag file : "+ f + " for time frame "+ (i+1), avg_scores)
 
 
