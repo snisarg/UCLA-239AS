@@ -74,20 +74,6 @@ for f in file_list:
         print("avg window error : ", avg_scores)
 
         hashtag_rmse += avg_scores
-        #print("window  RMSE", window_mean_rmse)
-        #for train_index, test_index in kf:
-            #X_train, X_test = X[train_index, 1:], X[test_index, 1:]
-            #Y_train, Y_test = X[train_index, 0], X[test_index, 0]
-
-            #regr.fit(X_train, Y_train) # to get co-efficients
-        # issues - what data shud be passed to predict - test or whole ?
-
-        #print 'Best RMSE',  numpy.min(numpy.sqrt(-scores))
-
-            #print("Co-efficients : ", regr.coef_)
-            #print("Residual sum of squares: %.2f"% numpy.mean((regr.predict(Y_test) - X_test) ** 2))
-            #predicted_tweets = regr.predict(X_test)
-            #error += numpy.mean((predicted_tweets - Y_test) ** 2)
 
     # Avg error over all windows of a file
     avg_error = float(hashtag_rmse) / float(window_count)
@@ -95,6 +81,8 @@ for f in file_list:
 
 
 # Que 4 Part B
+# Use different features as used in que 3
+
 '''
 1. Before Feb. 1, 8:00 a.m.
 2. Between Feb. 1, 8:00 a.m. and 8:00 p.m.
@@ -103,7 +91,7 @@ for f in file_list:
 epoch_8am = 1422806400
 epoch_8pm = 1422849600
 
-window_size = 10 # should be 1 for this part of que
+window_size = 10 # should be 1 for this part of que, clarify
 
 for f in file_list:
 
@@ -116,75 +104,50 @@ for f in file_list:
 
         if i == 0:
             print "Regression on data before Feb 1 8 am"
-            training_data = utility.generate_training_data(f, 1, True, 0, epoch_8am)
+            training_data = utility.generate_training_data(f, 1, True, 0, epoch_8am, False)
         elif i == 1:
             print "Regression on data between Feb 8 am to 8 pm"
-            training_data = utility.generate_training_data(f, 1, True, epoch_8am, epoch_8pm)
+            training_data = utility.generate_training_data(f, 1, True, epoch_8am, epoch_8pm, False)
         else :
             print "Regression on data after Feb 8 pm"
-            training_data = utility.generate_training_data(f, 1, True, epoch_8pm, 0)
-
+            training_data = utility.generate_training_data(f, 1, True, epoch_8pm, 0, False)
 
         training_data.pop(0)
 
         X = numpy.matrix(training_data)
         rows = X.shape[0]
-        window_count = 0
         avg_error = 0.0
         window_avg_error = 0.0
         hashtag_rmse = 0.0
         #generate data for window & perform 10-fold cross-validation and regression
         window_mean_rmse = 0.0
 
-        # traverse through entire file using sliding windows [1..n], [2..n+1] ...
-        for i in range(rows - 1):
-            window_end = i + window_size - 1
-            if window_end >= rows:
-                break
-            window_count += 1
-            # Generate training and test data from current window
+        if window_end >= rows:
+            break
 
-            data_labels = X[i: window_end, 0]
-            data_features = X[i: window_end, [1, 4]]
-            '''
-            test_label = X[window_end, 0]
-            test_features = X[ window_end , [1,4]]
-            '''
+        window_count += 1
+        # Generate training and test data from current window
 
-            regr = linear_model.LinearRegression()
-            model = linear_model.LinearRegression()
-            # shuffling the window data
-            #kf = cross_validation.KFold(window_size, 10, True)
+        data_labels = X[i: window_end, 0]
+        data_features = X[i: window_end, [1, 4]]
 
-            predicted_tweet_count = cross_validation.cross_val_predict(model, data_features, data_labels, 10, 1, 0, None, 0)
-            #print ("predicted_tweet_counts : ", predicted_tweet_count)
+        model = linear_model.LinearRegression()
 
-            # used mean_absolute_error function
-            # returns avg diff between predicted and actual tweets, over 10 folds in a window
-            # doesnt randomize the input
-            scores = cross_validation.cross_val_score(model, data_features, data_labels,  cv=10, scoring='mean_absolute_error')
-            avg_scores = numpy.average(numpy.abs(scores))
-            print("avg window error : ", avg_scores)
+        predicted_tweet_count = cross_validation.cross_val_predict(model, data_features, data_labels, 10, 1, 0, None, 0)
+        #print ("predicted_tweet_counts : ", predicted_tweet_count)
 
-            hashtag_rmse += avg_scores
-            #print("window  RMSE", window_mean_rmse)
-            #for train_index, test_index in kf:
-                #X_train, X_test = X[train_index, 1:], X[test_index, 1:]
-                #Y_train, Y_test = X[train_index, 0], X[test_index, 0]
+        # used mean_absolute_error function
+        # returns avg diff between predicted and actual tweets, over 10 folds in a window
+        # doesnt randomize the input
+        scores = cross_validation.cross_val_score(model, data_features, data_labels,  cv=10, scoring='mean_absolute_error')
+        avg_scores = numpy.average(numpy.abs(scores))
+        print("Avg error : ", avg_scores)
 
-                #regr.fit(X_train, Y_train) # to get co-efficients
-            # issues - what data shud be passed to predict - test or whole ?
-
-            #print 'Best RMSE',  numpy.min(numpy.sqrt(-scores))
-
-                #print("Co-efficients : ", regr.coef_)
-                #print("Residual sum of squares: %.2f"% numpy.mean((regr.predict(Y_test) - X_test) ** 2))
-                #predicted_tweets = regr.predict(X_test)
-                #error += numpy.mean((predicted_tweets - Y_test) ** 2)
+        hashtag_rmse += avg_scores
 
         # Avg error over all windows of a file
         avg_error = float(hashtag_rmse) / float(window_count)
-        print("hashtag avg absolute error for file : "+ f +" ", avg_error)
+        print(" Avg absolute error for Hashtag file : "+ f +" ", avg_error)
 
 
 

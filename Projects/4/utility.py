@@ -16,16 +16,26 @@ path = "../../Datasets/tweets/tweet_data/"
 
 # returns a per hour data as a list of lists of values from entire file which can be used as training data
 
-def generate_training_data(f, hour_window, timeframe, start_time, end_time):
+def generate_training_data(f, hour_window, timeframe, start_time, end_time, extra_features):
 
     hours_count = 0
     cur_time = 0
     old_ref_time = 0
     training_data = []
     hour_window_data = []
+    unique_users_set = set([])
+    unique_tweets_set = set([])
     max = 0
+    user_count = 0
     print f
-    for i in range(5):
+
+    if extra_features is False:
+        no_of_features = 5
+    else:
+        no_of_features = 9
+
+
+    for i in range(no_of_features):
        hour_window_data.append(0)
 
     '''
@@ -35,7 +45,9 @@ def generate_training_data(f, hour_window, timeframe, start_time, end_time):
 [2]    total_followers = 0
 [3]    max_followers = 0
 [4]    time_of_day = 0
-
+[5]    friends_count
+[6]    no of users posting tweet in current window
+[7]    total of favorite count of tweets posted in the current window
 Start reference for time of the day 12 am
     '''
 
@@ -58,17 +70,22 @@ Start reference for time of the day 12 am
                     hours_count += 1
                     old_ref_time = cur_time
                     hour_window_data[3] = max
+                    if extra_features is True:
+                        hour_window_data[6] = user_count
                     #print ("hour wi data",hour_window_data)
                     training_data.append(list(hour_window_data))
                     max = 0
-                    for i in range(5):
+                    user_count = 0
+                    unique_users_set.clear()
+                    unique_tweets_set.clear()
+                    for i in range(no_of_features):
                         hour_window_data[i] = 0
+
                 if old_ref_time == 0:
                     old_ref_time = cur_time
 
                 # extract hour from UTC time
                 # extract curr hour from time and subtract from it 12 am i.e 0, which will be timeofday
-                    #hour_window_data[4]
                 hour_window_data[4] = datetime.datetime.fromtimestamp(cur_time).hour
                 # tweet count
                 hour_window_data[0] += 1
@@ -77,10 +94,28 @@ Start reference for time of the day 12 am
                 if(data["tweet"]["retweet_count"] != 0):
                     hour_window_data[1] += 1
 
-                foll_count = data["tweet"]["user"]["followers_count"]
-                if foll_count > max:
-                    max = foll_count
+                # add followers count of a user if he is unique in the current window
+                if data["tweet"]["user"] not in unique_users_set:
+                    unique_users_set.add(data["tweet"]["user"] )
+                    foll_count = data["tweet"]["user"]["followers_count"]
+                    if foll_count > max:
+                        max = foll_count
 
-                hour_window_data[2] += foll_count
+                    hour_window_data[2] += foll_count
+
+                if extra_features is True:
+
+                  # add followers count of a user if he is unique in the current window
+
+                    if data["tweet"]["user"] not in unique_users_set:
+                        unique_users_set.add(data["tweet"]["user"] )
+                        hour_window_data[5] += data["tweet"]["user"]["friends_count"]
+
+                        user_count += 1
+
+                    if data["tweet"]["id"] not in unique_tweets_set:
+                        unique_tweets_set.add(data["tweet"]["id"])
+                        hour_window_data[7] += data["tweet"]["favorite_count"]
+
     #print training_data
     return training_data

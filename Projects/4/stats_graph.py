@@ -60,7 +60,7 @@ for file in file_list:
                 if file == "tweets_#nfl.txt":
                     nfl_list.append(int(nfl))
                     nfl = 0
-            else :
+            else:
                 if file ==  "tweets_#gohawks.txt" :
                    go_hawks += 1
 
