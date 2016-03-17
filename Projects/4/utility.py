@@ -1,7 +1,7 @@
 import os
 import json
 import datetime
-
+import numpy
 
 path = "../../Datasets/tweets/tweet_data/"
 #path = "F:/tweets/"
@@ -15,6 +15,33 @@ path = "../../Datasets/tweets/tweet_data/"
 # time of the day - 1 of the 24 values with reference to some start  of day
 
 # returns a per hour data as a list of lists of values from entire file which can be used as training data
+
+
+# converts list of lists to a matrix by aggregating the data of 'window_size'
+
+def get_feature_matrix(training_data, window_size):
+
+    aggr_data = []
+    length = len(training_data)
+    feature_count = len(training_data[0])
+
+    for i in range(feature_count):
+        aggr_data.append(0)
+
+
+    # Generate sliding window wise aggregate data
+    for i in range(length):
+        for j in range(window_size):
+            if (i + j) < length:
+                aggr_data = numpy.add(aggr_data, training_data[i+j])
+
+        if i == 0:
+            X = numpy.matrix(aggr_data)
+        else:
+            X = numpy.vstack([X, aggr_data])
+
+    return X
+
 
 def generate_training_data(f, hour_window, timeframe, start_time, end_time, extra_features):
 
