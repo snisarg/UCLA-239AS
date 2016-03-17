@@ -6,7 +6,7 @@ import os
 import json
 import datetime
 import numpy
-from sklearn import linear_model
+from sklearn import linear_model, neural_network
 import utility
 from sklearn import linear_model, cross_validation
 
@@ -31,7 +31,7 @@ for f in file_list:
 
     f = path + f
 
-    training_data = utility.generate_training_data(f, 1, False, 0, 0)
+    training_data = utility.generate_training_data(f, 1, False, 0, 0, False)
     training_data.pop(0)
 
     X = numpy.matrix(training_data)
@@ -58,8 +58,11 @@ for f in file_list:
         test_features = X[ window_end , [1,4]]
         '''
 
-        regr = linear_model.LinearRegression()
-        model = linear_model.LinearRegression()
+        #regr = linear_model.LinearRegression()
+        # model = linear_model.LinearRegression()
+        model = neural_network.MLPRegressor([10, 40, 5], 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200,
+                                            True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
+
         # shuffling the window data
         #kf = cross_validation.KFold(window_size, 10, True)
 
@@ -73,11 +76,11 @@ for f in file_list:
         avg_scores = numpy.average(numpy.abs(scores))
         print("avg window error : ", avg_scores)
 
-        hashtag_rmse += avg_scores
-
-    # Avg error over all windows of a file
-    avg_error = float(hashtag_rmse) / float(window_count)
-    print("hashtag avg absolute error for file : "+ f +" ", avg_error)
+    #     hashtag_rmse += avg_scores
+    #
+    # # Avg error over all windows of a file
+    # avg_error = float(hashtag_rmse) / float(window_count)
+    # print("hashtag avg absolute error for file : "+ f +" ", avg_error)
 
 
 
