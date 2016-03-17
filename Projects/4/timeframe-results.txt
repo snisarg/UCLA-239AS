@@ -1,0 +1,63 @@
+('Hashtag File ', 'subset.txt')
+Regression on data before Feb 1 8 am
+F:/tweets/subset.txt
+('Hashtag File ', 'tweets_#gohawks.txt')
+Regression on data before Feb 1 8 am
+../../Datasets/tweets/tweet_data/tweets_#gohawks.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt for time frame ', 1, 172.15782145867155)
+Regression on data between Feb 8 am to 8 pm
+../../Datasets/tweets/tweet_data/tweets_#gohawks.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt for time frame ', 2, 1668.0589130909061)
+Regression on data after Feb 8 pm
+../../Datasets/tweets/tweet_data/tweets_#gohawks.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt for time frame ', 3, 72.80761486857061)
+('Hashtag File ', 'tweets_#gopatriots.txt')
+Regression on data before Feb 1 8 am
+../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt for time frame ', 1, 31.416520465574742)
+Regression on data between Feb 8 am to 8 pm
+../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt for time frame ', 2, 213.56491065714636)
+Regression on data after Feb 8 pm
+../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt for time frame ', 3, 13.079458432887472)
+('Hashtag File ', 'tweets_#nfl.txt')
+Regression on data before Feb 1 8 am
+../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#nfl.txt for time frame ', 1, 176.18219240967642)
+Regression on data between Feb 8 am to 8 pm
+../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#nfl.txt for time frame ', 2, 1306.516143198289)
+Regression on data after Feb 8 pm
+../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#nfl.txt for time frame ', 3, 239.07151217886832)
+('Hashtag File ', 'tweets_#patriots.txt')
+Regression on data before Feb 1 8 am
+../../Datasets/tweets/tweet_data/tweets_#patriots.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#patriots.txt for time frame ', 1, 313.3859483400862)
+Regression on data between Feb 8 am to 8 pm
+../../Datasets/tweets/tweet_data/tweets_#patriots.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#patriots.txt for time frame ', 2, 12520.543919400412)
+Regression on data after Feb 8 pm
+../../Datasets/tweets/tweet_data/tweets_#patriots.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#patriots.txt for time frame ', 3, 183.82101462922765)
+('Hashtag File ', 'tweets_#sb49.txt')
+Regression on data before Feb 1 8 am
+../../Datasets/tweets/tweet_data/tweets_#sb49.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#sb49.txt for time frame ', 1, 95.075973143354943)
+Regression on data between Feb 8 am to 8 pm
+../../Datasets/tweets/tweet_data/tweets_#sb49.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#sb49.txt for time frame ', 2, 42284.079510771575)
+Regression on data after Feb 8 pm
+../../Datasets/tweets/tweet_data/tweets_#sb49.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#sb49.txt for time frame ', 3, 452.26985258377152)
+('Hashtag File ', 'tweets_#superbowl.txt')
+Regression on data before Feb 1 8 am
+../../Datasets/tweets/tweet_data/tweets_#superbowl.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#superbowl.txt for time frame ', 1, 373.12217214914318)
+Regression on data between Feb 8 am to 8 pm
+../../Datasets/tweets/tweet_data/tweets_#superbowl.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#superbowl.txt for time frame ', 2, 39868.367388865401)
+Regression on data after Feb 8 pm
+../../Datasets/tweets/tweet_data/tweets_#superbowl.txt
+('Avg absolute error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#superbowl.txt for time frame ', 3, 699.80101880716029)
