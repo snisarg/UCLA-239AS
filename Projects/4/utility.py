@@ -95,8 +95,8 @@ Start reference for time of the day 12 am
                     hour_window_data[1] += 1
 
                 # add followers count of a user if he is unique in the current window
-                if data["tweet"]["user"] not in unique_users_set:
-                    unique_users_set.add(data["tweet"]["user"] )
+                if data["tweet"]["user"]["id_str"] not in unique_users_set:
+                    unique_users_set.add(data["tweet"]["user"]["id_str"] )
                     foll_count = data["tweet"]["user"]["followers_count"]
                     if foll_count > max:
                         max = foll_count
@@ -107,8 +107,8 @@ Start reference for time of the day 12 am
 
                   # add followers count of a user if he is unique in the current window
 
-                    if data["tweet"]["user"] not in unique_users_set:
-                        unique_users_set.add(data["tweet"]["user"] )
+                    if data["tweet"]["user"]["id_str"] not in unique_users_set:
+                        unique_users_set.add(data["tweet"]["user"]["id_str"] )
                         hour_window_data[5] += data["tweet"]["user"]["friends_count"]
 
                         user_count += 1
