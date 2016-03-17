@@ -10,12 +10,12 @@ import utility
 # Generate training and test data using train_X, train_Y convention for LR
 # take no of tweets as train_label & rest of the features as train data or independent vars
 
-path = "../../Datasets/tweets/tweet_data/"
-#path = "F:/tweets/"
+#path = "../../Datasets/tweets/tweet_data/"
+path = "F:/tweets/"
 
 file_list = []
-file_list = os.listdir(path)
-#file_list = ["subset.txt"]
+#file_list = os.listdir(path)
+file_list = ["subset.txt"]
 
 window_size = 1
 
@@ -45,19 +45,22 @@ for f in file_list:
     test_features = X[rows-1, [1,4]]
 
     # linear_regression(data)
-    regr = sm.OLS(train_label, train_features)
+    regr = sm.OLS(train_label, train_features.astype(float))
     results = regr.fit()
     print "summary \n"
     print results.summary()
     predict_label = results.predict(test_features)
-    print ("no of tweets ", predict_label, "\n")
-    print("\nResidual sum of squares: %.2f"% numpy.mean((predict_label - test_label) ** 2))
+    #print ("No of Predicted tweets ", predict_label, "\n")
+    #print("\nResidual sum of squares: %.3f"% numpy.mean((predict_label - test_label) ** 2))
+    #print("\nMean absolute error |Predicted - Actual|: %.3f"% numpy.mean(numpy.abs(predict_label - test_label)))
 
     output = "linear-reg-result-"
     f = output + temp
     with open(f, 'a') as fw:
         fw.write(str(results.summary()))
-        fw.write("\n No of tweets: ")
+        fw.write("\n No of Predicted tweets : ")
         fw.write(str(predict_label))
+        fw.write("\n Mean absolute error : ")
+        fw.write(str(numpy.mean(numpy.abs(predict_label - test_label))))
         fw.write("\n Residual sum of squares : ")
         fw.write(str(numpy.mean((predict_label - test_label) ** 2)))
