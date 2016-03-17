@@ -2,10 +2,10 @@ import os
 import json
 import datetime
 import numpy
-import string
-from sklearn import feature_extraction
-import nltk
 import re
+import nltk
+from sklearn import feature_extraction
+import string
 
 path = "../../Datasets/tweets/tweet_data/"
 #path = "F:/tweets/"
