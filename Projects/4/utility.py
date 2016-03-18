@@ -111,7 +111,7 @@ Start reference for time of the day 12 am
                         hour_window_data[6] = user_count
                         # Calculate tweet_count delta
                         if isinstance(previous_hour_window_data, list):
-                            hour_window_data[8] = (hour_window_data[0]/previous_hour_window_data[0]) - 1
+                            hour_window_data[8] = float(hour_window_data[0]/previous_hour_window_data[0]) - 1
                         previous_hour_window_data = hour_window_data
                     #print ("hour wi data",hour_window_data)
                     training_data.append(list(hour_window_data))
