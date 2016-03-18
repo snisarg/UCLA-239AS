@@ -5,9 +5,10 @@
 import os
 import numpy
 import utility
-from sklearn import linear_model, cross_validation
+from sklearn import linear_model, cross_validation, metrics
 
 path = "../../Datasets/tweets/tweet_data/"
+test_path = "../../Datasets/tweets/test_data/{}.txt"
 #path = "F:/tweets/"
 
 file_list = []
@@ -24,6 +25,9 @@ epoch_8am = 1422806400
 epoch_8pm = 1422849600
 
 window_size = 10 # should be 1 for this part of que, clarify
+test_files = [['sample1_period1', 'sample4_period1', 'sample5_period1', 'sample8_period1'],
+              ['sample2_period2', 'sample6_period2', 'sample9_period2'],
+              ['sample3_period3', 'sample7_period3', 'sample10_period3']]
 
 for f in file_list:
 
@@ -56,11 +60,11 @@ for f in file_list:
         # Generate training and test data from current window
 
         data_labels = X[1:, 0]
-        data_features = X[0:, :]
+        data_features = X[:-1, :]
 
         model = linear_model.LinearRegression()
 
-        predicted_tweet_count = cross_validation.cross_val_predict(model, data_features, data_labels, 10, 1, 0, None, 0)
+        # predicted_tweet_count = cross_validation.cross_val_predict(model, data_features, data_labels, 10, 1, 0, None, 0)
         #print ("predicted_tweet_counts : ", predicted_tweet_count)
 
         # used mean_absolute_error function
@@ -69,3 +73,19 @@ for f in file_list:
         scores = cross_validation.cross_val_score(model, data_features, data_labels,  cv=10, scoring='mean_absolute_error')
         avg_scores = numpy.average(numpy.abs(scores))
         print("Avg absolute error for Hashtag file : "+ f + " for time frame ", (i+1), avg_scores)
+
+
+        # FOR QUESTION 5
+        model2 = linear_model.LinearRegression()
+        model2.fit(data_features, data_labels)
+
+        for file_name in test_files[i]:
+            test_X = utility.generate_training_data(test_path.format(file_name), 1, False, 0, 0, True)
+
+            data_labels = X[1:, 0]
+            data_features = X[:-1, :]
+
+            predicted = model2.predict(data_features)
+
+            rmse = numpy.sqrt(metrics.mean_squared_error(data_labels, predicted))
+            print("For {}, RMSE = {} and Predicted Value = {}".format(file_name, rmse, model2.predict(data_features[-1])))
