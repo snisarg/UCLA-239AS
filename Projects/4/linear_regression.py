@@ -42,7 +42,7 @@ for f in file_list:
     train_label = X[1:, 0]
     train_features = X[: -1, :]
     test_label = X[1:, 0]
-    test_features = X[1:rows, 0:5]
+    test_features = X[1:rows, :]
     '''
     print "train label"
     print train_label
