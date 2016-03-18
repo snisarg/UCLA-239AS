@@ -52,16 +52,16 @@ for f in file_list:
         # Generate training and test data from current window
 
         data_labels = X[i: window_end, 0]
-        data_features = X[i: window_end, [1, 4]]
+        data_features = X[i: window_end, 1:5]
         '''
         test_label = X[window_end, 0]
         test_features = X[ window_end , [1,4]]
         '''
 
         #regr = linear_model.LinearRegression()
-        # model = linear_model.LinearRegression()
-        model = neural_network.MLPRegressor([10, 40, 5], 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200,
-                                            True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
+        model = linear_model.LinearRegression()
+        #model = neural_network.MLPRegressor([10, 40, 5], 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200,
+        #                                    True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
 
         # shuffling the window data
         #kf = cross_validation.KFold(window_size, 10, True)

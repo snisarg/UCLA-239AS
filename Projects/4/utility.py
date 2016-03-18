@@ -36,6 +36,8 @@ def get_feature_matrix(training_data, window_size):
 
     # Generate sliding window wise aggregate data
     for i in range(length):
+        for k in range(feature_count):
+            aggr_data[k] = 0
         for j in range(window_size):
             if (i + j) < length:
                 aggr_data = numpy.add(aggr_data, training_data[i+j])
@@ -43,7 +45,7 @@ def get_feature_matrix(training_data, window_size):
         if i == 0:
             X = numpy.matrix(aggr_data)
         else:
-            X = numpy.vstack([X, aggr_data])
+            X = numpy.vstack([X, list(aggr_data)])
 
     return X
 
