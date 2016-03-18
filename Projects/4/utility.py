@@ -7,8 +7,8 @@ import nltk
 from sklearn import feature_extraction
 import string
 
-#path = "../../Datasets/tweets/tweet_data/"
-path = "F:/tweets/"
+path = "../../Datasets/tweets/tweet_data/"
+#path = "F:/tweets/"
 
 # returns a list of lists of feature data between start and end-time from the input file
 
@@ -29,7 +29,7 @@ def get_feature_matrix(training_data, window_size):
 
     aggr_data = []
     length = len(training_data)
-    print training_data[1]
+    #print training_data[1]
     feature_count = len(training_data[0])
 
     for i in range(feature_count):
@@ -63,12 +63,15 @@ def generate_training_data(f, hour_window, timeframe, start_time, end_time, extr
     unique_tweets_set = set([])
     max = 0
     user_count = 0
-    print f
+    ranking_score =0
+    acceleration =0
+    momentum =0
+    impressions =0
 
     if extra_features is False:
         no_of_features = 5
     else:
-        no_of_features = 9
+        no_of_features = 14
 
     previous_hour_window_data = 0
 
@@ -85,7 +88,12 @@ def generate_training_data(f, hour_window, timeframe, start_time, end_time, extr
 [5]    friends_count
 [6]    no of users posting tweet in current window
 [7]    total of favorite count of tweets posted in the current window
-Start reference for time of the day 12 am
+[8]    Delta
+[9]    avg_ranking_score
+[10]   avg_acceleration
+[11]   impressions_sum
+[12]   avg_impressions
+[13]   avg_momentum
     '''
 
     with open(f, 'r') as f:
@@ -107,16 +115,39 @@ Start reference for time of the day 12 am
                     hours_count += 1
                     old_ref_time = cur_time
                     hour_window_data[3] = max
+
                     if extra_features is True:
-                        hour_window_data[6] = user_count
+                        hour_window_data[6] = float(user_count)
+                        #print("6 ", hour_window_data[6])
+                        # avg ranking score
+                        hour_window_data[9] = float(float(ranking_score)/float(hour_window_data[0]))
+                        #print("9 ", hour_window_data[9])
+                        # avg acceleration
+                        hour_window_data[10] = float(float(acceleration)/float(hour_window_data[0]))
+                        #print("10 ", hour_window_data[10])
+                        # impressions total
+                        hour_window_data[11] = float(impressions)
+                        #print("11 ", hour_window_data[11])
+                        # avg impressions
+                        hour_window_data[12] = float(float(impressions)/float(hour_window_data[0]))
+
+                        # avg momentum
+                        hour_window_data[13] = float(float(momentum)/float(hour_window_data[0]))
+
                         # Calculate tweet_count delta
                         if isinstance(previous_hour_window_data, list):
                             hour_window_data[8] = float(float(hour_window_data[0])/float(previous_hour_window_data[0])) - 1
                         previous_hour_window_data = list( hour_window_data)
-                    #print ("hour wi data",hour_window_data)
+
+                    # append the current hour's window to the main list
                     training_data.append(list(hour_window_data))
+
                     max = 0
                     user_count = 0
+                    ranking_score = 0.0
+                    acceleration = 0.0
+                    impressions = 0.0
+                    momentum = 0.0
                     unique_users_set.clear()
                     unique_tweets_set.clear()
                     for i in range(no_of_features):
@@ -157,6 +188,11 @@ Start reference for time of the day 12 am
                     if data["tweet"]["id"] not in unique_tweets_set:
                         unique_tweets_set.add(data["tweet"]["id"])
                         hour_window_data[7] += data["tweet"]["favorite_count"]
+
+                    ranking_score += data["metrics"]["ranking_score"]
+                    acceleration += data["metrics"]["acceleration"]
+                    momentum += data["metrics"]["momentum"]
+                    impressions += data["metrics"]["impressions"]
 
     #print training_data
     return training_data

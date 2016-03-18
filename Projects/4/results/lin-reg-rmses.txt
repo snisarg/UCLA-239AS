@@ -1,0 +1,42 @@
+with new features i.e 14 total features :
+
+('\nLinear Regression on file : ', 'tweets_#gohawks.txt')
+('\nWindow size : ', 1)
+593.191897259
+('\nLinear Regression on file : ', 'tweets_#gopatriots.txt')
+('\nWindow size : ', 1)
+160.235028468
+('\nLinear Regression on file : ', 'tweets_#nfl.txt')
+('\nWindow size : ', 1)
+363.352006089
+('\nLinear Regression on file : ', 'tweets_#patriots.txt')
+('\nWindow size : ', 1)
+1953.19130682
+('\nLinear Regression on file : ', 'tweets_#sb49.txt')
+('\nWindow size : ', 1)
+2749.57765381
+('\nLinear Regression on file : ', 'tweets_#superbowl.txt')
+('\nWindow size : ', 1)
+4566.42096355
+
+
+with only original 5 features:
+
+('\nLinear Regression on file : ', 'tweets_#gohawks.txt')
+('\nWindow size : ', 1)
+576.949398271
+('\nLinear Regression on file : ', 'tweets_#gopatriots.txt')
+('\nWindow size : ', 1)
+172.419450966
+('\nLinear Regression on file : ', 'tweets_#nfl.txt')
+('\nWindow size : ', 1)
+379.38432653
+('\nLinear Regression on file : ', 'tweets_#patriots.txt')
+('\nWindow size : ', 1)
+1692.77571774
+('\nLinear Regression on file : ', 'tweets_#sb49.txt')
+('\nWindow size : ', 1)
+2513.34924728
+('\nLinear Regression on file : ', 'tweets_#superbowl.txt')
+('\nWindow size : ', 1)
+5131.65813748

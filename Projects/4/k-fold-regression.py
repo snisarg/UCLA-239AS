@@ -41,23 +41,23 @@ for f in file_list:
     #print "matrix"
     #print X
     # numpy.roll( ) is used for circular shifting of elements
-    train_label = X[1:, 0]
-    train_features = X[:- 1, :]
+    train_label = X[2:, 0]
+    train_features = X[1:- 1, :]
 
     model = linear_model.LinearRegression()
     #model = neural_network.MLPRegressor([10, 40, 5], 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200,
     #                                    True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
 
 
-    predicted_tweet_count = cross_validation.cross_val_predict(model, train_features, train_label, 10, 1, 0, None, 0)
+    #predicted_tweet_count = cross_validation.cross_val_predict(model, train_features, train_label, 10, 1, 0, None, 0)
     #print ("predicted_tweet_counts : ", predicted_tweet_count)
 
     # used mean_absolute_error function
     # returns avg diff between predicted and actual tweets, over 10 folds in a window
     # doesnt randomize the input
     scores = cross_validation.cross_val_score(model, train_features, train_label,  cv=10, scoring='mean_absolute_error')
-    avg_scores = numpy.average(numpy.abs(scores))
-    print("avg window error : ", avg_scores)
+    avg_scores = numpy.average((-scores))
+    print("Mean absolute error  : ", avg_scores)
 
 #     hashtag_rmse += avg_scores
 #
