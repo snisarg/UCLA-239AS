@@ -45,11 +45,11 @@ def hashtag_stats(f):
     avg_tweets_per_hour = float(float(total_tweets_count) / float(hours_count))
     avg_retweets = float(float(retweet_count) / float(total_tweets_count))
     avg_followers_count = float(float(followers_count) / float(total_tweets_count))
-    print "average tweets per hour for "+ f
+    print "\naverage tweets per hour for "+ f
     print avg_tweets_per_hour
-    print "average retweets for "+ f
+    print "\naverage retweets for "+ f
     print avg_retweets
-    print "average followers count for "+ f
+    print "\naverage followers count for "+ f
     print avg_followers_count
 
     #break

@@ -1,0 +1,54 @@
+average tweets per hour for ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt
+301.5
+
+average retweets for ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt
+2.01461708551
+
+average followers count for ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt
+654.844139346
+
+average tweets per hour for ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+68.3125
+
+average retweets for ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+1.40008386703
+
+average followers count for ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+892.557220189
+
+average tweets per hour for ../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+424.629508197
+
+average retweets for ../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+1.5385331089
+
+average followers count for ../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+1232.88416903
+
+average tweets per hour for ../../Datasets/tweets/tweet_data/tweets_#patriots.txt
+766.374021909
+
+average retweets for ../../Datasets/tweets/tweet_data/tweets_#patriots.txt
+1.78281564917
+
+average followers count for ../../Datasets/tweets/tweet_data/tweets_#patriots.txt
+1132.94214775
+
+average tweets per hour for ../../Datasets/tweets/tweet_data/tweets_#sb49.txt
+1631.06706114
+
+average retweets for ../../Datasets/tweets/tweet_data/tweets_#sb49.txt
+2.51114878632
+
+average followers count for ../../Datasets/tweets/tweet_data/tweets_#sb49.txt
+1607.33237761
+
+
+average tweets per hour for ../../Datasets/tweets/tweet_data/tweets_#superbowl.txt
+2263.03187919
+
+average retweets for ../../Datasets/tweets/tweet_data/tweets_#superbowl.txt
+2.3882723999
+
+average followers count for ../../Datasets/tweets/tweet_data/tweets_#superbowl.txt
+1953.20294165
