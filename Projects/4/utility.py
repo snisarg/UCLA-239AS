@@ -18,6 +18,8 @@ path = "../../Datasets/tweets/tweet_data/"
 # max no of followers of users posting hashtag
 # time of the day - 1 of the 24 values with reference to some start  of day
 
+# 10th Optional Feature: delta of tweet_count
+
 # returns a per hour data as a list of lists of values from entire file which can be used as training data
 
 
@@ -66,8 +68,9 @@ def generate_training_data(f, hour_window, timeframe, start_time, end_time, extr
     if extra_features is False:
         no_of_features = 5
     else:
-        no_of_features = 9
+        no_of_features = 10
 
+    previous_hour_window_data = 0
 
     for i in range(no_of_features):
        hour_window_data.append(0)
@@ -106,6 +109,10 @@ Start reference for time of the day 12 am
                     hour_window_data[3] = max
                     if extra_features is True:
                         hour_window_data[6] = user_count
+                        # Calculate tweet_count delta
+                        if isinstance(previous_hour_window_data, list):
+                            hour_window_data[9] = (hour_window_data[0]/previous_hour_window_data[0]) - 1
+                        previous_hour_window_data = hour_window_data
                     #print ("hour wi data",hour_window_data)
                     training_data.append(list(hour_window_data))
                     max = 0
