@@ -1,7 +1,6 @@
 # Que 4 Part B
 # Use different features as used in que 3
 
-
 import os
 import numpy
 import utility
@@ -14,7 +13,6 @@ test_path = "../../Datasets/tweets/test_data/{}.txt"
 file_list = []
 file_list = os.listdir(path)
 #file_list = ["subset.txt"]
-
 
 '''
 1. Before Feb. 1, 8:00 a.m.
@@ -40,13 +38,13 @@ for f in file_list:
 
         if i == 0:
             print "Regression on data before Feb 1 8 am"
-            training_data = utility.generate_training_data(f, 1, True, 0, epoch_8am, False)
+            training_data = utility.generate_training_data(f, 1, True, 0, epoch_8am, True)
         elif i == 1:
             print "Regression on data between Feb 8 am to 8 pm"
-            training_data = utility.generate_training_data(f, 1, True, epoch_8am, epoch_8pm, False)
+            training_data = utility.generate_training_data(f, 1, True, epoch_8am, epoch_8pm, True)
         else:
             print "Regression on data after Feb 8 pm"
-            training_data = utility.generate_training_data(f, 1, True, epoch_8pm, 0, False)
+            training_data = utility.generate_training_data(f, 1, True, epoch_8pm, 0, True)
 
         if len(training_data) != 0:
             training_data.pop(0)
@@ -70,17 +68,17 @@ for f in file_list:
         # used mean_absolute_error function
         # returns avg diff between predicted and actual tweets, over 10 folds in a window
         # doesnt randomize the input
-        scores = cross_validation.cross_val_score(model, data_features, data_labels,  cv=10, scoring='mean_absolute_error')
-        avg_scores = numpy.average(numpy.abs(scores))
-        print("Avg absolute error for Hashtag file : "+ f + " for time frame ", (i+1), avg_scores)
-
+        scores = cross_validation.cross_val_score(model, data_features, data_labels,  cv=5, scoring='mean_absolute_error')
+        avg_scores = numpy.average(-scores)
+        print("4th Part A Avg Prediction error for Hashtag file : " + f + " for time frame ", (i+1), avg_scores)
 
         # FOR QUESTION 5
         model2 = linear_model.LinearRegression()
         model2.fit(data_features, data_labels)
 
         for file_name in test_files[i]:
-            test_X = utility.generate_training_data(test_path.format(file_name), 1, False, 0, 0, True)
+            X = utility.generate_training_data(test_path.format(file_name), 1, False, 0, 0, True)
+            X = numpy.matrix(X)
 
             data_labels = X[1:, 0]
             data_features = X[:-1, :]

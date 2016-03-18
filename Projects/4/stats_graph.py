@@ -15,7 +15,6 @@ def plot_graph(hashtag, data):
     plt.ylabel('Tweets')
     plt.show()
 
-
 path = "../../Datasets/tweets/tweet_data/"
 #path = "F:/tweets/"
 
@@ -53,28 +52,31 @@ for file in file_list:
                 hours_count += 1
                 old_ref_time = cur_time
 
-                if file == "tweets_#gohawks.txt" :
+                if file == path+"tweets_#gohawks.txt":
+                    #print "in innermost condition"
                     gohawks_list.append(int(gohawks))
-                    go_hawks = 0
+                    gohawks = 0
 
-                if file == "tweets_#nfl.txt":
+                if file == path+"tweets_#nfl.txt":
                     nfl_list.append(int(nfl))
                     nfl = 0
             else:
-                if file == "tweets_#gohawks.txt" :
-                   go_hawks += 1
+                if file == path+"tweets_#gohawks.txt":
+                    #print "in innermost else"
+                    gohawks += 1
 
-                if file == "tweets_#nfl.txt":
+                if file == path+"tweets_#nfl.txt":
                     nfl += 1
 
             if old_ref_time == 0:
                 old_ref_time = cur_time
-print "gohawks list"
-print gohawks_list
-print "nfl list"
-print nfl_list
+#print "gohawks list"
+#print gohawks_list
+#print "nfl list"
+#print nfl_list
 
-plot_graph('gohawks', gohawks_list)
+#plot_graph('gohawks', gohawks_list)
+
 plot_graph('nfl',nfl_list)
 
     #break
