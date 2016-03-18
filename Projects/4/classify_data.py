@@ -6,21 +6,29 @@ import numpy
 
 K_FOLDS = 10
 
-
 def linear_regression(X, Y):
     length = len(X)
+
+    print("\nX.shape : ", X.shape)
+    print("\nY.shape : ", Y.shape)
 
     model = linear_model.LogisticRegression()
 
     # X = X.values.reshape(length, 1)
-    # Y = Y.values.reshape(length, 1)
+    #Y = Y.reshape(length, 1)
+    Y = Y.ravel()
 
     predicted = cross_validation.cross_val_predict(model, X, Y, K_FOLDS, 1, 0, None, 0)
-    scores = cross_validation.cross_val_score(model, X, Y, cv=K_FOLDS, scoring='mean_squared_error')
+    scores = cross_validation.cross_val_score(model, X, Y, cv=K_FOLDS, scoring='mean_absolute_error')
 
+    avg_scores = numpy.average(numpy.abs(scores))
+    print("Mean absolute error : ", avg_scores)
+
+    '''
     print 'All RMSEs',  numpy.sqrt(-scores)
     print 'Mean RMSE',  numpy.mean(numpy.sqrt(-scores))
     print 'Best RMSE',  numpy.min(numpy.sqrt(-scores))
+    '''
     # print 'Coefficients', model.coef_
 
 

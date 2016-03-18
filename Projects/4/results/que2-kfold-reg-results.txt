@@ -1,0 +1,39 @@
+('Linear Regression on file : ', 'tweets_#gohawks.txt')
+('window size : ', 1)
+
+('Mean absolute error : ', 242.4957740075256)
+
+
+('Linear Regression on file : ', 'tweets_#gopatriots.txt')
+('window size : ', 1)
+../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt
+[2, 2, 13516, 11444, 16]
+('Mean absolute error : ', 75.916216112769163)
+
+
+('Linear Regression on file : ', 'tweets_#nfl.txt')
+('window size : ', 1)
+../../Datasets/tweets/tweet_data/tweets_#nfl.txt
+[1, 0, 1320, 1320, 20]
+('Mean absolute error : ', 195.92550480259149)
+
+
+('Linear Regression on file : ', 'tweets_#patriots.txt')
+('window size : ', 1)
+../../Datasets/tweets/tweet_data/tweets_#patriots.txt
+[1, 0, 33, 33, 20]
+('Mean absolute error : ', 729.17778967888933)
+
+
+('Linear Regression on file : ', 'tweets_#sb49.txt')
+('window size : ', 1)
+../../Datasets/tweets/tweet_data/tweets_#sb49.txt
+[5, 0, 1442, 560, 8]
+('Mean absolute error : ', 1240.3468340902623)
+
+
+('Linear Regression on file : ', 'tweets_#superbowl.txt')
+('window size : ', 1)
+../../Datasets/tweets/tweet_data/tweets_#superbowl.txt
+[1, 0, 132, 132, 19]
+('Mean absolute error : ', 2212.5138024238568)
