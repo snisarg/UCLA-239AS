@@ -7,7 +7,8 @@ import json
 import utility
 import numpy
 import statsmodels.api as sm
-from sklearn import linear_model, cross_validation
+from sklearn import linear_model, cross_validation, neural_network
+from sklearn.ensemble import RandomForestRegressor
 import matplotlib.pyplot as plt
 
 
@@ -23,12 +24,12 @@ window_size = 1
 
 for f in file_list:
 
-    print("\nLinear Regression on file : ", f)
+    print("\nRandom forests Regression on file : ", f)
     print("\nWindow size : ", window_size)
     temp = f
     f = path + f
 
-    training_data = utility.generate_training_data(f, 1, False, 0, 0, False)
+    training_data = utility.generate_training_data(f, 1, False, 0, 0, True)
 
     training_data.pop(0)
     #print training_data
@@ -44,17 +45,18 @@ for f in file_list:
     # numpy.roll( ) is used for circular shifting of elements
     train_label = X[2:, 0]
     train_features = X[1:- 1, :]
-    #test_label = X[1:, 0]
-    #test_features = X[1:, :]
-    #print train_features
-    #print train_label
-    model = linear_model.LinearRegression()
-    #model = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(), model)
+
+    #model = linear_model.LinearRegression()
+    '''
+    model = RandomForestRegressor(n_estimators=50,   max_features=7,   max_depth= 8,  n_jobs=8)
+    '''
+    model = neural_network.MLPRegressor([1,1,1,1,1], 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200, True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
+
     #predicted_tweet_count = cross_validation.cross_val_predict(model, train_features, train_label, 10, 1, 0, None, 0)
     scores = cross_validation.cross_val_score(model, train_features, train_label,  cv=10, scoring='mean_squared_error')
     #print("\nAccuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-    print numpy.mean(numpy.sqrt(-scores))
-
+    print("\n", numpy.mean(numpy.sqrt(-scores)))
+'''
     # Part B - Generate a Scatter Plot of no of tweets and top 3 features
     p1 = plt.scatter(train_label, train_features[:, 0], s=5, c='#ff0000', linewidths=0)
     p2 = plt.scatter(train_label, train_features[:, 1], s=5, c='#00ff00', linewidths=0)
@@ -65,13 +67,7 @@ for f in file_list:
     #plt.grid(True)
     plt.legend((p1, p2, p3), ('Column name 1', 'Column name 2', 'Column Name 3'))
     plt.show()
-
-    '''
-    print "train label"
-    print train_label
-    print "train features"
-    print train_features
-    '''
+'''
     # linear_regression(data)
 '''
     regr = sm.OLS(train_label, train_features)

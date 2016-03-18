@@ -1,4 +1,6 @@
-with new features i.e 14 total features :
+Que 3 output :
+
+Linear Regression with new features i.e 14 total features :
 
 ('\nLinear Regression on file : ', 'tweets_#gohawks.txt')
 ('\nWindow size : ', 1)

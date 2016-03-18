@@ -1,0 +1,50 @@
+Q 3 Random forests output :
+
+Config : Max no of trees : 30 ,
+         depth : 5,
+         max features : 4
+
+('\nRandom forests Regression on file : ', 'tweets_#gohawks.txt')
+  2 ('\nWindow size : ', 1)
+  3 ('\n', 371.76572952788882)
+  4 ('\nRandom forests Regression on file : ', 'tweets_#gopatriots.txt')
+  5 ('\nWindow size : ', 1)
+  6 ('\n', 170.13754788564103)
+  7 ('\nRandom forests Regression on file : ', 'tweets_#nfl.txt')
+  8 ('\nWindow size : ', 1)
+  9 ('\n', 376.05314261308661)
+ 10 ('\nRandom forests Regression on file : ', 'tweets_#patriots.txt')
+ 11 ('\nWindow size : ', 1)
+ 12 ('\n', 1888.8915266263625)
+ 13 ('\nRandom forests Regression on file : ', 'tweets_#sb49.txt')
+ 14 ('\nWindow size : ', 1)
+ 15 ('\n', 3658.6403506841416)
+ 16 ('\nRandom forests Regression on file : ', 'tweets_#superbowl.txt')
+ 17 ('\nWindow size : ', 1)
+ 18 ('\n', 6124.0410018474631)
+
+
+Config : Max no of trees : 50 ,
+         depth : 7,
+         max features : 8
+
+
+ ('\nRandom forests Regression on file : ', 'tweets_#gohawks.txt')
+  2 ('\nWindow size : ', 1)
+  3 ('\n', 346.80362346928047)
+  4 ('\nRandom forests Regression on file : ', 'tweets_#gopatriots.txt')
+  5 ('\nWindow size : ', 1)
+  6 ('\n', 161.64233874460763)
+  7 ('\nRandom forests Regression on file : ', 'tweets_#nfl.txt')
+  8 ('\nWindow size : ', 1)
+  9 ('\n', 370.06833195926993)
+ 10 ('\nRandom forests Regression on file : ', 'tweets_#patriots.txt')
+ 11 ('\nWindow size : ', 1)
+ 12 ('\n', 1837.9082596983299)
+ 13 ('\nRandom forests Regression on file : ', 'tweets_#sb49.txt')
+ 14 ('\nWindow size : ', 1)
+ 15 ('\n', 3564.4470082076987)
+ 16 ('\nRandom forests Regression on file : ', 'tweets_#superbowl.txt')
+ 17 ('\nWindow size : ', 1)
+ 18 ('\n', 6042.180668112961)
+~
