@@ -39,10 +39,10 @@ for f in file_list:
     print "matrix"
     #print X
     # numpy.roll( ) is used for circular shifting of elements
-    train_label = X[:rows - 1, 0]
-    train_features = X[: rows - 1, 1:5]
+    train_label = X[1:, 0]
+    train_features = X[: -1]
     test_label = X[1:, 0]
-    test_features = X[1:, 1:5]
+    test_features = X[1:rows, 0:5]
     '''
     print "train label"
     print train_label
@@ -52,9 +52,9 @@ for f in file_list:
     # linear_regression(data)
     regr = sm.OLS(train_label, train_features.astype(float))
     results = regr.fit()
-    print "summary \n"
+    print "Summary \n"
     print results.summary()
-    predict_label = results.predict(test_features)
+    #predict_label = results.predict(test_features)
     #print ("No of Predicted tweets ", predict_label, "\n")
     #print("\nResidual sum of squares: %.3f"% numpy.mean((predict_label - test_label) ** 2))
     #print("\nMean absolute error |Predicted - Actual|: %.3f"% numpy.mean(numpy.abs(predict_label - test_label)))
@@ -63,10 +63,13 @@ for f in file_list:
     f = output + temp
     with open(f, 'a') as fw:
         fw.write(str(results.summary()))
+        '''
         fw.write("\n\n No of Predicted tweets : ")
+
         fw.write(str(predict_label))
         fw.write("\n\n Mean absolute error : ")
         fw.write(str(numpy.mean(numpy.abs(list(map(operator.sub, predict_label, test_label))))))
         fw.write("\n\n Residual sum of squares : ")
         #fw.write(str(numpy.mean((predict_label - test_label) ** 2)))
         #fw.write(str(numpy.mean(numpy.sqrt((numpy.square(predict_label[i] - test_features[i] for i in range(len(predict_label))))))))
+        '''
