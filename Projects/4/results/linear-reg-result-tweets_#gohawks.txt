@@ -1,25 +1,30 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:                      y   R-squared:                       1.000
-Model:                            OLS   Adj. R-squared:                  1.000
-Method:                 Least Squares   F-statistic:                 8.721e+05
-Date:                Thu, 17 Mar 2016   Prob (F-statistic):               0.00
-Time:                        02:23:30   Log-Likelihood:                -6592.8
-No. Observations:                 621   AIC:                         1.319e+04
-Df Residuals:                     619   BIC:                         1.320e+04
-Df Model:                           2                                         
+Dep. Variable:                      y   R-squared:                       0.701
+Model:                            OLS   Adj. R-squared:                  0.698
+Method:                 Least Squares   F-statistic:                     288.9
+Date:                Thu, 17 Mar 2016   Prob (F-statistic):          5.93e-159
+Time:                        17:18:53   Log-Likelihood:                -4941.7
+No. Observations:                 622   AIC:                             9893.
+Df Residuals:                     617   BIC:                             9915.
+Df Model:                           5                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
 ------------------------------------------------------------------------------
-x1            37.8397      0.143    264.150      0.000        37.558    38.121
-x2            -0.4583      0.093     -4.942      0.000        -0.640    -0.276
+x1             1.5488      0.100     15.435      0.000         1.352     1.746
+x2           -17.1745      2.289     -7.503      0.000       -21.670   -12.679
+x3            -0.0003   6.41e-05     -4.111      0.000        -0.000    -0.000
+x4             0.0005      0.000      3.660      0.000         0.000     0.001
+x5             1.9440      2.212      0.879      0.380        -2.400     6.289
 ==============================================================================
-Omnibus:                       56.884   Durbin-Watson:                   0.013
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):               23.527
-Skew:                           0.256   Prob(JB):                     7.78e-06
-Kurtosis:                       2.195   Cond. No.                         11.1
+Omnibus:                      424.829   Durbin-Watson:                   2.197
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           150507.988
+Skew:                           1.799   Prob(JB):                         0.00
+Kurtosis:                      79.121   Cond. No.                     1.80e+05
 ==============================================================================
 
 Warnings:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified. No of tweets: [ 947414.98810746] Residual sum of squares : 45724483.1654
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.8e+05. This might indicate that there are
+strong multicollinearity or other numerical problems.

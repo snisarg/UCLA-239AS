@@ -55,8 +55,8 @@ for f in file_list:
 
         # Generate training and test data from current window
 
-        data_labels = X[0:, 0]
-        data_features = X[0:, [1, 4]]
+        data_labels = X[1:, 0]
+        data_features = X[0:, :]
 
         model = linear_model.LinearRegression()
 
