@@ -7,8 +7,8 @@ import nltk
 from sklearn import feature_extraction
 import string
 
-path = "../../Datasets/tweets/tweet_data/"
-#path = "F:/tweets/"
+#path = "../../Datasets/tweets/tweet_data/"
+path = "F:/tweets/"
 
 # returns a list of lists of feature data between start and end-time from the input file
 

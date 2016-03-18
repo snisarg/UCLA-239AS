@@ -8,13 +8,13 @@ import utility
 import numpy
 import statsmodels.api as sm
 
-#path = "../../Datasets/tweets/tweet_data/"
-path = "F:/tweets/"
+path = "../../Datasets/tweets/tweet_data/"
+#path = "F:/tweets/"
 
 file_list = []
 
-#file_list = os.listdir(path)
-file_list = ["subset.txt"]
+file_list = os.listdir(path)
+#file_list = ["subset.txt"]
 
 window_size = 1
 
