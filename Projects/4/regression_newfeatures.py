@@ -8,6 +8,7 @@ import utility
 import numpy
 import statsmodels.api as sm
 from sklearn import linear_model, cross_validation
+import matplotlib.pyplot as plt
 
 
 path = "../../Datasets/tweets/tweet_data/"
@@ -54,6 +55,17 @@ for f in file_list:
     #print("\nAccuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
     print numpy.mean(numpy.sqrt(-scores))
 
+    # Part B - Generate a Scatter Plot of no of tweets and top 3 features
+    p1 = plt.scatter(train_label, train_features[:, 0], s=5, c='#ff0000', linewidths=0)
+    p2 = plt.scatter(train_label, train_features[:, 1], s=5, c='#00ff00', linewidths=0)
+    p3 = plt.scatter(train_label, train_features[:, 2], s=5, c='#0000ff', linewidths=0)
+    plt.xlabel('Tweet Count')
+    # plt.ylabel('')
+    plt.title('Feature values vs. Predictant for {}'.format(temp))
+    #plt.grid(True)
+    plt.legend((p1, p2, p3), ('Column name 1', 'Column name 2', 'Column Name 3'))
+    plt.show()
+
     '''
     print "train label"
     print train_label
@@ -84,6 +96,3 @@ for f in file_list:
         fw.write(str(numpy.mean(numpy.abs(list(map(operator.sub, predict_label, test_label))))))
         #fw.write("\n\n Residual sum of squares : ")
 '''
-
-# Part B - Generate a Scatter Plot of no of tweets and top 3 features
-
