@@ -1,3 +1,28 @@
+
+
+Linear Regression With 6 Best featues, window size 1
+
+('\n K fold Linear Regression with best 6 features on file  : ', 'tweets_#gohawks.txt')
+  2 ('\n   window size : ', 1)
+  3 ('Average Prediciton Error  : ', 214.10541210752407)
+  4 ('\n K fold Linear Regression with best 6 features on file  : ', 'tweets_#gopatriots.txt')
+  5 ('\n   window size : ', 1)
+  6 ('Average Prediciton Error  : ', 63.121805892333306)
+  7 ('\n K fold Linear Regression with best 6 features on file  : ', 'tweets_#nfl.txt')
+  8 ('\n   window size : ', 1)
+  9 ('Average Prediciton Error  : ', 200.27618604896651)
+ 10 ('\n K fold Linear Regression with best 6 features on file  : ', 'tweets_#patriots.txt')
+ 11 ('\n   window size : ', 1)
+ 12 ('Average Prediciton Error  : ', 696.36373549604809)
+ 13 ('\n K fold Linear Regression with best 6 features on file  : ', 'tweets_#sb49.txt')
+ 14 ('\n   window size : ', 1)
+ 15 ('Average Prediciton Error  : ', 1328.9875231371568)
+ 16 ('\n K fold Linear Regression with best 6 features on file  : ', 'tweets_#superbowl.txt')
+ 17 ('\n   window size : ', 1)
+ 18 ('Average Prediciton Error  : ', 1788.9748202650003)
+
+Linear Regression with all features (old + new)
+
 ('Linear Regression on file : ', 'tweets_#gohawks.txt')
 ('window size : ', 11)
 ('Mean absolute error  : ', 1044.4950593680251)
@@ -16,3 +41,4 @@
 ('Linear Regression on file : ', 'tweets_#superbowl.txt')
 ('window size : ', 11)
 ('Mean absolute error  : ', 7118.8594496609367)
+
