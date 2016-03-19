@@ -1,0 +1,162 @@
+('\nHashtag File ', 'tweets_#gohawks.txt')
+Regression on data before Feb 1 8 am
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt for time frame ', 1, 240.71400679131278)
+
+For sample1_period1, RMSE = 1318.47508247 and Predicted Value = [[ 159.3971646]]
+
+For sample4_period1, RMSE = 360.074839522 and Predicted Value = [[ 263.46655647]]
+
+For sample5_period1, RMSE = 1527.47480298 and Predicted Value = [[-2445.17377068]]
+
+For sample8_period1, RMSE = 132.389941049 and Predicted Value = [[ 188.46398657]]
+Regression on data between Feb 8 am to 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt for time frame ', 2, 21120.358569846132)
+
+For sample2_period2, RMSE = 53192.4922213 and Predicted Value = [[-11388.47263912]]
+
+For sample6_period2, RMSE = 48953.0430105 and Predicted Value = [[ 104911.23611253]]
+
+For sample9_period2, RMSE = 1105.11961341 and Predicted Value = [[ 2978.59313567]]
+Regression on data after Feb 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt for time frame ', 3, 30.885016323197711)
+
+For sample3_period3, RMSE = 3764.01725732 and Predicted Value = [[-2536.84430901]]
+
+For sample7_period3, RMSE = 109.406161734 and Predicted Value = [[ 33.93486191]]
+
+For sample10_period3, RMSE = 14.2798902151 and Predicted Value = [[ 59.95089876]]
+('\nHashtag File ', 'tweets_#gopatriots.txt')
+Regression on data before Feb 1 8 am
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt for time frame ', 1, 20.672176392680605)
+
+For sample1_period1, RMSE = 764.618248921 and Predicted Value = [[ 90.83671277]]
+
+For sample4_period1, RMSE = 95.8227156713 and Predicted Value = [[ 159.64541787]]
+
+For sample5_period1, RMSE = 392.709928435 and Predicted Value = [[-444.6891784]]
+
+For sample8_period1, RMSE = 20.5095755055 and Predicted Value = [[ 76.81696963]]
+Regression on data between Feb 8 am to 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt for time frame ', 2, 4600.957662969493)
+
+For sample2_period2, RMSE = 16675.8644682 and Predicted Value = [[ 53959.10839385]]
+
+For sample6_period2, RMSE = 68776.8483483 and Predicted Value = [[-48340.03712353]]
+
+For sample9_period2, RMSE = 1647.83910179 and Predicted Value = [[ 2029.25967522]]
+Regression on data after Feb 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gopatriots.txt for time frame ', 3, 7.308187052741002)
+
+For sample3_period3, RMSE = 256.362315214 and Predicted Value = [[ 488.64371332]]
+
+For sample7_period3, RMSE = 28.5771397744 and Predicted Value = [[ 40.84053256]]
+
+For sample10_period3, RMSE = 20.2917703525 and Predicted Value = [[ 37.96945207]]
+('\nHashtag File ', 'tweets_#nfl.txt')
+Regression on data before Feb 1 8 am
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#nfl.txt for time frame ', 1, 106.10744045715228)
+
+For sample1_period1, RMSE = 191.1809996 and Predicted Value = [[ 205.79384757]]
+
+For sample4_period1, RMSE = 129.013665393 and Predicted Value = [[ 264.0221975]]
+
+For sample5_period1, RMSE = 108.072376782 and Predicted Value = [[ 337.06521699]]
+
+For sample8_period1, RMSE = 70.4557485417 and Predicted Value = [[ 104.93577933]]
+Regression on data between Feb 8 am to 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#nfl.txt for time frame ', 2, 4604.1376844789538)
+
+For sample2_period2, RMSE = 10044.7936595 and Predicted Value = [[ 64519.25128171]]
+
+For sample6_period2, RMSE = 140038.244259 and Predicted Value = [[ 225623.08314647]]
+
+For sample9_period2, RMSE = 1110.46728518 and Predicted Value = [[ 2767.00172787]]
+Regression on data after Feb 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#nfl.txt for time frame ', 3, 117.85259233987563)
+
+For sample3_period3, RMSE = 235.821444083 and Predicted Value = [[ 1074.49928744]]
+
+For sample7_period3, RMSE = 79.009087628 and Predicted Value = [[ 81.7166698]]
+
+For sample10_period3, RMSE = 95.7039439501 and Predicted Value = [[ 166.56334982]]
+('\nHashtag File ', 'tweets_#patriots.txt')
+Regression on data before Feb 1 8 am
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#patriots.txt for time frame ', 1, 284.51003282497811)
+
+For sample1_period1, RMSE = 1106.49229968 and Predicted Value = [[ 158.18328399]]
+
+For sample4_period1, RMSE = 435.912546695 and Predicted Value = [[ 156.51559751]]
+
+For sample5_period1, RMSE = 379.241871828 and Predicted Value = [[-402.91643818]]
+
+For sample8_period1, RMSE = 44.9072207367 and Predicted Value = [[ 105.93879757]]
+Regression on data between Feb 8 am to 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#patriots.txt for time frame ', 2, 39440.933277212571)
+
+For sample2_period2, RMSE = 42930.3693129 and Predicted Value = [[ 3168.86766458]]
+
+For sample6_period2, RMSE = 21096.0602498 and Predicted Value = [[ 55487.18038443]]
+
+For sample9_period2, RMSE = 40831.4322356 and Predicted Value = [[ 40773.89380396]]
+Regression on data after Feb 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#patriots.txt for time frame ', 3, 73.21433473108354)
+
+For sample3_period3, RMSE = 231.050910738 and Predicted Value = [[ 1030.38922252]]
+
+For sample7_period3, RMSE = 11.9035532071 and Predicted Value = [[ 57.77169697]]
+
+For sample10_period3, RMSE = 8.57530694624 and Predicted Value = [[ 60.77524515]]
+('\nHashtag File ', 'tweets_#sb49.txt')
+Regression on data before Feb 1 8 am
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#sb49.txt for time frame ', 1, 47.351707005327142)
+
+For sample1_period1, RMSE = 63.7617007548 and Predicted Value = [[ 101.88650293]]
+
+For sample4_period1, RMSE = 117.194087118 and Predicted Value = [[ 291.35659988]]
+
+For sample5_period1, RMSE = 117.314756768 and Predicted Value = [[ 336.47745889]]
+
+For sample8_period1, RMSE = 18.3171872616 and Predicted Value = [[ 63.04574809]]
+Regression on data between Feb 8 am to 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#sb49.txt for time frame ', 2, 106698.79551169704)
+
+For sample2_period2, RMSE = 89230.7727374 and Predicted Value = [[ 101562.64712972]]
+
+For sample6_period2, RMSE = 63852.143245 and Predicted Value = [[ 113390.78153077]]
+
+For sample9_period2, RMSE = 126669.197784 and Predicted Value = [[ 127806.54368484]]
+Regression on data after Feb 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#sb49.txt for time frame ', 3, 88.052879668413382)
+
+For sample3_period3, RMSE = 252.851001341 and Predicted Value = [[ 942.43555236]]
+
+For sample7_period3, RMSE = 10.5286186085 and Predicted Value = [[ 54.53441552]]
+
+For sample10_period3, RMSE = 7.89506091419 and Predicted Value = [[ 57.68356985]]
+('\nHashtag File ', 'tweets_#superbowl.txt')
+Regression on data before Feb 1 8 am
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#superbowl.txt for time frame ', 1, 296.93401127096752)
+
+For sample1_period1, RMSE = 123.124035383 and Predicted Value = [[ 191.37679957]]
+
+For sample4_period1, RMSE = 50.8156244625 and Predicted Value = [[ 254.14959826]]
+
+For sample5_period1, RMSE = 124.713313394 and Predicted Value = [[ 413.02519567]]
+
+For sample8_period1, RMSE = 96.5734817097 and Predicted Value = [[ 145.21862948]]
+Regression on data between Feb 8 am to 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#superbowl.txt for time frame ', 2, 810160.87482859008)
+
+For sample2_period2, RMSE = 155363.189371 and Predicted Value = [[-105250.73826564]]
+
+For sample6_period2, RMSE = 357149.114466 and Predicted Value = [[-377881.37418369]]
+
+For sample9_period2, RMSE = 199118.247313 and Predicted Value = [[-197544.9483456]]
+Regression on data after Feb 8 pm
+('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#superbowl.txt for time frame ', 3, 148.77174110556228)
+
+For sample3_period3, RMSE = 247.67363928 and Predicted Value = [[ 1008.53058586]]
+
+For sample7_period3, RMSE = 35.756847784 and Predicted Value = [[ 74.74693599]]
+
+For sample10_period3, RMSE = 28.2546384513 and Predicted Value = [[ 88.79480104]]
