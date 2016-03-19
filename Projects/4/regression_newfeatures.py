@@ -51,12 +51,12 @@ for f in file_list:
     model = RandomForestRegressor(n_estimators=50,   max_features=7,   max_depth= 8,  n_jobs=8)
     '''
     #model = neural_network.MLPRegressor([20,10], 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200, True, None, 0.0001, False, False, 0.9, True, False, 0.1, 0.9, 0.999, 1e-08)
-
+    '''
     regr = sm.OLS(train_label, train_features)
     results = regr.fit()
     print "summary \n"
     print results.summary()
-
+    '''
 
     #predicted_tweet_count = cross_validation.cross_val_predict(model, train_features, train_label, 10, 1, 0, None, 0)
     scores = cross_validation.cross_val_score(model, train_features, train_label,  cv=10, scoring='mean_squared_error')
@@ -64,18 +64,18 @@ for f in file_list:
     print("\n", numpy.mean(numpy.sqrt(-scores)))
 
 
-'''
+
     # Part B - Generate a Scatter Plot of no of tweets and top 3 features
-    p1 = plt.scatter(train_label, train_features[:, 0], s=5, c='#ff0000', linewidths=0)
-    p2 = plt.scatter(train_label, train_features[:, 1], s=5, c='#00ff00', linewidths=0)
-    p3 = plt.scatter(train_label, train_features[:, 5], s=5, c='#0000ff', linewidths=0)
+    p1 = plt.scatter(train_label, train_features[:, 5], s=5, c='#ff0000', linewidths=0)
+    p2 = plt.scatter(train_label, train_features[:, 6], s=5, c='#001e00', linewidths=0)
+    p3 = plt.scatter(train_label, train_features[:, 1], s=5, c='#0000ff', linewidths=0)
     plt.xlabel('Tweet Count')
     # plt.ylabel('')
     plt.title('Feature values vs. Predictant for {}'.format(temp))
     #plt.grid(True)
-    plt.legend((p1, p2, p3), ('Column name 1', 'Column name 2', 'Column Name 3'))
+    plt.legend((p1, p2, p3), ('Average Acceleration of Tweets', 'Sum of Impressions of Tweets', 'No of users posting Tweets'))
     plt.show()
-'''
+
     # linear_regression(data)
 
 #    predict_label = results.predict(test_features)

@@ -26,7 +26,7 @@ window_size = 1
 
 for f in file_list:
 
-    print("\n K fold Linear Regression on file : ", f)
+    print("\n K fold Linear Regression with best 6 features on file  : ", f)
     print("\n   window size : ", window_size)
 
     f = path + f
@@ -42,7 +42,7 @@ for f in file_list:
     #print X
     # numpy.roll( ) is used for circular shifting of elements
     train_label = X[2:, 0]
-    train_features = X[1:- 1, [0,1,2,3,6,7,11]]
+    train_features = X[1:- 1, [0,1,2,6,10,11]]
 
     model = linear_model.LinearRegression()
     #model = neural_network.MLPRegressor([10, 40, 5], 'relu', 'adam', 0.0001, 200, 'constant', 0.001, 0.5, 200,
@@ -57,7 +57,7 @@ for f in file_list:
     # doesnt randomize the input
     scores = cross_validation.cross_val_score(model, train_features, train_label,  cv=10, scoring='mean_absolute_error')
     avg_scores = numpy.average((-scores))
-    print("Mean absolute error  : ", avg_scores)
+    print("Average Prediciton Error  : ", avg_scores)
 
 #     hashtag_rmse += avg_scores
 #

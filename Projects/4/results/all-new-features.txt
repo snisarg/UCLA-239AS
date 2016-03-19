@@ -1,3 +1,6 @@
+
+Q 3 with all new features i.e 6 to 13
+
 ('\nLinear Regression with imp features, on file : ', 'tweets_#gohawks.txt')
 ('\nWindow size : ', 1)
 summary 
