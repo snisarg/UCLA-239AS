@@ -20,6 +20,12 @@ file_list = []
 file_list = os.listdir(path)
 #file_list = ["subset.txt"]
 
+file_names = []
+acceleration_tweets = []
+impression_tweets = []
+users_tweets = []
+label_tweets = []
+
 window_size = 1
 
 for f in file_list:
@@ -63,18 +69,13 @@ for f in file_list:
     #print("\nAccuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
     print("\n", numpy.mean(numpy.sqrt(-scores)))
 
+    # Collecting stats for Part B
+    file_names.append(temp)
+    label_tweets.append(train_label)
+    acceleration_tweets.append(train_features[:, 5])
+    impression_tweets.append(train_features[:, 6])
+    users_tweets.append(train_features[:, 1])
 
-
-    # Part B - Generate a Scatter Plot of no of tweets and top 3 features
-    p1 = plt.scatter(train_label, train_features[:, 5], s=5, c='#ff0000', linewidths=0)
-    p2 = plt.scatter(train_label, train_features[:, 6], s=5, c='#001e00', linewidths=0)
-    p3 = plt.scatter(train_label, train_features[:, 1], s=5, c='#0000ff', linewidths=0)
-    plt.xlabel('Tweet Count')
-    # plt.ylabel('')
-    plt.title('Feature values vs. Predictant for {}'.format(temp))
-    #plt.grid(True)
-    plt.legend((p1, p2, p3), ('Average Acceleration of Tweets', 'Sum of Impressions of Tweets', 'No of users posting Tweets'))
-    plt.show()
 
     # linear_regression(data)
 
@@ -96,3 +97,47 @@ for f in file_list:
         fw.write(str(numpy.mean(numpy.abs(list(map(operator.sub, predict_label, test_label))))))
         #fw.write("\n\n Residual sum of squares : ")
 '''
+
+
+# Part B - Generate a Scatter Plot of no of tweets and top 3 features
+# p1 = plt.scatter(train_label, train_features[:, 5], s=5, c='#ff0000', linewidths=0)
+# p2 = plt.scatter(train_label, train_features[:, 6], s=5, c='#001e00', linewidths=0)
+# p3 = plt.scatter(train_label, train_features[:, 1], s=5, c='#0000ff', linewidths=0)
+
+colour = ['#ff0000', '#996633', '#009933', '#000066', '#0099ff', '#cc00cc', '#0000ff']
+
+plt.xlabel('Tweet Count')
+
+# For Acceleration of Tweets
+plt.ylabel('Acceleration')
+plt.title('Average Acceleration of Tweets')
+legend_list = []
+for i in range(len(acceleration_tweets)):
+    legend_list.append(plt.scatter(label_tweets[i], acceleration_tweets[i], c=colour[i], s=5, linewidths=0))
+plt.legend(legend_list, file_names)
+
+#plt.grid(True)
+# plt.legend((p1, p2, p3), ('Average Acceleration of Tweets', 'Sum of Impressions of Tweets', 'No of users posting Tweets'))
+plt.show()
+
+
+plt.xlabel('Tweet Count')
+
+# For Impressions of Tweets
+plt.ylabel('Impressions')
+plt.title('Sum of Impressions of Tweets')
+legend_list = []
+for i in range(len(acceleration_tweets)):
+    legend_list.append(plt.scatter(label_tweets[i], impression_tweets[i], c=colour[i], s=5, linewidths=0))
+plt.legend(legend_list, file_names)
+plt.show()
+
+# For Users of Tweets
+plt.xlabel('Tweet Count')
+plt.ylabel('Users')
+plt.title('Number of users posting Tweets')
+legend_list = []
+for i in range(len(acceleration_tweets)):
+    legend_list.append(plt.scatter(label_tweets[i], users_tweets[i], c=colour[i], s=5, linewidths=0))
+plt.legend(legend_list, file_names)
+plt.show()
