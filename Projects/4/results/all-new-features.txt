@@ -1,0 +1,228 @@
+('\nLinear Regression with imp features, on file : ', 'tweets_#gohawks.txt')
+('\nWindow size : ', 1)
+summary 
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.599
+Model:                            OLS   Adj. R-squared:                  0.594
+Method:                 Least Squares   F-statistic:                     130.8
+Date:                Fri, 18 Mar 2016   Prob (F-statistic):          2.98e-117
+Time:                        19:15:32   Log-Likelihood:                -5025.4
+No. Observations:                 621   AIC:                         1.006e+04
+Df Residuals:                     614   BIC:                         1.010e+04
+Df Model:                           7                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+const               0          0        nan        nan             0         0
+x1            -0.0055      0.018     -0.300      0.764        -0.041     0.030
+x2             9.4986     20.322      0.467      0.640       -30.410    49.407
+x3            29.9388      8.719      3.434      0.001        12.816    47.062
+x4             0.7949     11.009      0.072      0.942       -20.824    22.414
+x5             0.0004   1.27e-05     28.435      0.000         0.000     0.000
+x6            -0.0208      0.004     -4.685      0.000        -0.030    -0.012
+x7          -143.0083    103.546     -1.381      0.168      -346.356    60.339
+==============================================================================
+Omnibus:                      408.774   Durbin-Watson:                   1.829
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           211085.152
+Skew:                           1.576   Prob(JB):                         0.00
+Kurtosis:                      93.266   Cond. No.                          inf
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is      0. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+('\n', 568.77486744210398)
+('\nLinear Regression with imp features, on file : ', 'tweets_#gopatriots.txt')
+('\nWindow size : ', 1)
+summary 
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.533
+Model:                            OLS   Adj. R-squared:                  0.525
+Method:                 Least Squares   F-statistic:                     61.04
+Date:                Fri, 18 Mar 2016   Prob (F-statistic):           4.07e-58
+Time:                        19:15:35   Log-Likelihood:                -2660.8
+No. Observations:                 381   AIC:                             5336.
+Df Residuals:                     374   BIC:                             5363.
+Df Model:                           7                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+const               0          0        nan        nan             0         0
+x1           -10.4075      1.949     -5.341      0.000       -14.239    -6.576
+x2             2.4421     13.464      0.181      0.856       -24.032    28.916
+x3             6.6313      3.222      2.058      0.040         0.296    12.967
+x4            -0.3416      8.272     -0.041      0.967       -16.608    15.924
+x5             0.0006   3.33e-05     18.646      0.000         0.001     0.001
+x6            -0.0055      0.002     -2.615      0.009        -0.010    -0.001
+x7            31.4406     34.623      0.908      0.364       -36.639    99.520
+==============================================================================
+Omnibus:                      480.940   Durbin-Watson:                   2.018
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            99567.779
+Skew:                           5.554   Prob(JB):                         0.00
+Kurtosis:                      81.413   Cond. No.                          inf
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is      0. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+('\n', 200.19892494802741)
+('\nLinear Regression with imp features, on file : ', 'tweets_#nfl.txt')
+('\nWindow size : ', 1)
+summary 
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.697
+Model:                            OLS   Adj. R-squared:                  0.694
+Method:                 Least Squares   F-statistic:                     197.5
+Date:                Fri, 18 Mar 2016   Prob (F-statistic):          3.69e-151
+Time:                        19:16:09   Log-Likelihood:                -4668.5
+No. Observations:                 607   AIC:                             9351.
+Df Residuals:                     600   BIC:                             9382.
+Df Model:                           7                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+const               0          0        nan        nan             0         0
+x1            -1.3928      0.162     -8.612      0.000        -1.710    -1.075
+x2            -0.8137      5.210     -0.156      0.876       -11.046     9.419
+x3            54.4756      6.749      8.072      0.000        41.222    67.729
+x4            -5.9903     10.428     -0.574      0.566       -26.470    14.489
+x5             0.0002   6.16e-06     30.718      0.000         0.000     0.000
+x6            -0.0349      0.004     -8.797      0.000        -0.043    -0.027
+x7           -83.9447     64.999     -1.291      0.197      -211.598    43.709
+==============================================================================
+Omnibus:                      828.796   Durbin-Watson:                   1.877
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           191759.063
+Skew:                           6.969   Prob(JB):                         0.00
+Kurtosis:                      88.951   Cond. No.                          inf
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is      0. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+('\n', 459.05898502535285)
+('\nLinear Regression with imp features, on file : ', 'tweets_#patriots.txt')
+('\nWindow size : ', 1)
+summary 
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.458
+Model:                            OLS   Adj. R-squared:                  0.452
+Method:                 Least Squares   F-statistic:                     75.85
+Date:                Fri, 18 Mar 2016   Prob (F-statistic):           1.95e-79
+Time:                        19:17:07   Log-Likelihood:                -6036.0
+No. Observations:                 636   AIC:                         1.209e+04
+Df Residuals:                     629   BIC:                         1.212e+04
+Df Model:                           7                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+const               0          0        nan        nan             0         0
+x1            -1.1106      0.277     -4.009      0.000        -1.655    -0.567
+x2           381.9722     89.698      4.258      0.000       205.828   558.116
+x3            14.3794     35.808      0.402      0.688       -55.937    84.696
+x4            24.1038     88.207      0.273      0.785      -149.113   197.320
+x5             0.0003   1.62e-05     21.212      0.000         0.000     0.000
+x6            -0.0330      0.010     -3.186      0.002        -0.053    -0.013
+x7            12.3171    324.155      0.038      0.970      -624.240   648.874
+==============================================================================
+Omnibus:                      872.565   Durbin-Watson:                   0.982
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           210892.738
+Skew:                           7.059   Prob(JB):                         0.00
+Kurtosis:                      91.085   Cond. No.                          inf
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is      0. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+('\n', 2240.0989845276636)
+('\nLinear Regression with imp features, on file : ', 'tweets_#sb49.txt')
+('\nWindow size : ', 1)
+summary 
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.524
+Model:                            OLS   Adj. R-squared:                  0.518
+Method:                 Least Squares   F-statistic:                     78.25
+Date:                Fri, 18 Mar 2016   Prob (F-statistic):           3.97e-76
+Time:                        19:18:48   Log-Likelihood:                -5218.9
+No. Observations:                 504   AIC:                         1.045e+04
+Df Residuals:                     497   BIC:                         1.048e+04
+Df Model:                           7                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+const               0          0        nan        nan             0         0
+x1            -0.4645      0.159     -2.918      0.004        -0.777    -0.152
+x2           539.4612    162.873      3.312      0.001       219.458   859.465
+x3            70.4017     89.546      0.786      0.432      -105.534   246.338
+x4           -51.6231    110.747     -0.466      0.641      -269.213   165.967
+x5          8.878e-05   4.09e-06     21.727      0.000      8.08e-05  9.68e-05
+x6            -0.0067      0.007     -1.000      0.318        -0.020     0.006
+x7           -72.0168    165.056     -0.436      0.663      -396.310   252.276
+==============================================================================
+Omnibus:                      711.705   Durbin-Watson:                   0.545
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           157702.444
+Skew:                           7.270   Prob(JB):                         0.00
+Kurtosis:                      88.430   Cond. No.                          inf
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is      0. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+('\n', 4898.7088542482961)
+('\nLinear Regression with imp features, on file : ', 'tweets_#superbowl.txt')
+('\nWindow size : ', 1)
+summary 
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.685
+Model:                            OLS   Adj. R-squared:                  0.682
+Method:                 Least Squares   F-statistic:                     182.4
+Date:                Fri, 18 Mar 2016   Prob (F-statistic):          1.14e-142
+Time:                        19:21:33   Log-Likelihood:                -6306.0
+No. Observations:                 593   AIC:                         1.263e+04
+Df Residuals:                     586   BIC:                         1.266e+04
+Df Model:                           7                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+const               0          0        nan        nan             0         0
+x1            -2.6414      0.227    -11.615      0.000        -3.088    -2.195
+x2           615.3101    375.859      1.637      0.102      -122.884  1353.504
+x3           104.8783    138.257      0.759      0.448      -166.661   376.418
+x4          -793.9453    531.174     -1.495      0.136     -1837.181   249.290
+x5             0.0002   5.71e-06     29.704      0.000         0.000     0.000
+x6            -0.0215      0.024     -0.911      0.363        -0.068     0.025
+x7             4.3521   1231.482      0.004      0.997     -2414.303  2423.007
+==============================================================================
+Omnibus:                      752.803   Durbin-Watson:                   1.314
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           657494.112
+Skew:                           5.468   Prob(JB):                         0.00
+Kurtosis:                     165.759   Cond. No.                          inf
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is      0. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+('\n', 6417.9303097647698)

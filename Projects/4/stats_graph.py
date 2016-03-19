@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 def plot_graph(hashtag, data):
 
     plt.figure(figsize=(25, 10))
-    plt.bar(range(len(data)), data, width=2, color='r')
+    plt.bar(range(len(data)), data, color='r')
     plt.title(hashtag)
     plt.xlabel('Hours')
     plt.ylabel('Tweets')
@@ -73,7 +73,7 @@ for file in file_list:
 #print "gohawks list"
 #print gohawks_list
 #print "nfl list"
-#print nfl_list
+print nfl_list
 
 #plot_graph('gohawks', gohawks_list)
 
