@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 
 
 path = "../../Datasets/tweets/tweet_data/"
-#path = "F:/tweets/"
+path = "F:/tweets/"
 
 file_list = []
 
@@ -63,7 +63,7 @@ for f in file_list:
     #print("\nAccuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
     print("\n", numpy.mean(numpy.sqrt(-scores)))
 
-
+    print train_label
 
     # Part B - Generate a Scatter Plot of no of tweets and top 3 features
     p1 = plt.scatter(train_label, train_features[:, 5], s=5, c='#ff0000', linewidths=0)

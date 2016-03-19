@@ -1,4 +1,4 @@
-# Que 4 Part B
+# Que 4 Part B and Que 5
 # Use different features as used in que 3
 
 import os
@@ -22,14 +22,14 @@ file_list = os.listdir(path)
 epoch_8am = 1422806400
 epoch_8pm = 1422849600
 
-window_size = 10 # should be 1 for this part of que, clarify
+window_size = 1
 test_files = [['sample1_period1', 'sample4_period1', 'sample5_period1', 'sample8_period1'],
               ['sample2_period2', 'sample6_period2', 'sample9_period2'],
               ['sample3_period3', 'sample7_period3', 'sample10_period3']]
 
 for f in file_list:
 
-    print("Hashtag File ", f)
+    print("\nHashtag File ", f)
 
     f = path + f
     training_data = []
@@ -58,7 +58,7 @@ for f in file_list:
         # Generate training and test data from current window
 
         data_labels = X[1:, 0]
-        data_features = X[:-1, :]
+        data_features = X[:-1, [0,1,2,6,10,11]]
 
         model = linear_model.LinearRegression()
 
@@ -70,7 +70,7 @@ for f in file_list:
         # doesnt randomize the input
         scores = cross_validation.cross_val_score(model, data_features, data_labels,  cv=5, scoring='mean_absolute_error')
         avg_scores = numpy.average(-scores)
-        print("4th Part A Avg Prediction error for Hashtag file : " + f + " for time frame ", (i+1), avg_scores)
+        print("\n4th Part B Avg Prediction error for Hashtag file : " + f + " for time frame ", (i+1), avg_scores)
 
         # FOR QUESTION 5
         model2 = linear_model.LinearRegression()
@@ -81,9 +81,9 @@ for f in file_list:
             X = numpy.matrix(X)
 
             data_labels = X[1:, 0]
-            data_features = X[:-1, :]
+            data_features = X[:-1, [0,1,2,6,10,11]]
 
             predicted = model2.predict(data_features)
 
             rmse = numpy.sqrt(metrics.mean_squared_error(data_labels, predicted))
-            print("For {}, RMSE = {} and Predicted Value = {}".format(file_name, rmse, model2.predict(data_features[-1])))
+            print("\nFor {}, RMSE = {} and Predicted Value = {}".format(file_name, rmse, model2.predict(data_features[-1])))
