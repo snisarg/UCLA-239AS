@@ -1,4 +1,4 @@
-                            OLS Regression Results                            
+                            OLS Regression Results
 ==============================================================================
 Dep. Variable:                      y   R-squared:                       0.823
 Model:                            OLS   Adj. R-squared:                  0.821

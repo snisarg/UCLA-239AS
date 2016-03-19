@@ -1,3 +1,15 @@
+
+Q 3 : Run of linear regression using only significant features i.e (0,1,2,3,7,11)
+
+[0]    tweet_count = 0
+[1]    retweet_count = 0
+[2]    total_followers = 0
+[3]    max_followers = 0
+[7]    total of favorite count of tweets posted in the current window
+[11]   impressions_sum
+
+
+
 ('\nLinear Regression with imp features, on file : ', 'tweets_#gohawks.txt')
 ('\nWindow size : ', 1)
 ('\nLinear Regression with imp features, on file : ', 'tweets_#gohawks.txt')
