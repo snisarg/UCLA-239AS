@@ -1,6 +1,6 @@
 Que 4 Part A :
 
-Linear Regression With 6 Best featues, window size 1
+Linear Regression With 10-fold 6 Best featues, window size 1
 
 ('\n K fold Linear Regression with best 6 features on file  : ', 'tweets_#gohawks.txt')
   2 ('\n   window size : ', 1)
@@ -24,21 +24,15 @@ Linear Regression With 6 Best featues, window size 1
 Linear Regression with all features (old + new)
 
 ('Linear Regression on file : ', 'tweets_#gohawks.txt')
-('window size : ', 11)
 ('Mean absolute error  : ', 1044.4950593680251)
 ('Linear Regression on file : ', 'tweets_#gopatriots.txt')
-('window size : ', 11)
 ('Mean absolute error  : ', 259.88640544756186)
 ('Linear Regression on file : ', 'tweets_#nfl.txt')
-('window size : ', 11)
 ('Mean absolute error  : ', 756.35704309769574)
 ('Linear Regression on file : ', 'tweets_#patriots.txt')
-('window size : ', 11)
 ('Mean absolute error  : ', 2977.6709277394375)
 ('Linear Regression on file : ', 'tweets_#sb49.txt')
-('window size : ', 11)
 ('Mean absolute error  : ', 15233.983656175944)
 ('Linear Regression on file : ', 'tweets_#superbowl.txt')
-('window size : ', 11)
 ('Mean absolute error  : ', 7118.8594496609367)
 

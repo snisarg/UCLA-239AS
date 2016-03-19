@@ -1,3 +1,6 @@
+
+Que 4B & 5, Linear Regression with Best 6 features on time-frame with k-fold results along with que 5 prediction results
+
 ('\nHashtag File ', 'tweets_#gohawks.txt')
 Regression on data before Feb 1 8 am
 ('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt for time frame ', 1, 240.71400679131278)
@@ -9,6 +12,7 @@ For sample4_period1, RMSE = 360.074839522 and Predicted Value = [[ 263.46655647]
 For sample5_period1, RMSE = 1527.47480298 and Predicted Value = [[-2445.17377068]]
 
 For sample8_period1, RMSE = 132.389941049 and Predicted Value = [[ 188.46398657]]
+
 Regression on data between Feb 8 am to 8 pm
 ('\n4th Part B Avg Prediction error for Hashtag file : ../../Datasets/tweets/tweet_data/tweets_#gohawks.txt for time frame ', 2, 21120.358569846132)
 
